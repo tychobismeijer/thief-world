@@ -19,11 +19,13 @@ public class Hunter extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		ThiefWorld world = (ThiefWorld)arg0;
-		
+		ThiefWorld world = (ThiefWorld) arg0;
+
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(PheromoneType.Hunter);
 		world.schedule.scheduleRepeating(pheromone);
+		world.map.setObjectLocation(pheromone,
+				world.map.getObjectLocation(this));
 	}
 
 }
