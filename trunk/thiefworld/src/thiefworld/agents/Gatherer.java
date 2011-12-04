@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.main.ThiefWorld;
 
 public class Gatherer extends ActiveAgent {
 	private static int gathererNo = 0;
@@ -10,7 +11,7 @@ public class Gatherer extends ActiveAgent {
 		gathererNo++;
 		this.setName("gatherer #" + gathererNo);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -18,8 +19,11 @@ public class Gatherer extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		// TODO Auto-generated method stub
+		ThiefWorld world = (ThiefWorld) arg0;
 
+		// drop pheromone
+		Pheromone pheromone = new Pheromone(PheromoneType.Gatherer);
+		world.schedule.scheduleRepeating(pheromone);
 	}
 
 }
