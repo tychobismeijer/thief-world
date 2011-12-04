@@ -21,9 +21,15 @@ public class Gatherer extends ActiveAgent {
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
 
+		// TODO check if a pheromone is not already in the same position. If so,
+		// increase the pheromone strength in that position by the required
+		// value (i.e. unit).
+
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(PheromoneType.Gatherer);
 		world.schedule.scheduleRepeating(pheromone);
+		world.map.setObjectLocation(pheromone,
+				world.map.getObjectLocation(this));
 	}
 
 }

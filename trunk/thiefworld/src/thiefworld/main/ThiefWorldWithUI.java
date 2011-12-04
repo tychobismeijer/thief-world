@@ -23,8 +23,16 @@ import thiefworld.agents.Gatherer;
 import thiefworld.agents.Hunter;
 import thiefworld.agents.MeatSource;
 import thiefworld.agents.Nest;
+import thiefworld.agents.Pheromone;
+import thiefworld.agents.Protector;
 import thiefworld.agents.Thief;
 
+/**
+ * GUI implementation for the thief-world simulation.
+ * 
+ * @author Stefan Adrian Boronea
+ * 
+ */
 public class ThiefWorldWithUI extends GUIState {
 
 	public Display2D display;
@@ -50,11 +58,18 @@ public class ThiefWorldWithUI extends GUIState {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Retrieves the title of the simulation window. (for display purposes).
+	 * 
+	 * @return the title of the simulation window.
+	 */
 	public static String getName() {
 		return "thief-world";
 	}
 
 	/**
+	 * Starter method for the GUI simulation.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -63,148 +78,243 @@ public class ThiefWorldWithUI extends GUIState {
 		c.setVisible(true);
 	}
 
+	/**
+	 * Starts the GUI.
+	 */
 	@Override
 	public void start() {
 		super.start();
 		setupPortrayals();
 	}
 
+	/**
+	 * Loads the GUI components.
+	 */
 	@Override
 	public void load(SimState stateArg) {
 		super.load(stateArg);
 		setupPortrayals();
 	}
 
+	/**
+	 * Sets the display settings for the various agents in the system.
+	 */
 	public void setupPortrayals() {
 		ThiefWorld world = (ThiefWorld) state;
 
 		mapPortrayal.setField(world.map);
 
-		mapPortrayal.setPortrayalForClass(Hunter.class, new MovablePortrayal2D(
-				new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for hunters
+		if (world.isShowHunters()) {
+			mapPortrayal.setPortrayalForClass(Hunter.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = Color.red;
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = Color.red;
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide hunters
+		}
 
-		mapPortrayal.setPortrayalForClass(Gatherer.class,
-				new MovablePortrayal2D(new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for gatherers
+		if (world.isShowGatherers()) {
+			mapPortrayal.setPortrayalForClass(Gatherer.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = Color.green;
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = Color.green;
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide gatherers
+		}
 
-		mapPortrayal.setPortrayalForClass(Nest.class, new MovablePortrayal2D(
-				new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for nests
+		if (world.isShowNests()) {
+			mapPortrayal.setPortrayalForClass(Nest.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = Color.yellow;
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = Color.yellow;
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide nests
+		}
 
-		mapPortrayal.setPortrayalForClass(Thief.class, new MovablePortrayal2D(
-				new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for thieves
+		if (world.isShowThieves()) {
+			mapPortrayal.setPortrayalForClass(Thief.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = Color.gray;
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = Color.gray;
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide thieves
+		}
 
-		mapPortrayal.setPortrayalForClass(Child.class, new MovablePortrayal2D(
-				new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for children
+		if (world.isShowChildren()) {
+			mapPortrayal.setPortrayalForClass(Child.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = Color.cyan;
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = Color.cyan;
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide children
+		}
 
-		mapPortrayal.setPortrayalForClass(FruitSource.class,
-				new MovablePortrayal2D(new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for fruit sources
+		if (world.isShowFruitSources()) {
+			mapPortrayal.setPortrayalForClass(FruitSource.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = new Color(0.0f, 1.0f, 0.0f, 0.5f);
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = new Color(0.0f, 1.0f, 0.0f, 0.5f);
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide fruit sources
+		}
 
-		mapPortrayal.setPortrayalForClass(MeatSource.class,
-				new MovablePortrayal2D(new CircledPortrayal2D(
-						new LabelledPortrayal2D(new OvalPortrayal2D() {
-							/**
+		// set display settings for meat sources
+		if (world.isShowMeatSources()) {
+			mapPortrayal.setPortrayalForClass(MeatSource.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+								/**
 							 * 
 							 */
-							private static final long serialVersionUID = -666009523425731377L;
+								private static final long serialVersionUID = -666009523425731377L;
 
-							@Override
-							public void draw(Object object,
-									Graphics2D graphics, DrawInfo2D info) {
-								super.draw(object, graphics, info);
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
 
-								paint = new Color(1.0f, 0.0f, 0.0f, 0.5f);
-							}
-						}, 5.0, null, Color.white, true), 0, 5.0, Color.green,
-						true)));
+									paint = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide meat sources
+		}
+
+		// set display settings for protectors
+		if (world.isShowProtectors()) {
+			mapPortrayal.setPortrayalForClass(Protector.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new OvalPortrayal2D() {
+
+								/**
+								 * 
+								 */
+								private static final long serialVersionUID = -6017633649081865999L;
+
+								@Override
+								public void draw(Object object,
+										Graphics2D graphics, DrawInfo2D info) {
+									super.draw(object, graphics, info);
+
+									paint = new Color(255, 255, 255);
+								}
+							}, 5.0, null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// TODO hide protectors
+		}
+
+		// set display settings for pheromones
+		if (world.isShowPheromones()) {
+
+			// TODO instead of displaying just one color per pheromone, display
+			// a different color based on the pheromone type. Separate classes
+			// for each pheromone type may be needed.
+
+			mapPortrayal.setPortrayalForClass(Pheromone.class,
+					new LabelledPortrayal2D(new OvalPortrayal2D() {
+
+						/**
+						 * 
+						 */
+						private static final long serialVersionUID = -2250309866928317943L;
+
+						@Override
+						public void draw(Object object, Graphics2D graphics,
+								DrawInfo2D info) {
+							super.draw(object, graphics, info);
+
+							paint = Color.green;
+						}
+					}, 0.5, null, Color.white, true));
+		} else {
+			// TODO hide pheromones
+		}
 
 		display.reset();
 		display.setBackdrop(Color.black);
@@ -212,6 +322,9 @@ public class ThiefWorldWithUI extends GUIState {
 		display.repaint();
 	}
 
+	/**
+	 * Initializes the GUI window.
+	 */
 	@Override
 	public void init(Controller controller) {
 		super.init(controller);
@@ -228,6 +341,9 @@ public class ThiefWorldWithUI extends GUIState {
 		display.attach(mapPortrayal, "map");
 	}
 
+	/**
+	 * Disposes of the allocated GUI resources and exists the simulation.
+	 */
 	@Override
 	public void quit() {
 		super.quit();
