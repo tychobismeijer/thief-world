@@ -1,11 +1,12 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.main.ThiefWorld;
 
 public class Child extends Agent {
 	private static int childNo = 0;
-	
-	public Child(){
+
+	public Child() {
 		childNo++;
 		this.setName("child #" + childNo);
 	}
@@ -27,8 +28,11 @@ public class Child extends Agent {
 
 	@Override
 	public void step(SimState arg0) {
-		// TODO Auto-generated method stub
+		ThiefWorld world = (ThiefWorld) arg0;
 
+		// drop pheromone
+		Pheromone pheromone = new Pheromone(PheromoneType.Child);
+		world.schedule.scheduleRepeating(pheromone);
 	}
 
 }

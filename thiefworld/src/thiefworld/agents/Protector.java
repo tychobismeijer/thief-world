@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
 public class Protector extends ActiveAgent {
@@ -14,6 +15,7 @@ public class Protector extends ActiveAgent {
 		// set task switching threshold
 		this.setSwitchThreshold(Utilities.nextDouble());
 	}
+
 	/**
 	 * 
 	 */
@@ -21,8 +23,11 @@ public class Protector extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		// TODO Auto-generated method stub
-		
+		ThiefWorld world = (ThiefWorld) arg0;
+
+		// drop pheromone
+		Pheromone pheromone = new Pheromone(PheromoneType.Protector);
+		world.schedule.scheduleRepeating(pheromone);
 	}
 
 }

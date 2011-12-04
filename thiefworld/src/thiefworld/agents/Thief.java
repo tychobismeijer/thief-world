@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
 public class Thief extends ActiveAgent {
@@ -22,8 +23,11 @@ public class Thief extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		// TODO Auto-generated method stub
+		ThiefWorld world = (ThiefWorld) arg0;
 
+		// drop pheromone
+		Pheromone pheromone = new Pheromone(PheromoneType.Thief);
+		world.schedule.scheduleRepeating(pheromone);
 	}
 
 }
