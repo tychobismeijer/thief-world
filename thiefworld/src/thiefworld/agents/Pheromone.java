@@ -23,26 +23,35 @@ public class Pheromone extends Agent {
 	private double strength = 1.0;
 
 	/**
+	 * Flag describing whether the pheromone was placed on the path returning
+	 * from the food source or going towards the food source.
+	 */
+	private boolean returning;
+
+	/**
 	 * Creates a new unknown type pheromone drop using the default strength of
 	 * one unit.
 	 */
 	public Pheromone() {
 		this.type = PheromoneType.Unknown;
+		this.returning = false;
 	}
 
 	/**
 	 * Creates a new specific type pheromone drop using the default strength of
-	 * one unit.
+	 * one unit. The trip direction is towards the food source.
 	 * 
 	 * @param type
 	 *            the pheromone type.
 	 */
 	public Pheromone(PheromoneType type) {
 		this.type = type;
+		this.returning = false;
 	}
 
 	/**
-	 * Creates a new specific type pheromone using a specified stength.
+	 * Creates a new specific type pheromone using a specified stength. The trip
+	 * direction is towards the food source.
 	 * 
 	 * @param strength
 	 *            the pheromone strength.
@@ -52,6 +61,21 @@ public class Pheromone extends Agent {
 	public Pheromone(double strength, PheromoneType type) {
 		this.strength = strength;
 		this.type = type;
+		this.returning = false;
+	}
+
+	/**
+	 * Creates a new specific type pheromone using a specified stength. The trip
+	 * direction is specified.
+	 * 
+	 * @param strength
+	 * @param type
+	 * @param returning
+	 */
+	public Pheromone(double strength, PheromoneType type, boolean returning) {
+		this.strength = strength;
+		this.type = type;
+		this.returning = returning;
 	}
 
 	/**
@@ -115,6 +139,29 @@ public class Pheromone extends Agent {
 	 */
 	public void setType(PheromoneType type) {
 		this.type = type;
+	}
+
+	/**
+	 * Checks if the pheromone was dropped on the way to the nest or not.
+	 * 
+	 * @return true if the pheromone was dropped on the way back from a food
+	 *         source and false if it was dropped on the way from the nest to
+	 *         the food source.
+	 */
+	public boolean isReturning() {
+		return returning;
+	}
+
+	/**
+	 * Sets if the pheromone was dropped on the way to the nest or not.
+	 * 
+	 * @param returning
+	 *            true if the pheromone was dropped on the way back from a food
+	 *            source and false if it was dropped on the way from the nest to
+	 *            the food source.
+	 */
+	public void setReturning(boolean returning) {
+		this.returning = returning;
 	}
 
 	@Override
