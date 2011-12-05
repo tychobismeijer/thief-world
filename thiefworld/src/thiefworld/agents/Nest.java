@@ -4,8 +4,8 @@ import sim.engine.SimState;
 
 public class Nest extends Agent {
 	private static int nestNo = 0;
-	
-	public Nest(){
+
+	public Nest() {
 		nestNo++;
 		this.setName("nest #" + nestNo);
 	}
@@ -25,6 +25,18 @@ public class Nest extends Agent {
 		this.fruitQuantity = fruitQuantity;
 	}
 
+	public void increaseFruitQuantity(double amount) {
+		if (amount > 0) {
+			this.fruitQuantity += amount;
+		}
+	}
+
+	public void decreaseFruitQuantity(double amount) {
+		if (amount > 0) {
+			this.fruitQuantity -= amount;
+		}
+	}
+
 	private double meatQuantity;
 
 	public double getMeatQuantity() {
@@ -35,14 +47,25 @@ public class Nest extends Agent {
 		this.meatQuantity = meatQuantity;
 	}
 
+	public void increaseMeatQuantity(double amount) {
+		if (amount > 0) {
+			this.meatQuantity += amount;
+		}
+	}
+
+	public void decreaseMeatQuantity(double amount) {
+		if (amount > 0) {
+			this.meatQuantity -= amount;
+		}
+	}
+
 	public double getFoodQuantity() {
 		return fruitQuantity + meatQuantity;
 	}
 
 	@Override
 	public void step(SimState state) {
-		//TODO
-		fruitQuantity++;
+		
 	}
 
 }

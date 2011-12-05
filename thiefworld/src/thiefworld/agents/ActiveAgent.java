@@ -243,9 +243,125 @@ public abstract class ActiveAgent extends Agent {
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 */
-	protected void returnFood(ThiefWorld world) {
+	protected void returnFood(ThiefWorld world, PheromoneType pheromonesType) {
+		// search for a nearby nest
+		Nest closestNest = searchForNest(world, ActiveAgent.getAgentRange());
+
+		if (closestNest != null) {
+			// is the nest within drop-off distance?
+			Double2D myPosition = world.map.getObjectLocation(this);
+			Double2D nestPosition = world.map.getObjectLocation(closestNest);
+
+			if (myPosition.distance(nestPosition) <= ActiveAgent
+					.getActionRange()) {
+				// drop off food
+				dropOffFood(world, closestNest);
+			} else {
+				// go towards the nest
+				MutableDouble2D movementTowardsNest = new MutableDouble2D();
+				
+				// add movement towards the food source
+				movementTowardsNest.addIn(
+						(nestPosition.getX() - myPosition.getX()) * 0.1,
+						(nestPosition.getY() - myPosition.getY()) * 0.1);
+
+				// add movement randomness
+				movementTowardsNest.addIn(new Double2D(
+						(Utilities.nextDouble() * 1.0 - 0.5)
+								* ActiveAgent.getRandomMovementFactor(), (Utilities
+								.nextDouble() * 1.0 - 0.5)
+								* ActiveAgent.getRandomMovementFactor()));
+
+				if (movementTowardsNest.length() > ActiveAgent.getMaxStepSize())
+					movementTowardsNest.resize(0.0);
+				else if (movementTowardsNest.length() > 0)
+					movementTowardsNest.resize(ActiveAgent.getMaxStepSize()
+							- movementTowardsNest.length());
+				// add current position
+				movementTowardsNest.addIn(myPosition);
+
+				// modify the agent's position
+				world.map.setObjectLocation(this, new Double2D(
+						movementTowardsNest));
+			}
+		} else {
+			// search for nearby returning pheromones
+			Bag nearbyPheromones = getNearbyPheromones(world,
+					ActiveAgent.getAgentRange(), pheromonesType);
+
+			Bag goingPheromones = new Bag();
+			Bag returningPheromones = new Bag();
+
+			if (nearbyPheromones != null && nearbyPheromones.size() > 0) {
+				for (int i = 0; i < nearbyPheromones.size(); i++) {
+					Pheromone pheromone = (Pheromone) nearbyPheromones.get(i);
+
+					if (pheromone.isReturning())
+						returningPheromones.add(pheromone);
+					else
+						goingPheromones.add(pheromone);
+				}
+
+				if (returningPheromones.size() > 0) {
+					// if found, take the summed vector
+					followPheromoneTrail(world, returningPheromones);
+				} else {
+					// take going pheromones in the reverse order
+					followPheromoneTrail(world, goingPheromones);
+				}
+			} else {
+				// if no pheromones are available, wonder around
+				wonderAround(world);
+			}
+		}
+	}
+
+	protected void dropOffFood(ThiefWorld world, Nest closestNest) {
+		if (this.getClass() == Hunter.class) {
+			// drop off meat
+			closestNest.increaseMeatQuantity(this.getCarriedFood());
+			this.setCarriedFood(0.0);
+		}
+
+		if (this.getClass() == Gatherer.class) {
+			// drop off fruit
+			closestNest.increaseFruitQuantity(this.getCarriedFood());
+			this.setCarriedFood(0.0);
+		}
+	}
+
+	protected Nest searchForNest(ThiefWorld world, double range) {
+		Double2D myPosition = world.map.getObjectLocation(this);
+		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
+				range);
+
+		double closebyNestDistance = Double.MAX_VALUE;
+		Nest closebyNest = null;
+
+		for (int i = 0; i < closebyAgents.size(); i++) {
+			if (closebyAgents.get(i).getClass() == Nest.class) {
+				Nest nest = (Nest) closebyAgents.get(i);
+
+				Double2D nestPosition = world.map.getObjectLocation(nest);
+				if (myPosition.distance(nestPosition) < closebyNestDistance) {
+					closebyNestDistance = myPosition.distance(nestPosition);
+					closebyNest = nest;
+				}
+			}
+		}
+
+		return closebyNest;
+	}
+
+	protected void followPheromoneTrail(ThiefWorld world, Bag pheromones) {
 		// TODO Auto-generated method stub
 
+	}
+
+	protected Bag getNearbyPheromones(ThiefWorld world, double range,
+			PheromoneType pheromonesType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
