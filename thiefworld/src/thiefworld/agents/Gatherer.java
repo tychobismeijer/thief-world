@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import sim.engine.Stoppable;
 import thiefworld.main.ThiefWorld;
 
 public class Gatherer extends ActiveAgent {
@@ -44,7 +45,9 @@ public class Gatherer extends ActiveAgent {
 		Pheromone pheromone = new Pheromone(
 				Pheromone.getDefaultPheromoneStrength(),
 				PheromoneType.Gatherer, isReturningFood());
-		world.schedule.scheduleRepeating(pheromone);
+		Stoppable stoppable = world.schedule.scheduleRepeating(pheromone);
+		pheromone.stoppable = stoppable;
+		
 		world.map.setObjectLocation(pheromone,
 				world.map.getObjectLocation(this));
 	}

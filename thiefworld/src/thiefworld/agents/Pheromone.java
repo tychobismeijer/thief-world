@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
 /**
@@ -189,8 +190,18 @@ public class Pheromone extends Agent {
 
 	@Override
 	public void step(SimState arg0) {
-		if (this.getStrength() <= Utilities.theta)
+		if (this.getStrength() <= Utilities.theta){
 			this.setStrength(0.0);
+			
+			// remove pheromone from map
+			ThiefWorld world = (ThiefWorld) arg0;
+			world.map.remove(this);
+			
+			// stop pheromone from firing
+			if(this.stoppable != null){
+				stoppable.stop();
+			}
+		}
 
 		if (Pheromone.getPheromoneDecayRate() >= 0 && this.getStrength() > 0) {
 			// decrease the pheromone strength
