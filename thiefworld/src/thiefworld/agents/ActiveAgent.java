@@ -20,6 +20,32 @@ public abstract class ActiveAgent extends Agent {
 	private static final long serialVersionUID = 5597485865861516823L;
 
 	/**
+	 * The maximum allowed movement step size for an agent.
+	 */
+	private static double maxStepSize = 1.0;
+
+	/**
+	 * Retrieves the maximum allowed movement step size for an agent.
+	 * 
+	 * @return the maximum allowed movement step size for an agent.
+	 */
+	public static double getMaxStepSize() {
+		return ActiveAgent.maxStepSize;
+	}
+
+	/**
+	 * Sets the maximum allowed movement step size for an agent.
+	 * 
+	 * @param maxStepSize
+	 *            the maximum allowed movement step size for an agent.
+	 */
+	public static void setMaxStepSize(double maxStepSize) {
+		if (maxStepSize >= 0) {
+			ActiveAgent.maxStepSize = maxStepSize;
+		}
+	}
+
+	/**
 	 * Determines how random are the movements of the agent.
 	 */
 	private static double randomMovementFactor = 0.1;
@@ -56,7 +82,7 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
-	private static double actionRange = 0.1;
+	private static double actionRange = 0.5;
 
 	public static double getActionRange() {
 		return actionRange;
@@ -300,6 +326,7 @@ public abstract class ActiveAgent extends Agent {
 
 		MutableDouble2D movementTowardsFoodSource = new MutableDouble2D();
 
+		// add movement towards the food source
 		movementTowardsFoodSource.addIn(
 				(foodSourcePosition.getX() - myPosition.getX()) * 0.1,
 				(foodSourcePosition.getY() - myPosition.getY()) * 0.1);
@@ -311,6 +338,11 @@ public abstract class ActiveAgent extends Agent {
 						.nextDouble() * 1.0 - 0.5)
 						* ActiveAgent.getRandomMovementFactor()));
 
+		if (movementTowardsFoodSource.length() > ActiveAgent.getMaxStepSize())
+			movementTowardsFoodSource.resize(0.0);
+		else if (movementTowardsFoodSource.length() > 0)
+			movementTowardsFoodSource.resize(ActiveAgent.getMaxStepSize()
+					- movementTowardsFoodSource.length());
 		// add current position
 		movementTowardsFoodSource.addIn(myPosition);
 
