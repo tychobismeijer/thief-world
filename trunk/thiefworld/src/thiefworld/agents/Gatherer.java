@@ -30,7 +30,7 @@ public class Gatherer extends ActiveAgent {
 		// check if the agent is returning food
 		if (isReturningFood())
 			// return food to the nest
-			returnFood(world);
+			returnFood(world, PheromoneType.Gatherer);
 		else
 			// search for fruit
 			goAfterFood(world, FruitSource.class);
@@ -47,7 +47,7 @@ public class Gatherer extends ActiveAgent {
 				PheromoneType.Gatherer, isReturningFood());
 		Stoppable stoppable = world.schedule.scheduleRepeating(pheromone);
 		pheromone.stoppable = stoppable;
-		
+
 		world.map.setObjectLocation(pheromone,
 				world.map.getObjectLocation(this));
 	}
