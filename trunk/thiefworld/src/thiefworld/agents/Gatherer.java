@@ -1,14 +1,7 @@
 package thiefworld.agents;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import sim.engine.SimState;
-import sim.util.Bag;
-import sim.util.Double2D;
-import sim.util.MutableDouble2D;
 import thiefworld.main.ThiefWorld;
-import thiefworld.util.Utilities;
 
 public class Gatherer extends ActiveAgent {
 	private static int gathererNo = 0;
@@ -27,99 +20,59 @@ public class Gatherer extends ActiveAgent {
 	@Override
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
+
 		dropPheromone(world);
 		act(world);
 	}
 
 	private void act(ThiefWorld world) {
-		Double2D myPosition = world.map.getObjectLocation(this);
-
 		// check if the agent is returning food
-		if (isReturningFood()) {
-			// follow the pheromone trail to the nest
+		if (isReturningFood())
+			// return food to the nest
+			returnFood(world);
+		else
+			// search for food
+			goAfterFood(world);
+	}
 
+	/**
+	 * Tries to find and extract food from food sources within the agent's
+	 * range.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	private void goAfterFood(ThiefWorld world) {
+		FoodSource closestFoodSource = getClosestFoodSource(world,
+				FruitSource.class);
+
+		if (closestFoodSource != null) {
+			examineFoodSource(world, closestFoodSource);
 		} else {
-			// follow the pheromone trail to a food source
-			Bag agentsInRange = world.map.getObjectsWithinDistance(myPosition,
-					ActiveAgent.getAgentRange());
-
-			double closestFruitSourceDistance = Double.MAX_VALUE;
-			FruitSource closestFruitSource = null;
-
-			for (int i = 0; i < agentsInRange.size(); i++) {
-				if (agentsInRange.get(i).getClass() == FruitSource.class) {
-					FruitSource fruitSource = (FruitSource) agentsInRange
-							.get(i);
-
-					if (fruitSource.isActive()) {
-						Double2D fruitSourcePosition = world.map
-								.getObjectLocation(fruitSource);
-
-						if (myPosition.distance(fruitSourcePosition) < closestFruitSourceDistance) {
-							closestFruitSourceDistance = myPosition
-									.distance(fruitSourcePosition);
-							closestFruitSource = fruitSource;
-						}
-					}
-				}
-			}
-
-			if (closestFruitSource != null) {
-				if (closestFruitSourceDistance <= ActiveAgent.getActionRange()) {
-					// agent can gather fruit
-
-					// check how much food the agent can gather
-					double availableFruit = closestFruitSource
-							.getFruitQuantity();
-					double maximumFruitToPick = this.getMaxAllowedFood()
-							- this.getCarriedFood();
-
-					double fruitToPick = 0.0;
-
-					if (maximumFruitToPick > 0)
-						fruitToPick = Math.min(availableFruit,
-								maximumFruitToPick);
-
-					if (fruitToPick > 0) {
-						// pick fruit
-						closestFruitSource.decreaseFruitQuantity(fruitToPick);
-						this.increaseCarriedFood(fruitToPick);
-
-						Logger log = Logger.getLogger(this.getName());
-						log.log(Level.INFO, this.getName() + " picked up "
-								+ fruitToPick + " fruit from "
-								+ closestFruitSource.getName());
-					}
-				} else {
-					MutableDouble2D movementTowardsFruitSource = new MutableDouble2D();
-					Double2D fruitSourcePosition = world.map
-							.getObjectLocation(closestFruitSource);
-
-					movementTowardsFruitSource
-							.addIn((fruitSourcePosition.getX() - myPosition
-									.getX()) * 0.1,
-									(fruitSourcePosition.getY() - myPosition
-											.getY()) * 0.1);
-
-					// add randomness
-					movementTowardsFruitSource.addIn(new Double2D((Utilities
-							.nextDouble() * 1.0 - 0.5) * 0.01, (Utilities
-							.nextDouble() * 1.0 - 0.5) * 0.01));
-
-					movementTowardsFruitSource.addIn(myPosition);
-					world.map.setObjectLocation(this, new Double2D(
-							movementTowardsFruitSource));
-				}
-			} else {
-				// no fruit source in range
-
-				// check which way the pheromone trail is the strongest
-			}
+			wonderAround(world);
 		}
 	}
 
-	public boolean isReturningFood() {
-		return this.getCarriedFood() == this.getMaxAllowedFood();
+	/**
+	 * Wonders around in search of a fruit source guided by the pheromone trail.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	private void wonderAround(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Makes a return trip to the nest to drop the food.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	private void returnFood(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void dropPheromone(ThiefWorld world) {
@@ -129,8 +82,8 @@ public class Gatherer extends ActiveAgent {
 
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(
-				Pheromone.getDefaultPheromoneStrength(), PheromoneType.Hunter,
-				isReturningFood());
+				Pheromone.getDefaultPheromoneStrength(),
+				PheromoneType.Gatherer, isReturningFood());
 		world.schedule.scheduleRepeating(pheromone);
 		world.map.setObjectLocation(pheromone,
 				world.map.getObjectLocation(this));
