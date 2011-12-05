@@ -22,6 +22,14 @@ public class FruitSource extends FoodSource {
 	public void setFruitQuantity(double fruitQuantity) {
 		this.foodQuantity = fruitQuantity;
 	}
+	
+	public void increaseFruitQuantity(double amount){
+		this.foodQuantity += amount;
+	}
+	
+	public void decreaseFruitQuantity(double amount){
+		this.foodQuantity -= amount;
+	}
 
 	@Override
 	public void step(SimState arg0) {

@@ -3,12 +3,14 @@ package thiefworld.main;
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 import sim.util.Bag;
+import thiefworld.agents.ActiveAgent;
 import thiefworld.agents.Child;
 import thiefworld.agents.FruitSource;
 import thiefworld.agents.Gatherer;
 import thiefworld.agents.Hunter;
 import thiefworld.agents.MeatSource;
 import thiefworld.agents.Nest;
+import thiefworld.agents.Pheromone;
 import thiefworld.agents.Protector;
 import thiefworld.agents.Thief;
 import thiefworld.util.Utilities;
@@ -273,10 +275,24 @@ public class ThiefWorld extends SimState {
 	}
 
 	/**
-	 * The number of steps in which a pheromone completely decays. Default value
-	 * is 1000 steps.
+	 * Retrieves the default value for a pheromone's strength.
+	 * 
+	 * @return the default value for a pheromone's strength.
 	 */
-	private double pheromoneDecayRate = 1000;
+	public double getDefaultPheromoneStrength() {
+		return Pheromone.getDefaultPheromoneStrength();
+	}
+
+	/**
+	 * Sets the default value for a pheromone's strength.
+	 * 
+	 * @param defaultPheromoneStrength
+	 *            the default value for a pheromone's strength.
+	 */
+	public void setDefaultPheromoneStrength(double defaultPheromoneStrength) {
+		if (defaultPheromoneStrength >= 0)
+			Pheromone.setDefaultPheromoneStrength(defaultPheromoneStrength);
+	}
 
 	/**
 	 * Retrieves the number of steps in which a pheromone completely decays.
@@ -284,7 +300,7 @@ public class ThiefWorld extends SimState {
 	 * @return the number of steps in which a pheromone completely decays.
 	 */
 	public double getPheromoneDecayRate() {
-		return this.pheromoneDecayRate;
+		return Pheromone.getPheromoneDecayRate();
 	}
 
 	/**
@@ -295,7 +311,27 @@ public class ThiefWorld extends SimState {
 	 */
 	public void setPheromoneDecayRate(double pheromoneDecayRate) {
 		if (pheromoneDecayRate >= 0)
-			this.pheromoneDecayRate = pheromoneDecayRate;
+			Pheromone.setPheromoneDecayRate(pheromoneDecayRate);
+	}
+
+	public double getDefaultMaxCarriedFood() {
+		return ActiveAgent.getDefaultMaxCarriedFood();
+	}
+
+	public void setDefaultMaxCarriedFood(double defaultMaxCarriedFood) {
+		if (defaultMaxCarriedFood >= 0) {
+			ActiveAgent.setDefaultMaxCarriedFood(defaultMaxCarriedFood);
+		}
+	}
+
+	public double getAgentRange() {
+		return ActiveAgent.getAgentRange();
+	}
+
+	public void setAgentRange(double agentRange) {
+		if (agentRange > 0) {
+			ActiveAgent.setAgentRange(agentRange);
+		}
 	}
 
 	/**
@@ -512,6 +548,32 @@ public class ThiefWorld extends SimState {
 	 */
 	public void setShowPheromones(boolean showPheromones) {
 		this.showPheromones = showPheromones;
+	}
+
+	public double getOverallAvailableFruit() {
+		double overallAvailableFruit = 0.0;
+
+		for (int i = 0; i < this.fruitSourcesBag.size(); i++) {
+			FruitSource fruitSource = (FruitSource) fruitSourcesBag.get(i);
+
+			if (fruitSource.isActive())
+				overallAvailableFruit += fruitSource.getFruitQuantity();
+		}
+
+		return overallAvailableFruit;
+	}
+
+	public double getOverallAvailableMeat() {
+		double overallAvailableMeat = 0.0;
+
+		for (int i = 0; i < this.meatSourcesBag.size(); i++) {
+			MeatSource meatSource = (MeatSource) meatSourcesBag.get(i);
+
+			if (meatSource.isActive())
+				overallAvailableMeat += meatSource.getMeatQuantity();
+		}
+
+		return overallAvailableMeat;
 	}
 
 	/**
