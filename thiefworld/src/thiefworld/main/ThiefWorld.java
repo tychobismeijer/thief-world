@@ -35,6 +35,11 @@ public class ThiefWorld extends SimState {
 	 */
 	public Continuous2D map = new Continuous2D(1.0, 100, 100);
 
+	/**
+	 * Retrieves the total amount of fruit available in the fruit sources.
+	 * 
+	 * @return the total amount of fruit available in the fruit sources.
+	 */
 	public double getOverallAvailableFruit() {
 		double overallAvailableFruit = 0.0;
 
@@ -48,6 +53,11 @@ public class ThiefWorld extends SimState {
 		return overallAvailableFruit;
 	}
 
+	/**
+	 * Retrieves the total amount of meat available in the meat sources.
+	 * 
+	 * @return the total amount of meat available in the meat sources.
+	 */
 	public double getOverallAvailableMeat() {
 		double overallAvailableMeat = 0.0;
 
@@ -61,6 +71,11 @@ public class ThiefWorld extends SimState {
 		return overallAvailableMeat;
 	}
 
+	/**
+	 * Retrieves the total amount of fruit stored in the nests.
+	 * 
+	 * @return the total amount of fruit stored in the nests.
+	 */
 	public double getStoredFruit() {
 		double storedFruit = 0.0;
 
@@ -73,6 +88,11 @@ public class ThiefWorld extends SimState {
 		return storedFruit;
 	}
 
+	/**
+	 * Retrieves the total amount of meat stored in the nests.
+	 * 
+	 * @return the total amount of fruit stored in the nests.
+	 */
 	public double getStoredMeat() {
 		double storedMeat = 0.0;
 
@@ -364,25 +384,71 @@ public class ThiefWorld extends SimState {
 			Pheromone.setPheromoneDecayRate(pheromoneDecayRate);
 	}
 
+	/**
+	 * Retrieves the maximum amount of food that can be carried by an agent at
+	 * any time.
+	 * 
+	 * @return the maximum amount of food that can be carried by an agent at any
+	 *         time.
+	 */
 	public double getDefaultMaxCarriedFood() {
 		return ActiveAgent.getDefaultMaxCarriedFood();
 	}
 
+	/**
+	 * Sets the maximum amount of food that can be carried by an agent at any
+	 * time.
+	 * 
+	 * @param defaultMaxCarriedFood
+	 *            the maximum amount of food that can be carried by an agent at
+	 *            any time.
+	 */
 	public void setDefaultMaxCarriedFood(double defaultMaxCarriedFood) {
 		if (defaultMaxCarriedFood >= 0) {
 			ActiveAgent.setDefaultMaxCarriedFood(defaultMaxCarriedFood);
 		}
 	}
 
+	/**
+	 * Retrieves the visibility range within which the agent can see.
+	 * 
+	 * @return the visibility range within which the agent can see.
+	 */
 	public double getAgentRange() {
 		return ActiveAgent.getAgentRange();
 	}
 
+	/**
+	 * Sets the visibility range within which the agent can see.
+	 * 
+	 * @param agentRange
+	 *            the visibility range within which the agent can see.
+	 */
 	public void setAgentRange(double agentRange) {
 		if (agentRange > 0) {
 			ActiveAgent.setAgentRange(agentRange);
 		}
 	}
+	
+	public double getRandomMovementFactor() {
+		return ActiveAgent.getRandomMovementFactor();
+	}
+
+	public void setRandomMovementFactor(double randomMovementFactor) {
+		if (randomMovementFactor >= 0) {
+			ActiveAgent.setRandomMovementFactor(randomMovementFactor);
+		}
+	}
+
+	public double maxStepSize() {
+		return ActiveAgent.getMaxStepSize();
+	}
+
+	public void setMaxStepSize(double maxStepSize) {
+		if (maxStepSize >= 0)
+			ActiveAgent.setMaxStepSize(maxStepSize);
+	}
+
 
 	/**
 	 * Show nests on the map?
@@ -600,25 +666,7 @@ public class ThiefWorld extends SimState {
 		this.showPheromones = showPheromones;
 	}
 
-	public double getRandomMovementFactor() {
-		return ActiveAgent.getRandomMovementFactor();
-	}
-
-	public void setRandomMovementFactor(double randomMovementFactor) {
-		if (randomMovementFactor >= 0) {
-			ActiveAgent.setRandomMovementFactor(randomMovementFactor);
-		}
-	}
-
-	public double maxStepSize() {
-		return ActiveAgent.getMaxStepSize();
-	}
-
-	public void setMaxStepSize(double maxStepSize) {
-		if (maxStepSize >= 0)
-			ActiveAgent.setMaxStepSize(maxStepSize);
-	}
-
+	
 	/**
 	 * Creates a new simulation environment.
 	 * 
