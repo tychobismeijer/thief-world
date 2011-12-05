@@ -233,8 +233,28 @@ public abstract class ActiveAgent extends Agent {
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 */
 	protected void wonderAround(ThiefWorld world) {
-		// TODO Auto-generated method stub
+		MutableDouble2D wonderingMovement = new MutableDouble2D();
 
+		// add movement randomness
+		wonderingMovement.addIn(new Double2D(
+				(Utilities.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor(), (Utilities
+						.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor()));
+
+		// normalize movement
+		if (wonderingMovement.length() > ActiveAgent.getMaxStepSize())
+			wonderingMovement.resize(0.0);
+		else if (wonderingMovement.length() > 0)
+			wonderingMovement.resize(ActiveAgent.getMaxStepSize()
+					- wonderingMovement.length());
+
+		// add current position
+		Double2D myPosition = world.map.getObjectLocation(this);
+		wonderingMovement.addIn(myPosition);
+
+		// modify the agent's position
+		world.map.setObjectLocation(this, new Double2D(wonderingMovement));
 	}
 
 	/**
@@ -364,14 +384,55 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	protected void followPheromoneTrail(ThiefWorld world, Bag pheromones) {
-		// TODO Auto-generated method stub
+		MutableDouble2D pheromoneTrail = new MutableDouble2D();
+		Double2D myPosition = world.map.getObjectLocation(this);
+
+		for (int i = 0; i < pheromones.size(); i++) {
+			Pheromone pheromone = (Pheromone) pheromones.get(i);
+			Double2D pheromonePosition = world.map.getObjectLocation(pheromone);
+
+			pheromoneTrail.addIn(
+					(pheromonePosition.getX() - myPosition.getX()) * 0.1,
+					(pheromonePosition.getY() - myPosition.getY()) * 0.1);
+		}
+
+		// add movement randomness
+		pheromoneTrail.addIn(new Double2D((Utilities.nextDouble() * 1.0 - 0.5)
+				* ActiveAgent.getRandomMovementFactor(), (Utilities
+				.nextDouble() * 1.0 - 0.5)
+				* ActiveAgent.getRandomMovementFactor()));
+
+		// normalize movement
+		if (pheromoneTrail.length() > ActiveAgent.getMaxStepSize())
+			pheromoneTrail.resize(0.0);
+		else if (pheromoneTrail.length() > 0)
+			pheromoneTrail.resize(ActiveAgent.getMaxStepSize()
+					- pheromoneTrail.length());
+
+		// add current position
+		pheromoneTrail.addIn(myPosition);
+
+		// modify the agent's position
+		world.map.setObjectLocation(this, new Double2D(pheromoneTrail));
 
 	}
 
 	protected Bag getNearbyPheromones(ThiefWorld world, double range,
 			PheromoneType pheromonesType) {
-		// TODO Auto-generated method stub
-		return null;
+		Double2D myPosition = world.map.getObjectLocation(this);
+		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
+				range);
+
+		Bag selectedPheromones = new Bag();
+		for (int i = 0; i < pheromonesCloseby.size(); i++) {
+			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
+				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
+				if (pheromone.getType() == pheromonesType)
+					selectedPheromones.add(pheromone);
+			}
+		}
+
+		return selectedPheromones;
 	}
 
 	/**
