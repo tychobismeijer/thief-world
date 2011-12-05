@@ -550,6 +550,16 @@ public class ThiefWorld extends SimState {
 		this.showPheromones = showPheromones;
 	}
 
+	public double getRandomMovementFactor() {
+		return ActiveAgent.getRandomMovementFactor();
+	}
+
+	public void setRandomMovementFactor(double randomMovementFactor) {
+		if (randomMovementFactor >= 0) {
+			ActiveAgent.setRandomMovementFactor(randomMovementFactor);
+		}
+	}
+
 	public double getOverallAvailableFruit() {
 		double overallAvailableFruit = 0.0;
 

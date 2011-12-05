@@ -55,7 +55,6 @@ public class ThiefWorldWithUI extends GUIState {
 
 	public ThiefWorldWithUI(SimState state) {
 		super(state);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -117,12 +116,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = Color.red;
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide hunters
 		}
@@ -140,12 +138,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = Color.green;
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide gatherers
 		}
@@ -163,12 +160,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = Color.yellow;
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide nests
 		}
@@ -186,12 +182,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = Color.gray;
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide thieves
 		}
@@ -209,12 +204,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = Color.cyan;
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide children
 		}
@@ -232,9 +226,8 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = new Color(0.0f, 1.0f, 0.0f, 0.5f);
+									super.draw(object, graphics, info);
 								}
 							}, 5.0, null, Color.white, true), 0, 5.0,
 							Color.green, true)));
@@ -255,9 +248,8 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+									super.draw(object, graphics, info);
 								}
 							}, 5.0, null, Color.white, true), 0, 5.0,
 							Color.green, true)));
@@ -279,12 +271,11 @@ public class ThiefWorldWithUI extends GUIState {
 								@Override
 								public void draw(Object object,
 										Graphics2D graphics, DrawInfo2D info) {
-									super.draw(object, graphics, info);
-
 									paint = new Color(255, 255, 255);
+									super.draw(object, graphics, info);
 								}
-							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
-							Color.green, true)));
+							}, 5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// TODO hide protectors
 		}
@@ -307,11 +298,22 @@ public class ThiefWorldWithUI extends GUIState {
 						@Override
 						public void draw(Object object, Graphics2D graphics,
 								DrawInfo2D info) {
-							super.draw(object, graphics, info);
+							Pheromone pheromone = (Pheromone) object;
 
-							paint = Color.green;
+							switch (pheromone.getType()) {
+							case Hunter:
+								paint = Color.red;
+								break;
+							case Gatherer:
+								paint = Color.green;
+								break;
+							default:
+								break;
+							}
+
+							super.draw(object, graphics, info);
 						}
-					}, 0.5, null, Color.white, true));
+					}, 0.1, null, Color.white, true));
 		} else {
 			// TODO hide pheromones
 		}
