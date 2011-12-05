@@ -32,47 +32,7 @@ public class Gatherer extends ActiveAgent {
 			returnFood(world);
 		else
 			// search for food
-			goAfterFood(world);
-	}
-
-	/**
-	 * Tries to find and extract food from food sources within the agent's
-	 * range.
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 */
-	private void goAfterFood(ThiefWorld world) {
-		FoodSource closestFoodSource = getClosestFoodSource(world,
-				FruitSource.class);
-
-		if (closestFoodSource != null) {
-			examineFoodSource(world, closestFoodSource);
-		} else {
-			wonderAround(world);
-		}
-	}
-
-	/**
-	 * Wonders around in search of a fruit source guided by the pheromone trail.
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 */
-	private void wonderAround(ThiefWorld world) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * Makes a return trip to the nest to drop the food.
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 */
-	private void returnFood(ThiefWorld world) {
-		// TODO Auto-generated method stub
-
+			goAfterFood(world, FruitSource.class);
 	}
 
 	private void dropPheromone(ThiefWorld world) {
