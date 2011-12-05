@@ -1,6 +1,7 @@
 package thiefworld.agents;
 
 import sim.engine.SimState;
+import thiefworld.util.Utilities;
 
 /**
  * The pheromone trail agent. It consists of a single pheromone drop with a
@@ -15,6 +16,16 @@ public class Pheromone extends Agent {
 	 * 
 	 */
 	private static final long serialVersionUID = -1180313912816310627L;
+
+	private static double pheromoneDecayRate = 1000;
+
+	public static double getPheromoneDecayRate() {
+		return pheromoneDecayRate;
+	}
+
+	public static void setPheromoneDecayRate(double pheromoneDecayRate) {
+		Pheromone.pheromoneDecayRate = pheromoneDecayRate;
+	}
 
 	/**
 	 * The pheromone strength. This will eventually influence the number of time
@@ -166,7 +177,14 @@ public class Pheromone extends Agent {
 
 	@Override
 	public void step(SimState arg0) {
-		// do nothing
+		if(this.getStrength() <= Utilities.theta)
+			this.setStrength(0.0);
+		
+		if (Pheromone.getPheromoneDecayRate() >= 0 && 
+				this.getStrength() > 0) {
+			// decrease the pheromone strength
+			this.strength -= 1.0 / pheromoneDecayRate;
+		}
 	}
 
 	@Override
