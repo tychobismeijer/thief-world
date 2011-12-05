@@ -10,10 +10,6 @@ public abstract class ActiveAgent extends Agent {
 		health = 1.0;
 	}
 
-	/**
-	 * 
-	 * woohoo I am active too
-	 */
 	private static final long serialVersionUID = 5597485865861516823L;
 
 	private double gatheringSuccess;
