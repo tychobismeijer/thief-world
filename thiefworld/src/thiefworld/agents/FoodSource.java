@@ -15,8 +15,18 @@ public abstract class FoodSource extends Agent {
 	public void setFoodQuantity(double foodQuantity) {
 		this.foodQuantity = foodQuantity;
 	}
-	
-	public boolean isActive(){
+
+	public void increaseFoodQuantity(double amount) {
+		if (amount >= 0)
+			this.foodQuantity += amount;
+	}
+
+	public void decreaseFoodQuantity(double amount) {
+		if (amount >= 0)
+			this.foodQuantity -= amount;
+	}
+
+	public boolean isActive() {
 		return this.foodQuantity != 0.0;
 	}
 }
