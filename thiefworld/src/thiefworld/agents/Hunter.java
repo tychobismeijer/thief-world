@@ -26,6 +26,13 @@ public class Hunter extends ActiveAgent {
 	}
 
 	private void act(ThiefWorld world) {
+		// check if the agent is returning food
+		if (isReturningFood())
+			// return food to the nest
+			returnFood(world);
+		else
+			// search for meat
+			goAfterFood(world, MeatSource.class);
 	}
 
 	private void dropPheromone(ThiefWorld world) {
@@ -34,7 +41,9 @@ public class Hunter extends ActiveAgent {
 		// value (i.e. unit).
 
 		// drop pheromone
-		Pheromone pheromone = new Pheromone(PheromoneType.Hunter);
+		Pheromone pheromone = new Pheromone(
+				Pheromone.getDefaultPheromoneStrength(), PheromoneType.Hunter,
+				isReturningFood());
 		world.schedule.scheduleRepeating(pheromone);
 		world.map.setObjectLocation(pheromone,
 				world.map.getObjectLocation(this));
