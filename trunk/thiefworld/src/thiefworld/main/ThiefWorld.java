@@ -560,6 +560,15 @@ public class ThiefWorld extends SimState {
 		}
 	}
 
+	public double maxStepSize() {
+		return ActiveAgent.getMaxStepSize();
+	}
+
+	public void setMaxStepSize(double maxStepSize) {
+		if (maxStepSize >= 0)
+			ActiveAgent.setMaxStepSize(maxStepSize);
+	}
+
 	public double getOverallAvailableFruit() {
 		double overallAvailableFruit = 0.0;
 
