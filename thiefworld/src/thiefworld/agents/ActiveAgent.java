@@ -322,13 +322,19 @@ public abstract class ActiveAgent extends Agent {
 						goingPheromones.add(pheromone);
 				}
 
-				if (returningPheromones.size() > 0) {
-					// if found, take the summed vector
-					followPheromoneTrail(world, returningPheromones);
-				} else {
-					// take going pheromones in the reverse order
-					followPheromoneTrail(world, goingPheromones);
-				}
+				// TODO
+				// what kind of movement is required here? follow which types of
+				// pheromones (in what proportion?)
+				
+				followPheromoneTrail(world, nearbyPheromones);
+
+				// if (returningPheromones.size() > 0) {
+				// // if found, take the summed vector
+				// followPheromoneTrail(world, returningPheromones);
+				// } else {
+				// // take going pheromones in the reverse order
+				// followPheromoneTrail(world, goingPheromones);
+				// }
 			} else {
 				// if no pheromones are available, wonder around
 				wonderAround(world);
@@ -336,16 +342,24 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
-	protected void dropOffFood(ThiefWorld world, Nest closestNest) {
+	/**
+	 * Drops off all the food at a specified nest.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param nest
+	 *            the nest at which the food is dropped.
+	 */
+	protected void dropOffFood(ThiefWorld world, Nest nest) {
 		Logger log = Logger.getLogger(getName());
 
 		if (this.getClass() == Hunter.class) {
 			// drop off meat
 			log.log(Level.INFO,
 					this.getName() + " dropped off " + this.getCarriedFood()
-							+ " meat at " + closestNest.getName());
+							+ " meat at " + nest.getName());
 
-			closestNest.increaseMeatQuantity(this.getCarriedFood());
+			nest.increaseMeatQuantity(this.getCarriedFood());
 			this.setCarriedFood(0.0);
 		}
 
@@ -353,13 +367,22 @@ public abstract class ActiveAgent extends Agent {
 			// drop off fruit
 			log.log(Level.INFO,
 					this.getName() + " dropped off " + this.getCarriedFood()
-							+ " fruit at " + closestNest.getName());
+							+ " fruit at " + nest.getName());
 
-			closestNest.increaseFruitQuantity(this.getCarriedFood());
+			nest.increaseFruitQuantity(this.getCarriedFood());
 			this.setCarriedFood(0.0);
 		}
 	}
 
+	/**
+	 * Searches for a close by nest within a specified range.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param range
+	 *            the distance to the agent at which the nest is searched for.
+	 * @return the closest nest around the nest or null if there is none.
+	 */
 	protected Nest searchForNest(ThiefWorld world, double range) {
 		Double2D myPosition = world.map.getObjectLocation(this);
 		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,

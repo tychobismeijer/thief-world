@@ -282,11 +282,6 @@ public class ThiefWorldWithUI extends GUIState {
 
 		// set display settings for pheromones
 		if (world.isShowPheromones()) {
-
-			// TODO instead of displaying just one color per pheromone, display
-			// a different color based on the pheromone type. Separate classes
-			// for each pheromone type may be needed.
-
 			mapPortrayal.setPortrayalForClass(Pheromone.class,
 					new LabelledPortrayal2D(new OvalPortrayal2D() {
 
@@ -300,15 +295,19 @@ public class ThiefWorldWithUI extends GUIState {
 								DrawInfo2D info) {
 							Pheromone pheromone = (Pheromone) object;
 
-							switch (pheromone.getType()) {
-							case Hunter:
-								paint = Color.red;
-								break;
-							case Gatherer:
-								paint = Color.green;
-								break;
-							default:
-								break;
+							if (pheromone.isReturning())
+								paint = Color.yellow;
+							else {
+								switch (pheromone.getType()) {
+								case Hunter:
+									paint = Color.red;
+									break;
+								case Gatherer:
+									paint = Color.green;
+									break;
+								default:
+									break;
+								}
 							}
 
 							super.draw(object, graphics, info);
