@@ -19,6 +19,31 @@ public abstract class ActiveAgent extends Agent {
 
 	private static final long serialVersionUID = 5597485865861516823L;
 
+	/**
+	 * Determines how random are the movements of the agent.
+	 */
+	private static double randomMovementFactor = 0.1;
+
+	/**
+	 * Retrieves the randomness factor for the agent movement.
+	 * 
+	 * @return the randomness of the agent movement.
+	 */
+	public static double getRandomMovementFactor() {
+		return ActiveAgent.randomMovementFactor;
+	}
+
+	/**
+	 * Sets the randomness factor for the agent movement.
+	 * 
+	 * @param randomMovementFactor
+	 *            the randomness of the agent movement.
+	 */
+	public static void setRandomMovementFactor(double randomMovementFactor) {
+		if (randomMovementFactor >= 0)
+			ActiveAgent.randomMovementFactor = randomMovementFactor;
+	}
+
 	private static double defaultMaxCarriedFood = 1.0;
 
 	public static double getDefaultMaxCarriedFood() {
@@ -238,14 +263,17 @@ public abstract class ActiveAgent extends Agent {
 		double closestFoodSourceDistance = Double.MAX_VALUE;
 		FoodSource closestFoodSource = null;
 
+		// go through all food sources of the required type
 		for (int i = 0; i < agentsInRange.size(); i++) {
 			if (agentsInRange.get(i).getClass() == foodSourceType) {
 				FoodSource foodSource = (FoodSource) agentsInRange.get(i);
 
+				// check to see if there is any food left in them
 				if (foodSource.isActive()) {
 					Double2D foodSourcePosition = world.map
 							.getObjectLocation(foodSource);
 
+					// check if it's the closest food source available
 					if (myPosition.distance(foodSourcePosition) < closestFoodSourceDistance) {
 						closestFoodSourceDistance = myPosition
 								.distance(foodSourcePosition);
@@ -278,10 +306,15 @@ public abstract class ActiveAgent extends Agent {
 
 		// add movement randomness
 		movementTowardsFoodSource.addIn(new Double2D(
-				(Utilities.nextDouble() * 1.0 - 0.5) * 0.01, (Utilities
-						.nextDouble() * 1.0 - 0.5) * 0.01));
+				(Utilities.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor(), (Utilities
+						.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor()));
 
+		// add current position
 		movementTowardsFoodSource.addIn(myPosition);
+
+		// modify the agent's position
 		world.map.setObjectLocation(this, new Double2D(
 				movementTowardsFoodSource));
 	}
