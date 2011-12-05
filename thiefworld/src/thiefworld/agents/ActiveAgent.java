@@ -11,6 +11,16 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	private static final long serialVersionUID = 5597485865861516823L;
+	
+	private static double agentRange = 2.0;
+	
+	public static double getAgentRange(){
+		return ActiveAgent.agentRange;
+	}
+	
+	public static void setAgentRange(double agentRange){
+		ActiveAgent.agentRange = agentRange;
+	}
 
 	private double gatheringSuccess;
 
