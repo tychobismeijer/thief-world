@@ -35,6 +35,56 @@ public class ThiefWorld extends SimState {
 	 */
 	public Continuous2D map = new Continuous2D(1.0, 100, 100);
 
+	public double getOverallAvailableFruit() {
+		double overallAvailableFruit = 0.0;
+
+		for (int i = 0; i < this.fruitSourcesBag.size(); i++) {
+			FruitSource fruitSource = (FruitSource) fruitSourcesBag.get(i);
+
+			if (fruitSource.isActive())
+				overallAvailableFruit += fruitSource.getFruitQuantity();
+		}
+
+		return overallAvailableFruit;
+	}
+
+	public double getOverallAvailableMeat() {
+		double overallAvailableMeat = 0.0;
+
+		for (int i = 0; i < this.meatSourcesBag.size(); i++) {
+			MeatSource meatSource = (MeatSource) meatSourcesBag.get(i);
+
+			if (meatSource.isActive())
+				overallAvailableMeat += meatSource.getMeatQuantity();
+		}
+
+		return overallAvailableMeat;
+	}
+
+	public double getStoredFruit() {
+		double storedFruit = 0.0;
+
+		for (int i = 0; i < this.nestsBag.size(); i++) {
+			Nest nest = (Nest) nestsBag.get(i);
+
+			storedFruit += nest.getFruitQuantity();
+		}
+
+		return storedFruit;
+	}
+
+	public double getStoredMeat() {
+		double storedMeat = 0.0;
+
+		for (int i = 0; i < this.nestsBag.size(); i++) {
+			Nest nest = (Nest) nestsBag.get(i);
+
+			storedMeat += nest.getMeatQuantity();
+		}
+
+		return storedMeat;
+	}
+
 	/**
 	 * The nests present in the system.
 	 */
@@ -567,32 +617,6 @@ public class ThiefWorld extends SimState {
 	public void setMaxStepSize(double maxStepSize) {
 		if (maxStepSize >= 0)
 			ActiveAgent.setMaxStepSize(maxStepSize);
-	}
-
-	public double getOverallAvailableFruit() {
-		double overallAvailableFruit = 0.0;
-
-		for (int i = 0; i < this.fruitSourcesBag.size(); i++) {
-			FruitSource fruitSource = (FruitSource) fruitSourcesBag.get(i);
-
-			if (fruitSource.isActive())
-				overallAvailableFruit += fruitSource.getFruitQuantity();
-		}
-
-		return overallAvailableFruit;
-	}
-
-	public double getOverallAvailableMeat() {
-		double overallAvailableMeat = 0.0;
-
-		for (int i = 0; i < this.meatSourcesBag.size(); i++) {
-			MeatSource meatSource = (MeatSource) meatSourcesBag.get(i);
-
-			if (meatSource.isActive())
-				overallAvailableMeat += meatSource.getMeatQuantity();
-		}
-
-		return overallAvailableMeat;
 	}
 
 	/**
