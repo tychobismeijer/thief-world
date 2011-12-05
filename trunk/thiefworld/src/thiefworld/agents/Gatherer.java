@@ -31,7 +31,7 @@ public class Gatherer extends ActiveAgent {
 			// return food to the nest
 			returnFood(world);
 		else
-			// search for food
+			// search for fruit
 			goAfterFood(world, FruitSource.class);
 	}
 
