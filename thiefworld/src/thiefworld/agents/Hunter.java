@@ -19,17 +19,16 @@ public class Hunter extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		dropPheromone(arg0);
-		act(arg0);
-	}
-
-	private void act(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
-	}
-
-	private void dropPheromone(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
 
+		dropPheromone(world);
+		act(world);
+	}
+
+	private void act(ThiefWorld world) {
+	}
+
+	private void dropPheromone(ThiefWorld world) {
 		// TODO check if a pheromone is not already in the same position. If so,
 		// increase the pheromone strength in that position by the required
 		// value (i.e. unit).

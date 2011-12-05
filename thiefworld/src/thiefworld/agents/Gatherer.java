@@ -26,12 +26,12 @@ public class Gatherer extends ActiveAgent {
 
 	@Override
 	public void step(SimState arg0) {
-		dropPheromone(arg0);
-		act(arg0);
+		ThiefWorld world = (ThiefWorld) arg0;
+		dropPheromone(world);
+		act(world);
 	}
 
-	private void act(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
+	private void act(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(this);
 
 		// check if the agent is returning food
@@ -122,9 +122,7 @@ public class Gatherer extends ActiveAgent {
 		return this.getCarriedFood() == this.getMaxAllowedFood();
 	}
 
-	private void dropPheromone(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
-
+	private void dropPheromone(ThiefWorld world) {
 		// TODO check if a pheromone is not already in the same position. If so,
 		// increase the pheromone strength in that position by the required
 		// value (i.e. unit).
