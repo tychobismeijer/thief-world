@@ -174,6 +174,48 @@ public abstract class ActiveAgent extends Agent {
 	public boolean isReturningFood() {
 		return this.getCarriedFood() == this.getMaxAllowedFood();
 	}
+	
+	
+	/**
+	 * Wonders around in search of a food source guided by the pheromone trail.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	protected void wonderAround(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
+	}
+	
+
+	/**
+	 * Makes a return trip to the nest to drop the food.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	protected void returnFood(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Tries to find and extract food from food sources within the agent's
+	 * range.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	protected void goAfterFood(ThiefWorld world, Class<?> foodType) {
+		FoodSource closestFoodSource = getClosestFoodSource(world,
+				FruitSource.class);
+
+		if (closestFoodSource != null) {
+			examineFoodSource(world, closestFoodSource);
+		} else {
+			wonderAround(world);
+		}
+	}
 
 	/**
 	 * Check to see if there is a close by food source and if there are
