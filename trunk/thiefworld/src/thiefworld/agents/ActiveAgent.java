@@ -259,7 +259,7 @@ public abstract class ActiveAgent extends Agent {
 			} else {
 				// go towards the nest
 				MutableDouble2D movementTowardsNest = new MutableDouble2D();
-				
+
 				// add movement towards the food source
 				movementTowardsNest.addIn(
 						(nestPosition.getX() - myPosition.getX()) * 0.1,
@@ -268,8 +268,8 @@ public abstract class ActiveAgent extends Agent {
 				// add movement randomness
 				movementTowardsNest.addIn(new Double2D(
 						(Utilities.nextDouble() * 1.0 - 0.5)
-								* ActiveAgent.getRandomMovementFactor(), (Utilities
-								.nextDouble() * 1.0 - 0.5)
+								* ActiveAgent.getRandomMovementFactor(),
+						(Utilities.nextDouble() * 1.0 - 0.5)
 								* ActiveAgent.getRandomMovementFactor()));
 
 				if (movementTowardsNest.length() > ActiveAgent.getMaxStepSize())
@@ -317,14 +317,24 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	protected void dropOffFood(ThiefWorld world, Nest closestNest) {
+		Logger log = Logger.getLogger(getName());
+
 		if (this.getClass() == Hunter.class) {
 			// drop off meat
+			log.log(Level.INFO,
+					this.getName() + " dropped off " + this.getCarriedFood()
+							+ " meat at " + closestNest.getName());
+
 			closestNest.increaseMeatQuantity(this.getCarriedFood());
 			this.setCarriedFood(0.0);
 		}
 
 		if (this.getClass() == Gatherer.class) {
 			// drop off fruit
+			log.log(Level.INFO,
+					this.getName() + " dropped off " + this.getCarriedFood()
+							+ " fruit at " + closestNest.getName());
+
 			closestNest.increaseFruitQuantity(this.getCarriedFood());
 			this.setCarriedFood(0.0);
 		}
