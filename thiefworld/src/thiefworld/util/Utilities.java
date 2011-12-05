@@ -4,6 +4,8 @@ import ec.util.MersenneTwisterFast;
 import sim.util.Double2D;
 
 public class Utilities {
+	public static double theta = 1e-7;
+	
 	private static MersenneTwisterFast random = new MersenneTwisterFast(
 			System.currentTimeMillis());
 

@@ -121,7 +121,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = Color.red;
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide hunters
@@ -144,7 +144,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = Color.green;
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide gatherers
@@ -167,7 +167,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = Color.yellow;
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide nests
@@ -190,7 +190,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = Color.gray;
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide thieves
@@ -213,7 +213,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = Color.cyan;
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide children
@@ -283,7 +283,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 									paint = new Color(255, 255, 255);
 								}
-							}, 5.0, null, Color.white, true), 0, 5.0,
+							}, 5.0, null, Color.white, true), 0, world.getAgentRange(),
 							Color.green, true)));
 		} else {
 			// TODO hide protectors

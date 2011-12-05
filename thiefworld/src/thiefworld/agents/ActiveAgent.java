@@ -6,19 +6,41 @@ public abstract class ActiveAgent extends Agent {
 	public ActiveAgent() {
 		// set task switching threshold
 		switchThreshold = Utilities.nextDouble();
-
 		health = 1.0;
+		maxAllowedFood = ActiveAgent.getDefaultMaxCarriedFood();
 	}
 
 	private static final long serialVersionUID = 5597485865861516823L;
-	
-	private static double agentRange = 2.0;
-	
-	public static double getAgentRange(){
+
+	private static double defaultMaxCarriedFood = 1.0;
+
+	public static double getDefaultMaxCarriedFood() {
+		return ActiveAgent.defaultMaxCarriedFood;
+	}
+
+	public static void setDefaultMaxCarriedFood(double defaultMaxCarriedFood) {
+		if (defaultMaxCarriedFood >= 0) {
+			ActiveAgent.defaultMaxCarriedFood = defaultMaxCarriedFood;
+		}
+	}
+
+	private static double actionRange = 0.1;
+
+	public static double getActionRange() {
+		return actionRange;
+	}
+
+	public static void setActionRange(double actionRange) {
+		ActiveAgent.actionRange = actionRange;
+	}
+
+	private static double agentRange = 10.0;
+
+	public static double getAgentRange() {
 		return ActiveAgent.agentRange;
 	}
-	
-	public static void setAgentRange(double agentRange){
+
+	public static void setAgentRange(double agentRange) {
 		ActiveAgent.agentRange = agentRange;
 	}
 
@@ -73,7 +95,7 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	private double stealingSkill;
-	
+
 	public double getStealingSkill() {
 		return stealingSkill;
 	}
@@ -102,8 +124,22 @@ public abstract class ActiveAgent extends Agent {
 		this.carriedFood = carriedFood;
 	}
 
+	public void increaseCarriedFood(double amount) {
+		this.carriedFood += amount;
+
+		if (this.carriedFood > maxAllowedFood)
+			this.carriedFood = maxAllowedFood;
+	}
+
+	public void decreaseCarriedFood(double amount) {
+		this.carriedFood -= amount;
+
+		if (this.carriedFood < 0)
+			this.carriedFood = 0;
+	}
+
 	private double maxAllowedFood = 2.0;
-	
+
 	public double getMaxAllowedFood() {
 		return maxAllowedFood;
 	}

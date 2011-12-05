@@ -17,6 +17,18 @@ public class Pheromone extends Agent {
 	 */
 	private static final long serialVersionUID = -1180313912816310627L;
 
+	private static double defaultPheromoneStrength = 1.0;
+
+	public static double getDefaultPheromoneStrength() {
+		return Pheromone.defaultPheromoneStrength;
+	}
+
+	public static void setDefaultPheromoneStrength(
+			double defaultPheromoneStrength) {
+		if (defaultPheromoneStrength >= 0)
+			Pheromone.defaultPheromoneStrength = defaultPheromoneStrength;
+	}
+
 	private static double pheromoneDecayRate = 1000;
 
 	public static double getPheromoneDecayRate() {
@@ -177,11 +189,10 @@ public class Pheromone extends Agent {
 
 	@Override
 	public void step(SimState arg0) {
-		if(this.getStrength() <= Utilities.theta)
+		if (this.getStrength() <= Utilities.theta)
 			this.setStrength(0.0);
-		
-		if (Pheromone.getPheromoneDecayRate() >= 0 && 
-				this.getStrength() > 0) {
+
+		if (Pheromone.getPheromoneDecayRate() >= 0 && this.getStrength() > 0) {
 			// decrease the pheromone strength
 			this.strength -= 1.0 / pheromoneDecayRate;
 		}
