@@ -429,7 +429,7 @@ public class ThiefWorld extends SimState {
 			ActiveAgent.setAgentRange(agentRange);
 		}
 	}
-	
+
 	public double getRandomMovementFactor() {
 		return ActiveAgent.getRandomMovementFactor();
 	}
@@ -448,7 +448,6 @@ public class ThiefWorld extends SimState {
 		if (maxStepSize >= 0)
 			ActiveAgent.setMaxStepSize(maxStepSize);
 	}
-
 
 	/**
 	 * Show nests on the map?
@@ -666,7 +665,6 @@ public class ThiefWorld extends SimState {
 		this.showPheromones = showPheromones;
 	}
 
-	
 	/**
 	 * Creates a new simulation environment.
 	 * 
@@ -817,4 +815,13 @@ public class ThiefWorld extends SimState {
 		System.exit(0);
 	}
 
+	private double timeMultipler = 1.0;
+
+	public double getTimeMultipler() {
+		return timeMultipler;
+	}
+
+	public void setTimeMultipler(double timeMultipler) {
+		this.timeMultipler = timeMultipler;
+	}
 }
