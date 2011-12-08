@@ -50,15 +50,23 @@ public class Pheromone extends Agent {
 	 * Flag describing whether the pheromone was placed on the path returning
 	 * from the food source or going towards the food source.
 	 */
-	private boolean returning;
+	private boolean returningFromFoodSource;
+
+	/**
+	 * Flag describing whether the pheromone was placed on the path from the
+	 * nest towards a food source.
+	 */
+	private boolean comingFromNest;
 
 	/**
 	 * Creates a new unknown type pheromone drop using the default strength of
 	 * one unit.
 	 */
 	public Pheromone() {
-		this.type = PheromoneType.Unknown;
-		this.returning = false;
+		this.setType(PheromoneType.Unknown);
+
+		this.setReturningFromFoodSource(false);
+		this.setComingFromNest(false);
 	}
 
 	/**
@@ -69,8 +77,10 @@ public class Pheromone extends Agent {
 	 *            the pheromone type.
 	 */
 	public Pheromone(PheromoneType type) {
-		this.type = type;
-		this.returning = false;
+		this.setType(type);
+
+		this.setReturningFromFoodSource(false);
+		this.setComingFromNest(false);
 	}
 
 	/**
@@ -83,9 +93,10 @@ public class Pheromone extends Agent {
 	 *            the pheromone type.
 	 */
 	public Pheromone(double strength, PheromoneType type) {
-		this.strength = strength;
 		this.type = type;
-		this.returning = false;
+		this.strength = strength;
+
+		this.returningFromFoodSource = false;
 	}
 
 	/**
@@ -94,12 +105,15 @@ public class Pheromone extends Agent {
 	 * 
 	 * @param strength
 	 * @param type
-	 * @param returning
+	 * @param returningFromFoodSource
 	 */
-	public Pheromone(double strength, PheromoneType type, boolean returning) {
-		this.strength = strength;
-		this.type = type;
-		this.returning = returning;
+	public Pheromone(double strength, PheromoneType type,
+			boolean returningFromFoodSource, boolean returningFromNest) {
+		this.setStrength(strength);
+		this.setType(type);
+
+		this.setReturningFromFoodSource(returningFromFoodSource);
+		this.setComingFromNest(returningFromNest);
 	}
 
 	/**
@@ -172,33 +186,41 @@ public class Pheromone extends Agent {
 	 *         source and false if it was dropped on the way from the nest to
 	 *         the food source.
 	 */
-	public boolean isReturning() {
-		return returning;
+	public boolean isReturningFromFoodSource() {
+		return returningFromFoodSource;
 	}
 
 	/**
 	 * Sets if the pheromone was dropped on the way to the nest or not.
 	 * 
-	 * @param returning
+	 * @param returningFromFoodSource
 	 *            true if the pheromone was dropped on the way back from a food
 	 *            source and false if it was dropped on the way from the nest to
 	 *            the food source.
 	 */
-	public void setReturning(boolean returning) {
-		this.returning = returning;
+	public void setReturningFromFoodSource(boolean returningFromFoodSource) {
+		this.returningFromFoodSource = returningFromFoodSource;
+	}
+
+	public boolean isComingFromNest() {
+		return comingFromNest;
+	}
+
+	public void setComingFromNest(boolean comingFromNest) {
+		this.comingFromNest = comingFromNest;
 	}
 
 	@Override
 	public void step(SimState arg0) {
-		if (this.getStrength() <= Utilities.theta){
+		if (this.getStrength() <= Utilities.theta) {
 			this.setStrength(0.0);
-			
+
 			// remove pheromone from map
 			ThiefWorld world = (ThiefWorld) arg0;
 			world.map.remove(this);
-			
+
 			// stop pheromone from firing
-			if(this.stoppable != null){
+			if (this.stoppable != null) {
 				stoppable.stop();
 			}
 		}

@@ -741,8 +741,9 @@ public class ThiefWorld extends SimState {
 			huntersBag.add(hunter);
 
 			// position hunter
+			int positionAtNest = random.nextInt(nests);
 			map.setObjectLocation(hunter,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+					map.getObjectLocation(nestsBag.get(positionAtNest)));
 
 			// schedule cyclic firing
 			schedule.scheduleRepeating(hunter);
@@ -755,8 +756,9 @@ public class ThiefWorld extends SimState {
 			gatherersBag.add(gatherer);
 
 			// position gatherer
+			int positionAtNest = random.nextInt(nests);
 			map.setObjectLocation(gatherer,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+					map.getObjectLocation(nestsBag.get(positionAtNest)));
 
 			// schedule cyclic firing
 			schedule.scheduleRepeating(gatherer);

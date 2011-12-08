@@ -44,7 +44,7 @@ public class Gatherer extends ActiveAgent {
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(
 				Pheromone.getDefaultPheromoneStrength(),
-				PheromoneType.Gatherer, isReturningFood());
+				PheromoneType.Gatherer, isReturningFood(), !isReturningFood());
 		Stoppable stoppable = world.schedule.scheduleRepeating(pheromone);
 		pheromone.stoppable = stoppable;
 

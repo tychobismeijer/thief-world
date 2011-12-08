@@ -44,7 +44,7 @@ public class Hunter extends ActiveAgent {
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(
 				Pheromone.getDefaultPheromoneStrength(), PheromoneType.Hunter,
-				isReturningFood());
+				isReturningFood(), !isReturningFood());
 		Stoppable stoppable = world.schedule.scheduleRepeating(pheromone);
 		pheromone.stoppable = stoppable;
 

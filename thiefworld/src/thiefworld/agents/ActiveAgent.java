@@ -308,32 +308,29 @@ public abstract class ActiveAgent extends Agent {
 			Bag nearbyPheromones = personalObserver.getPheromonesWithinRange(
 					world, pheromonesType);
 
-			Bag goingPheromones = new Bag();
-			Bag returningPheromones = new Bag();
+			Bag comingFromNestPheromones = new Bag();
+			Bag returningFromFoodSourcePheromones = new Bag();
 
 			if (nearbyPheromones != null && nearbyPheromones.size() > 0) {
 				for (int i = 0; i < nearbyPheromones.size(); i++) {
 					Pheromone pheromone = (Pheromone) nearbyPheromones.get(i);
 
-					if (pheromone.isReturning())
-						returningPheromones.add(pheromone);
-					else
-						goingPheromones.add(pheromone);
+					if (pheromone.isReturningFromFoodSource())
+						returningFromFoodSourcePheromones.add(pheromone);
+					else if (pheromone.isComingFromNest())
+						comingFromNestPheromones.add(pheromone);
 				}
 
-				// TODO
-				// what kind of movement is required here? follow which types of
-				// pheromones (in what proportion?)
+				if (comingFromNestPheromones.size() > 0) {
+					// TODO
+					// what kind of movement is required here? follow which
+					// types of
+					// pheromones (in what proportion?)
 
-				followPheromoneTrail(world, nearbyPheromones);
-
-				// if (returningPheromones.size() > 0) {
-				// // if found, take the summed vector
-				// followPheromoneTrail(world, returningPheromones);
-				// } else {
-				// // take going pheromones in the reverse order
-				// followPheromoneTrail(world, goingPheromones);
-				// }
+					followPheromoneTrail(world, comingFromNestPheromones);
+				} else {
+					wonderAround(world);
+				}
 			} else {
 				// if no pheromones are available, wonder around
 				wonderAround(world);
@@ -393,11 +390,6 @@ public abstract class ActiveAgent extends Agent {
 				* ActiveAgent.getRandomMovementFactor()));
 
 		// normalize movement
-		// if (pheromoneTrail.length() > ActiveAgent.getMaxStepSize())
-		// pheromoneTrail.resize(0.0);
-		// else if (pheromoneTrail.length() > 0)
-		// pheromoneTrail.resize(ActiveAgent.getMaxStepSize()
-		// - pheromoneTrail.length());
 		pheromoneTrail.normalize();
 		pheromoneTrail.multiplyIn(ActiveAgent.getMaxStepSize());
 
@@ -425,7 +417,35 @@ public abstract class ActiveAgent extends Agent {
 		if (closestFoodSource != null) {
 			examineFoodSource(world, closestFoodSource);
 		} else {
-			wonderAround(world);
+			// try and follow the trail coming back from a food source
+			Bag closebyPheromones = null;
+
+			if (foodType == FruitSource.class)
+				closebyPheromones = this.personalObserver
+						.getPheromonesWithinRange(world, PheromoneType.Gatherer);
+			else if (foodType == MeatSource.class)
+				closebyPheromones = this.personalObserver
+						.getPheromonesWithinRange(world, PheromoneType.Hunter);
+
+			if (closebyPheromones != null && closebyPheromones.size() > 0) {
+				// filter for the pheromones coming from a food source
+
+				Bag pheromonesReturningFromFoodSource = new Bag();
+				for (int i = 0; i < closebyPheromones.size(); i++) {
+					Pheromone pheromone = (Pheromone) closebyPheromones.get(i);
+
+					if (pheromone.isReturningFromFoodSource())
+						pheromonesReturningFromFoodSource.add(pheromone);
+				}
+
+				if (pheromonesReturningFromFoodSource.size() > 0) {
+					followPheromoneTrail(world,
+							pheromonesReturningFromFoodSource);
+				} else {
+					wonderAround(world);
+				}
+			} else
+				wonderAround(world);
 		}
 	}
 
@@ -455,11 +475,9 @@ public abstract class ActiveAgent extends Agent {
 						.nextDouble() * 1.0 - 0.5)
 						* ActiveAgent.getRandomMovementFactor()));
 
-		if (movementTowardsFoodSource.length() > ActiveAgent.getMaxStepSize())
-			movementTowardsFoodSource.resize(0.0);
-		else if (movementTowardsFoodSource.length() > 0)
-			movementTowardsFoodSource.resize(ActiveAgent.getMaxStepSize()
-					- movementTowardsFoodSource.length());
+		movementTowardsFoodSource.normalize();
+		movementTowardsFoodSource.multiplyIn(ActiveAgent.getMaxStepSize());
+
 		// add current position
 		movementTowardsFoodSource.addIn(myPosition);
 
