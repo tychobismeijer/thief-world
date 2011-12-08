@@ -1,7 +1,6 @@
 package thiefworld.main;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -12,14 +11,12 @@ import sim.display.Display2D;
 import sim.display.GUIState;
 import sim.engine.SimState;
 import sim.engine.Steppable;
-import sim.portrayal.DrawInfo2D;
 import sim.portrayal.Inspector;
 import sim.portrayal.continuous.ContinuousPortrayal2D;
 import sim.portrayal.simple.CircledPortrayal2D;
 import sim.portrayal.simple.ImagePortrayal2D;
 import sim.portrayal.simple.LabelledPortrayal2D;
 import sim.portrayal.simple.MovablePortrayal2D;
-import sim.portrayal.simple.OvalPortrayal2D;
 import thiefworld.agents.Child;
 import thiefworld.agents.FruitSource;
 import thiefworld.agents.Gatherer;
@@ -112,11 +109,14 @@ public class ThiefWorldWithUI extends GUIState {
 		// choose a background based on the season
 		Color background = Color.black;
 
+		// schedules a recurring display method for changing the displayed
+		// components if that is required (i.e. activating/deactivating
+		// components)
 		scheduleRepeatingImmediatelyBefore(new Steppable() {
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			private static final long serialVersionUID = 6226556354883996558L;
 
 			@Override
@@ -199,7 +199,7 @@ public class ThiefWorldWithUI extends GUIState {
 													new LabelledPortrayal2D(
 															new ImagePortrayal2D(
 																	new ImageIcon(
-																			"./images/ghost.jpg"),
+																			"./images/ghost.png"),
 																	5.0), 5.0,
 															null, Color.white,
 															true), 0, world
@@ -221,7 +221,7 @@ public class ThiefWorldWithUI extends GUIState {
 													new LabelledPortrayal2D(
 															new ImagePortrayal2D(
 																	new ImageIcon(
-																			"./images/medic.jpg"),
+																			"./images/medic.png"),
 																	5.0), 5.0,
 															null, Color.white,
 															true), 0, world
@@ -270,24 +270,10 @@ public class ThiefWorldWithUI extends GUIState {
 					mapPortrayal.setPortrayalForClass(Protector.class,
 							new MovablePortrayal2D(new CircledPortrayal2D(
 									new LabelledPortrayal2D(
-											new OvalPortrayal2D() {
-
-												/**
-									 * 
-									 */
-												private static final long serialVersionUID = -6017633649081865999L;
-
-												@Override
-												public void draw(Object object,
-														Graphics2D graphics,
-														DrawInfo2D info) {
-													paint = new Color(255, 255,
-															255);
-													super.draw(object,
-															graphics, info);
-												}
-											}, 5.0, null, Color.white, true),
-									0, world.getAgentRange(), Color.green, true)));
+											new ImagePortrayal2D(new ImageIcon(
+													"./images/tank.png"), 5.0),
+											5.0, null, Color.white, true), 0,
+									world.getAgentRange(), Color.green, true)));
 				} else {
 					// hide protectors
 					mapPortrayal.setPortrayalForClass(Protector.class,
