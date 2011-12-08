@@ -1,5 +1,7 @@
 package thiefworld.agents;
 
+import thiefworld.util.Utilities;
+
 public abstract class FoodSource extends Agent {
 	/**
 	 * 
@@ -22,8 +24,13 @@ public abstract class FoodSource extends Agent {
 	}
 
 	public void decreaseFoodQuantity(double amount) {
-		if (amount >= 0)
+		if (amount >= 0) {
 			this.foodQuantity -= amount;
+		}
+
+		if (this.foodQuantity <= Utilities.theta) {
+			this.foodQuantity = 0.0;
+		}
 	}
 
 	public boolean isActive() {
