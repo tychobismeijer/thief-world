@@ -143,7 +143,7 @@ public class ThiefWorld extends SimState {
 	/**
 	 * The number of hunters with which the simulation starts.
 	 */
-	private int hunters = 5;
+	private int hunters = 50;
 
 	/**
 	 * Retrieves the number of hunters with which the simulation starts.
@@ -173,7 +173,7 @@ public class ThiefWorld extends SimState {
 	/**
 	 * The number of gatherers with which the simulation starts.
 	 */
-	private int gatherers = 5;
+	private int gatherers = 50;
 
 	/**
 	 * Retrieves the number of gatherers with which the simulation starts.
@@ -292,7 +292,7 @@ public class ThiefWorld extends SimState {
 	/**
 	 * The number of fruit sources with which the simulation starts.
 	 */
-	private int fruitSources = 5;
+	private int fruitSources = 10;
 
 	/**
 	 * Retrieves the number of fruit sources with which the simulation starts.
@@ -322,7 +322,7 @@ public class ThiefWorld extends SimState {
 	/**
 	 * The number of meat sources with which the simulation starts.
 	 */
-	private int meatSources = 5;
+	private int meatSources = 10;
 
 	/**
 	 * Retrieves the number of meat sources with which the simulation starts.

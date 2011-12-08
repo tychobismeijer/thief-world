@@ -22,6 +22,8 @@ public class Gatherer extends ActiveAgent {
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
 
+		decaySkills();
+		
 		dropPheromone(world);
 		act(world);
 	}

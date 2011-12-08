@@ -9,8 +9,8 @@ public class Observer extends Agent {
 
 	private static final long serialVersionUID = -2220784702275759607L;
 	private ActiveAgent correspondingAgent;
-	
-	public Observer(ActiveAgent agent){
+
+	public Observer(ActiveAgent agent) {
 		correspondingAgent = agent;
 	}
 
@@ -20,7 +20,7 @@ public class Observer extends Agent {
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @return the closest nest within range or null if there is none.
-	 */	
+	 */
 	protected Nest searchForNestWithinRange(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
@@ -43,14 +43,14 @@ public class Observer extends Agent {
 
 		return closebyNest;
 	}
-	
+
 	/**
 	 * Searches for the closest nest, no matter what the range is.
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @return the closest nest in the world or null if there is none.
-	 */	
+	 */
 	protected Nest searchForNest(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag allAgents = world.map.getAllObjects();
@@ -71,18 +71,19 @@ public class Observer extends Agent {
 		}
 
 		return closebyNest;
-	}	
-	
+	}
+
 	/**
 	 * Finds desired pheromones within range
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @param pheromonesType
-	 * 			  the type of pheromones which you are looking for.
+	 *            the type of pheromones which you are looking for.
 	 * @return a Bag of nearby pheromones
 	 */
-	protected Bag getPheromonesWithinRange(ThiefWorld world, PheromoneType pheromonesType) {
+	protected Bag getPheromonesWithinRange(ThiefWorld world,
+			PheromoneType pheromonesType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
 				ActiveAgent.getAgentRange());
@@ -95,40 +96,67 @@ public class Observer extends Agent {
 					selectedPheromones.add(pheromone);
 			}
 		}
-		
+
 		return selectedPheromones;
 	}
-	
+
 	/**
-	 * Finds the average success of a task type (hunter/gatherer) within range, which
-	 * can be used to adjust internal success value(s)
+	 * Finds all pheromones within range
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @return a Bag of nearby pheromones
+	 */
+	protected Bag getPheromonesWithinRange(ThiefWorld world) {
+		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
+		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
+				ActiveAgent.getAgentRange());
+
+		Bag selectedPheromones = new Bag();
+		for (int i = 0; i < pheromonesCloseby.size(); i++) {
+			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
+				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
+				selectedPheromones.add(pheromone);
+			}
+		}
+
+		return selectedPheromones;
+	}
+
+	/**
+	 * Finds the average success of a task type (hunter/gatherer) within range,
+	 * which can be used to adjust internal success value(s)
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @param range
-	 * 			  the type of task which you want the success rate within range for.
-	 * @return a value of the average success rate of the specified task within range
+	 *            the type of task which you want the success rate within range
+	 *            for.
+	 * @return a value of the average success rate of the specified task within
+	 *         range
 	 */
-	protected double getAverageSuccessWithinRange(ThiefWorld world, Class<?> taskType) {
+	protected double getAverageSuccessWithinRange(ThiefWorld world,
+			Class<?> taskType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag agentsNearby = world.map.getObjectsWithinDistance(myPosition,
 				ActiveAgent.getAgentRange());
 
-		//Find all agents with desired task
+		// Find all agents with desired task
 		Bag selectedAgents = new Bag();
 		for (int i = 0; i < agentsNearby.size(); i++)
 			if (agentsNearby.get(i).getClass() == taskType)
 				selectedAgents.add(agentsNearby.get(i));
-		
-		//Sum up all the personal success rates
+
+		// Sum up all the personal success rates
 		Double totalSuccessRates = 0.0;
-		for (int i = 0; i<selectedAgents.size(); i++)
-			totalSuccessRates += ((ActiveAgent) selectedAgents.get(i)).getPersonalSuccess();
-		
-		//Return the average success rate
-		return totalSuccessRates/selectedAgents.size();
+		for (int i = 0; i < selectedAgents.size(); i++)
+			totalSuccessRates += ((ActiveAgent) selectedAgents.get(i))
+					.getPersonalSuccess();
+
+		// Return the average success rate
+		return totalSuccessRates / selectedAgents.size();
 	}
-	
+
 	/**
 	 * Check to see if there is a close by food source and if there are
 	 * multiple, it will choose the closest to the current agent's position.
@@ -173,9 +201,10 @@ public class Observer extends Agent {
 
 		return closestFoodSource;
 	}
-	
+
 	/**
-	 * Searches for the food source with the highest quantity of food within range
+	 * Searches for the food source with the highest quantity of food within
+	 * range
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
@@ -199,14 +228,15 @@ public class Observer extends Agent {
 			if (agentsInRange.get(i).getClass() == foodSourceType) {
 				FoodSource foodSource = (FoodSource) agentsInRange.get(i);
 
-				// if the food source is better, replace the best food source so far
+				// if the food source is better, replace the best food source so
+				// far
 				if (foodSource.isActive())
-					if(bestFoodSource == null)
+					if (bestFoodSource == null)
 						bestFoodSource = foodSource;
-					else
-						if(bestFoodSource.getFoodQuantiy() < foodSource.getFoodQuantiy())
-							bestFoodSource = foodSource;
-					
+					else if (bestFoodSource.getFoodQuantiy() < foodSource
+							.getFoodQuantiy())
+						bestFoodSource = foodSource;
+
 			}
 		}
 		return bestFoodSource;
@@ -215,6 +245,6 @@ public class Observer extends Agent {
 	@Override
 	public void step(SimState arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
