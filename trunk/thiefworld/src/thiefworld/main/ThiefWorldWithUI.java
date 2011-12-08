@@ -144,27 +144,6 @@ public class ThiefWorldWithUI extends GUIState {
 					mapPortrayal.setPortrayalForClass(Hunter.class,
 							mapPortrayal.getPortrayalForNull());
 				}
-				// if (world.isShowHunters()) {
-				// mapPortrayal.setPortrayalForClass(Hunter.class,
-				// new MovablePortrayal2D(new CircledPortrayal2D(
-				// new LabelledPortrayal2D(new OvalPortrayal2D() {
-				// /**
-				// *
-				// */
-				// private static final long serialVersionUID =
-				// -666009523425731377L;
-				//
-				// @Override
-				// public void draw(Object object,
-				// Graphics2D graphics, DrawInfo2D info) {
-				// paint = Color.red;
-				// super.draw(object, graphics, info);
-				// }
-				// }, 5.0, null, Color.white, true), 0, world
-				// .getAgentRange(), Color.green, true)));
-				// } else {
-				// // TODO hide hunters
-				// }
 
 				// set display settings for gatherers
 				if (world.isShowGatherers()) {
@@ -182,23 +161,6 @@ public class ThiefWorldWithUI extends GUIState {
 															true), 0, world
 															.getAgentRange(),
 													Color.green, true)));
-					// mapPortrayal.setPortrayalForClass(Gatherer.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = Color.green;
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, world
-					// .getAgentRange(), Color.green, true)));
 				} else {
 					// hide gatherers
 					mapPortrayal.setPortrayalForClass(Gatherer.class,
@@ -221,23 +183,6 @@ public class ThiefWorldWithUI extends GUIState {
 															true), 0, world
 															.getAgentRange(),
 													Color.green, true)));
-					// mapPortrayal.setPortrayalForClass(Nest.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = Color.yellow;
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, world
-					// .getAgentRange(), Color.green, true)));
 				} else {
 					// hide nests
 					mapPortrayal.setPortrayalForClass(Nest.class,
@@ -260,23 +205,6 @@ public class ThiefWorldWithUI extends GUIState {
 															true), 0, world
 															.getAgentRange(),
 													Color.green, true)));
-					// mapPortrayal.setPortrayalForClass(Thief.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = Color.gray;
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, world
-					// .getAgentRange(), Color.green, true)));
 				} else {
 					// hide thieves
 					mapPortrayal.setPortrayalForClass(Thief.class,
@@ -285,23 +213,6 @@ public class ThiefWorldWithUI extends GUIState {
 
 				// set display settings for children
 				if (world.isShowChildren()) {
-					// mapPortrayal.setPortrayalForClass(Child.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = Color.cyan;
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, world
-					// .getAgentRange(), Color.green, true)));
 					mapPortrayal
 							.setPortrayalForClass(
 									Child.class,
@@ -324,23 +235,6 @@ public class ThiefWorldWithUI extends GUIState {
 
 				// set display settings for fruit sources
 				if (world.isShowFruitSources()) {
-					// mapPortrayal.setPortrayalForClass(FruitSource.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = new Color(0.0f, 1.0f, 0.0f, 0.5f);
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, 5.0,
-					// Color.green, true)));
 					mapPortrayal.setPortrayalForClass(FruitSource.class,
 							new MovablePortrayal2D(new CircledPortrayal2D(
 									new LabelledPortrayal2D(
@@ -357,23 +251,6 @@ public class ThiefWorldWithUI extends GUIState {
 
 				// set display settings for meat sources
 				if (world.isShowMeatSources()) {
-					// mapPortrayal.setPortrayalForClass(MeatSource.class,
-					// new MovablePortrayal2D(new CircledPortrayal2D(
-					// new LabelledPortrayal2D(new OvalPortrayal2D() {
-					// /**
-					// *
-					// */
-					// private static final long serialVersionUID =
-					// -666009523425731377L;
-					//
-					// @Override
-					// public void draw(Object object,
-					// Graphics2D graphics, DrawInfo2D info) {
-					// paint = new Color(1.0f, 0.0f, 0.0f, 0.5f);
-					// super.draw(object, graphics, info);
-					// }
-					// }, 5.0, null, Color.white, true), 0, 5.0,
-					// Color.green, true)));
 					mapPortrayal.setPortrayalForClass(MeatSource.class,
 							new MovablePortrayal2D(new CircledPortrayal2D(
 									new LabelledPortrayal2D(
@@ -427,35 +304,6 @@ public class ThiefWorldWithUI extends GUIState {
 					mapPortrayal.setPortrayalForClass(Pheromone.class,
 							mapPortrayal.getPortrayalForNull());
 				}
-
-				// Color prevernal = new Color(153, 137, 121);
-				// Color vernal = new Color(119, 150, 21);
-				// Color estival = new Color(56, 141, 205);
-				// Color serotinal = new Color(182, 183, 175);
-				// Color autumnal = new Color(239, 106, 31);
-				// Color hibernal = new Color(238, 233, 237);
-				//
-				// long day = (long) (world.schedule.getSteps()
-				// / world.getTimeMultipler() + 1) % 365;
-				// if (day >= 60 && day < 121) {
-				// // prevernal
-				// background = prevernal;
-				// } else if (day >= 121 && day < 166) {
-				// // vernal
-				// background = vernal;
-				// } else if (day >= 166 && day < 227) {
-				// // estival
-				// background = estival;
-				// } else if (day >= 227 && day < 258) {
-				// // serotinal
-				// background = serotinal;
-				// } else if (day >= 258 && day < 305) {
-				// // autumnal
-				// background = autumnal;
-				// } else {
-				// // hibernal
-				// background = hibernal;
-				// }
 
 				display.reset();
 
