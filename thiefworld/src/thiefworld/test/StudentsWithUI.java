@@ -79,33 +79,31 @@ public class StudentsWithUI extends GUIState {
 
 		yardPortrayal.setField(students.yard);
 		yardPortrayal.setPortrayalForAll(new MovablePortrayal2D(
-				new CircledPortrayal2D(
-						new LabelledPortrayal2D(
-								new OvalPortrayal2D() {
-									/**
+				new CircledPortrayal2D(new LabelledPortrayal2D(
+						new OvalPortrayal2D() {
+							/**
 									 * 
 									 */
-									private static final long serialVersionUID = -4410575442367610107L;
-		
-									@Override
-									public void draw(Object object,
-											Graphics2D graphics, DrawInfo2D info) {
-										// TODO Auto-generated method stub
-										Student student = (Student) object;
-		
-										int agitationShade = (int) (student
-												.getAgitation() * 255 / 10.0);
-										if (agitationShade > 255)
-											agitationShade = 255;
-		
-										paint = new Color(agitationShade, 0,
-												255 - agitationShade);
-		
-										super.draw(object, graphics, info);
-									}
-								}, 
-								5.0, null, Color.black, true), 
-						0, 5.0, Color.green,true)));
+							private static final long serialVersionUID = -4410575442367610107L;
+
+							@Override
+							public void draw(Object object,
+									Graphics2D graphics, DrawInfo2D info) {
+								// TODO Auto-generated method stub
+								Student student = (Student) object;
+
+								int agitationShade = (int) (student
+										.getAgitation() * 255 / 10.0);
+								if (agitationShade > 255)
+									agitationShade = 255;
+
+								paint = new Color(agitationShade, 0,
+										255 - agitationShade);
+
+								super.draw(object, graphics, info);
+							}
+						}, 5.0, null, Color.black, true), 0, 5.0, Color.green,
+						true)));
 
 		buddiesPortrayal.setField(new SpatialNetwork2D(students.yard,
 				students.buddies));
