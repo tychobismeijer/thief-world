@@ -1,6 +1,7 @@
 package thiefworld.main;
 
 import sim.engine.SimState;
+import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
 import sim.util.Bag;
 import thiefworld.agents.ActiveAgent;
@@ -703,7 +704,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(nest);
+			Stoppable stoppable = schedule.scheduleRepeating(nest);
+			nest.stoppable = stoppable;
 		}
 
 		// add fruit sources
@@ -717,7 +719,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(fruitSource);
+			Stoppable stoppable = schedule.scheduleRepeating(fruitSource);
+			fruitSource.stoppable = stoppable;
 		}
 
 		// add meat sources
@@ -731,7 +734,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(meatSource);
+			Stoppable stoppable = schedule.scheduleRepeating(meatSource);
+			meatSource.stoppable = stoppable;
 		}
 
 		// add hunters
@@ -746,7 +750,8 @@ public class ThiefWorld extends SimState {
 					map.getObjectLocation(nestsBag.get(positionAtNest)));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(hunter);
+			Stoppable stoppable = schedule.scheduleRepeating(hunter);
+			hunter.stoppable = stoppable;
 		}
 
 		// add gatherers
@@ -761,7 +766,8 @@ public class ThiefWorld extends SimState {
 					map.getObjectLocation(nestsBag.get(positionAtNest)));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(gatherer);
+			Stoppable stoppable = schedule.scheduleRepeating(gatherer);
+			gatherer.stoppable = stoppable;
 		}
 
 		// add thieves
@@ -775,7 +781,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(thief);
+			Stoppable stoppable = schedule.scheduleRepeating(thief);
+			thief.stoppable = stoppable;
 		}
 
 		// add children
@@ -789,7 +796,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// schedule cyclic firing
-			schedule.scheduleRepeating(child);
+			Stoppable stoppable = schedule.scheduleRepeating(child);
+			child.stoppable = stoppable;
 		}
 
 		// add protectors
@@ -803,7 +811,8 @@ public class ThiefWorld extends SimState {
 					Utilities.getRandomPosition(maxWidth, maxHeight));
 
 			// shedule cycling firing
-			schedule.scheduleRepeating(protector);
+			Stoppable stoppable = schedule.scheduleRepeating(protector);
+			protector.stoppable = stoppable;
 		}
 	}
 
