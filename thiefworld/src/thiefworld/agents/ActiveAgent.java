@@ -10,9 +10,9 @@ import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
 public abstract class ActiveAgent extends Agent {
-	
+
 	Observer personalObserver;
-	
+
 	public ActiveAgent() {
 		// set task switching threshold
 		switchThreshold = Utilities.nextDouble();
@@ -310,8 +310,9 @@ public abstract class ActiveAgent extends Agent {
 			}
 		} else {
 			// search for nearby returning pheromones
-			Bag nearbyPheromones = personalObserver.getPheromonesWithinRange(world, pheromonesType);
-			
+			Bag nearbyPheromones = personalObserver.getPheromonesWithinRange(
+					world, pheromonesType);
+
 			Bag goingPheromones = new Bag();
 			Bag returningPheromones = new Bag();
 
@@ -328,7 +329,7 @@ public abstract class ActiveAgent extends Agent {
 				// TODO
 				// what kind of movement is required here? follow which types of
 				// pheromones (in what proportion?)
-				
+
 				followPheromoneTrail(world, nearbyPheromones);
 
 				// if (returningPheromones.size() > 0) {
@@ -421,7 +422,8 @@ public abstract class ActiveAgent extends Agent {
 	 *            the type of food which the agent searches for.
 	 */
 	protected void goAfterFood(ThiefWorld world, Class<?> foodType) {
-		FoodSource closestFoodSource = personalObserver.getClosestFoodSourceWithinRange(world, foodType);
+		FoodSource closestFoodSource = personalObserver
+				.getClosestFoodSourceWithinRange(world, foodType);
 
 		if (closestFoodSource != null) {
 			examineFoodSource(world, closestFoodSource);

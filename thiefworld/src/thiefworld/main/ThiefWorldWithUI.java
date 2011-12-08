@@ -11,7 +11,6 @@ import sim.display.Controller;
 import sim.display.Display2D;
 import sim.display.GUIState;
 import sim.engine.SimState;
-import sim.engine.Steppable;
 import sim.portrayal.DrawInfo2D;
 import sim.portrayal.Inspector;
 import sim.portrayal.continuous.ContinuousPortrayal2D;
@@ -105,6 +104,9 @@ public class ThiefWorldWithUI extends GUIState {
 		ThiefWorld world = (ThiefWorld) state;
 
 		mapPortrayal.setField(world.map);
+
+		mapPortrayal.setPortrayalForNull(new ImagePortrayal2D(new ImageIcon(
+				"./images/none.png")));
 
 		// set display settings for hunters
 		if (world.isShowHunters()) {
@@ -341,101 +343,68 @@ public class ThiefWorldWithUI extends GUIState {
 			// TODO hide protectors
 		}
 
+		// set display settings for pheromones
+		if (world.isShowPheromones()) {
+			mapPortrayal.setPortrayalForClass(Pheromone.class,
+					new LabelledPortrayal2D(new ImagePortrayal2D(new ImageIcon(
+							"./images/reddot.png")), 0.1, null, Color.white,
+							true));
+		} else {
+			mapPortrayal.setPortrayalForClass(Pheromone.class,
+					mapPortrayal.getPortrayalForNull());
+		}
+
 		// choose a background based on the season
 		Color background = Color.black;
 
-		scheduleRepeatingImmediatelyBefore(new Steppable() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 6226556354883996558L;
-
-			@Override
-			public void step(SimState arg0) {
-				ThiefWorld world = (ThiefWorld) arg0;
-
-				mapPortrayal.setPortrayalForClass(Nest.class,
-						new MovablePortrayal2D(new CircledPortrayal2D(
-								new LabelledPortrayal2D(new ImagePortrayal2D(
-										new ImageIcon("./images/nest.gif"),
-										10.0), 5.0, null, Color.white, true),
-								0, world.getAgentRange(), Color.green, true)));
-
-				// set display settings for pheromones
-				if (world.isShowPheromones()) {
-					mapPortrayal.setPortrayalForClass(Pheromone.class,
-							new LabelledPortrayal2D(new ImagePortrayal2D(new ImageIcon()) {
-
-								/**
-								 * 
-								 */
-								private static final long serialVersionUID = -2250309866928317943L;
-
-								@Override
-								public void draw(Object object,
-										Graphics2D graphics, DrawInfo2D info) {
-									Pheromone pheromone = (Pheromone) object;
-
-									if (pheromone.isReturning())
-										paint = Color.yellow;
-									else {
-										switch (pheromone.getType()) {
-										case Hunter:
-											paint = Color.red;
-											break;
-										case Gatherer:
-											paint = Color.green;
-											break;
-										default:
-											break;
-										}
-									}
-
-									super.draw(object, graphics, info);
-								}
-							}, 0.1, null, Color.white, true));
-				} else {
-					
-				}
-				
-				Color background = Color.black;
-
-				// Color prevernal = new Color(153, 137, 121);
-				// Color vernal = new Color(119, 150, 21);
-				// Color estival = new Color(56, 141, 205);
-				// Color serotinal = new Color(182, 183, 175);
-				// Color autumnal = new Color(239, 106, 31);
-				// Color hibernal = new Color(238, 233, 237);
-				//
-				// long day = (long) (world.schedule.getSteps()
-				// / world.getTimeMultipler() + 1) % 365;
-				// if (day >= 60 && day < 121) {
-				// // prevernal
-				// background = prevernal;
-				// } else if (day >= 121 && day < 166) {
-				// // vernal
-				// background = vernal;
-				// } else if (day >= 166 && day < 227) {
-				// // estival
-				// background = estival;
-				// } else if (day >= 227 && day < 258) {
-				// // serotinal
-				// background = serotinal;
-				// } else if (day >= 258 && day < 305) {
-				// // autumnal
-				// background = autumnal;
-				// } else {
-				// // hibernal
-				// background = hibernal;
-				// }
-
-				display.reset();
-				display.setBackdrop(background);
-
-				display.repaint();
-			}
-		});
+		// scheduleRepeatingImmediatelyBefore(new Steppable() {
+		//
+		// /**
+		// *
+		// */
+		// private static final long serialVersionUID = 6226556354883996558L;
+		//
+		// @Override
+		// public void step(SimState arg0) {
+		// ThiefWorld world = (ThiefWorld) arg0;
+		//
+		// Color background = Color.black;
+		//
+		// // Color prevernal = new Color(153, 137, 121);
+		// // Color vernal = new Color(119, 150, 21);
+		// // Color estival = new Color(56, 141, 205);
+		// // Color serotinal = new Color(182, 183, 175);
+		// // Color autumnal = new Color(239, 106, 31);
+		// // Color hibernal = new Color(238, 233, 237);
+		// //
+		// // long day = (long) (world.schedule.getSteps()
+		// // / world.getTimeMultipler() + 1) % 365;
+		// // if (day >= 60 && day < 121) {
+		// // // prevernal
+		// // background = prevernal;
+		// // } else if (day >= 121 && day < 166) {
+		// // // vernal
+		// // background = vernal;
+		// // } else if (day >= 166 && day < 227) {
+		// // // estival
+		// // background = estival;
+		// // } else if (day >= 227 && day < 258) {
+		// // // serotinal
+		// // background = serotinal;
+		// // } else if (day >= 258 && day < 305) {
+		// // // autumnal
+		// // background = autumnal;
+		// // } else {
+		// // // hibernal
+		// // background = hibernal;
+		// // }
+		//
+		// display.reset();
+		// display.setBackdrop(background);
+		//
+		// display.repaint();
+		// }
+		// });
 
 		display.reset();
 		display.setBackdrop(background);
