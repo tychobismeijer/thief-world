@@ -92,7 +92,29 @@ public class ThiefWorldWithUI extends GUIState {
 	@Override
 	public void load(SimState stateArg) {
 		super.load(stateArg);
+
+		// clear the existing components
+		clearWorld();
+
 		setupPortrayals();
+	}
+	
+	@Override
+	public void finish() {
+		clearWorld();
+	};
+
+	private void clearWorld() {
+		ThiefWorld world = (ThiefWorld) state;
+		
+		world.childrenBag.clear();
+		world.fruitSourcesBag.clear();
+		world.gatherersBag.clear();
+		world.huntersBag.clear();
+		world.meatSourcesBag.clear();
+		world.nestsBag.clear();
+		world.protectorsBag.clear();
+		world.thievesBag.clear();
 	}
 
 	/**

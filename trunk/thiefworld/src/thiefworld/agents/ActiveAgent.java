@@ -247,11 +247,8 @@ public abstract class ActiveAgent extends Agent {
 						* ActiveAgent.getRandomMovementFactor()));
 
 		// normalize movement
-		if (wonderingMovement.length() > ActiveAgent.getMaxStepSize())
-			wonderingMovement.resize(0.0);
-		else if (wonderingMovement.length() > 0)
-			wonderingMovement.resize(ActiveAgent.getMaxStepSize()
-					- wonderingMovement.length());
+		wonderingMovement.normalize();
+		wonderingMovement.multiplyIn(ActiveAgent.getMaxStepSize());
 
 		// add current position
 		Double2D myPosition = world.map.getObjectLocation(this);
@@ -296,11 +293,9 @@ public abstract class ActiveAgent extends Agent {
 						(Utilities.nextDouble() * 1.0 - 0.5)
 								* ActiveAgent.getRandomMovementFactor()));
 
-				if (movementTowardsNest.length() > ActiveAgent.getMaxStepSize())
-					movementTowardsNest.resize(0.0);
-				else if (movementTowardsNest.length() > 0)
-					movementTowardsNest.resize(ActiveAgent.getMaxStepSize()
-							- movementTowardsNest.length());
+				movementTowardsNest.normalize();
+				movementTowardsNest.multiplyIn(ActiveAgent.getMaxStepSize());
+
 				// add current position
 				movementTowardsNest.addIn(myPosition);
 
@@ -398,11 +393,13 @@ public abstract class ActiveAgent extends Agent {
 				* ActiveAgent.getRandomMovementFactor()));
 
 		// normalize movement
-		if (pheromoneTrail.length() > ActiveAgent.getMaxStepSize())
-			pheromoneTrail.resize(0.0);
-		else if (pheromoneTrail.length() > 0)
-			pheromoneTrail.resize(ActiveAgent.getMaxStepSize()
-					- pheromoneTrail.length());
+		// if (pheromoneTrail.length() > ActiveAgent.getMaxStepSize())
+		// pheromoneTrail.resize(0.0);
+		// else if (pheromoneTrail.length() > 0)
+		// pheromoneTrail.resize(ActiveAgent.getMaxStepSize()
+		// - pheromoneTrail.length());
+		pheromoneTrail.normalize();
+		pheromoneTrail.multiplyIn(ActiveAgent.getMaxStepSize());
 
 		// add current position
 		pheromoneTrail.addIn(myPosition);
