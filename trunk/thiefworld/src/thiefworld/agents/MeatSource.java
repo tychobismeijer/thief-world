@@ -4,12 +4,14 @@ import sim.engine.SimState;
 
 public class MeatSource extends FoodSource {
 	private static int meatSourceNo = 0;
-	
-	public MeatSource(){
+
+	public MeatSource() {
 		meatSourceNo++;
 		this.setName("meat-source #" + meatSourceNo);
+
+		this.setMeatQuantity(10);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -26,6 +28,6 @@ public class MeatSource extends FoodSource {
 	@Override
 	public void step(SimState arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
