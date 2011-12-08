@@ -227,7 +227,11 @@ public abstract class ActiveAgent extends Agent {
 	 * @return true if the agent cannot carry any more food, false otherwise.
 	 */
 	public boolean isReturningFood() {
-		return this.getCarriedFood() == this.getMaxAllowedFood();
+		// allow the agent to return only when it's fully loaded
+		// return this.getCarriedFood() == this.getMaxAllowedFood();
+
+		// allow the agent to return whenever it has any amount of food loaded
+		return this.getCarriedFood() > 0;
 	}
 
 	/**
@@ -293,6 +297,7 @@ public abstract class ActiveAgent extends Agent {
 						(Utilities.nextDouble() * 1.0 - 0.5)
 								* ActiveAgent.getRandomMovementFactor()));
 
+				// normalize movement
 				movementTowardsNest.normalize();
 				movementTowardsNest.multiplyIn(ActiveAgent.getMaxStepSize());
 
@@ -305,13 +310,13 @@ public abstract class ActiveAgent extends Agent {
 			}
 		} else {
 			// search for nearby returning pheromones
-			Bag nearbyPheromones = personalObserver.getPheromonesWithinRange(
-					world, pheromonesType);
-
-			Bag comingFromNestPheromones = new Bag();
-			Bag returningFromFoodSourcePheromones = new Bag();
+			Bag nearbyPheromones = personalObserver
+					.getPheromonesWithinRange(world);
 
 			if (nearbyPheromones != null && nearbyPheromones.size() > 0) {
+				Bag comingFromNestPheromones = new Bag();
+				Bag returningFromFoodSourcePheromones = new Bag();
+
 				for (int i = 0; i < nearbyPheromones.size(); i++) {
 					Pheromone pheromone = (Pheromone) nearbyPheromones.get(i);
 
@@ -322,13 +327,10 @@ public abstract class ActiveAgent extends Agent {
 				}
 
 				if (comingFromNestPheromones.size() > 0) {
-					// TODO
-					// what kind of movement is required here? follow which
-					// types of
-					// pheromones (in what proportion?)
-
+					// follow the pheromone trail back to the nest
 					followPheromoneTrail(world, comingFromNestPheromones);
 				} else {
+					// no pheromones point towards the nest, wonder around
 					wonderAround(world);
 				}
 			} else {
@@ -536,5 +538,12 @@ public abstract class ActiveAgent extends Agent {
 			log.log(Level.INFO, this.getName() + " picked up " + foodToExtract
 					+ " food from " + foodSource.getName());
 		}
+	}
+
+	/**
+	 * Simulates the decay of the success rate.
+	 */
+	protected void decaySkills() {
+
 	}
 }

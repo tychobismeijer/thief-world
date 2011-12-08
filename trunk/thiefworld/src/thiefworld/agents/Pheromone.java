@@ -30,7 +30,7 @@ public class Pheromone extends Agent {
 			Pheromone.defaultPheromoneStrength = defaultPheromoneStrength;
 	}
 
-	private static double pheromoneDecayRate = 1000;
+	private static double pheromoneDecayRate = 50;
 
 	public static double getPheromoneDecayRate() {
 		return pheromoneDecayRate;
