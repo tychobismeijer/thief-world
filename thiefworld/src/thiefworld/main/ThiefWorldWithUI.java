@@ -176,7 +176,7 @@ public class ThiefWorldWithUI extends GUIState {
 													new LabelledPortrayal2D(
 															new ImagePortrayal2D(
 																	new ImageIcon(
-																			"./images/gatherer.jpeg"),
+																			"./images/gatherer.png"),
 																	5.0), 5.0,
 															null, Color.white,
 															true), 0, world
@@ -215,7 +215,7 @@ public class ThiefWorldWithUI extends GUIState {
 													new LabelledPortrayal2D(
 															new ImagePortrayal2D(
 																	new ImageIcon(
-																			"./images/nest.gif"),
+																			"./images/nest.png"),
 																	10.0), 5.0,
 															null, Color.white,
 															true), 0, world
@@ -345,7 +345,7 @@ public class ThiefWorldWithUI extends GUIState {
 							new MovablePortrayal2D(new CircledPortrayal2D(
 									new LabelledPortrayal2D(
 											new ImagePortrayal2D(new ImageIcon(
-													"./images/crystal.jpg"),
+													"./images/crystal.png"),
 													5.0), 5.0, null,
 											Color.white, true), 0, 5.0,
 									Color.green, true)));
