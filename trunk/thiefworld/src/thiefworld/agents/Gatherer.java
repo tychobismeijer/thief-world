@@ -13,6 +13,13 @@ public class Gatherer extends ActiveAgent {
 		this.setName("gatherer #" + gathererNo);
 	}
 
+	public Gatherer(ActiveAgent agent) {
+		super(agent);
+
+		gathererNo++;
+		this.setName("gatherer #" + gathererNo);
+	}
+
 	/**
 	 * 
 	 */
@@ -23,7 +30,7 @@ public class Gatherer extends ActiveAgent {
 		ThiefWorld world = (ThiefWorld) arg0;
 
 		decaySkills();
-		
+
 		dropPheromone(world);
 		act(world);
 	}

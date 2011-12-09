@@ -3,6 +3,7 @@ package thiefworld.agents;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import sim.engine.Stoppable;
 import sim.util.Bag;
 import sim.util.Double2D;
 import sim.util.MutableDouble2D;
@@ -19,6 +20,24 @@ public abstract class ActiveAgent extends Agent {
 		health = 1.0;
 		maxAllowedFood = ActiveAgent.getDefaultMaxCarriedFood();
 		personalObserver = new Observer(this);
+	}
+
+	public ActiveAgent(ActiveAgent agent) {
+		// copy the other agent's properties
+		this.setCarriedFood(agent.getCarriedFood());
+		this.setGatheringSkill(agent.getGatheringSkill());
+		this.setGatheringSuccess(agent.getGatheringSuccess());
+		this.setHealth(agent.getHealth());
+		this.setHuntingSkill(agent.getHuntingSkill());
+		this.setHuntingSuccess(agent.getHuntingSuccess());
+		this.setMaxAllowedFood(agent.getMaxAllowedFood());
+		this.setName(agent.getName());
+		this.setPersonalSuccess(agent.getPersonalSuccess());
+		this.setStealingSkill(agent.getStealingSkill());
+		this.setSwitchThreshold(agent.getSwitchThreshold());
+		this.setTeamNo(agent.getTeamNo());
+
+		this.personalObserver = new Observer(this);
 	}
 
 	private static final long serialVersionUID = 5597485865861516823L;
@@ -544,6 +563,67 @@ public abstract class ActiveAgent extends Agent {
 	 * Simulates the decay of the success rate.
 	 */
 	protected void decaySkills() {
+		// TODO
+	}
 
+	/**
+	 * Transforms the current agent into another agent.
+	 * 
+	 * @param newAgentType
+	 *            the new agent type.
+	 * @return the morphed agent.
+	 */
+	protected ActiveAgent morph(Class<?> newAgentType) {
+		ActiveAgent morphedAgent = null;
+
+		if (newAgentType == Gatherer.class) {
+			// morph into a gatherer
+			morphedAgent = new Gatherer(this);
+		}
+
+		if (newAgentType == Hunter.class) {
+			// morph into a hunter
+			morphedAgent = new Hunter(this);
+		}
+
+		return morphedAgent;
+	}
+
+	/**
+	 * Morphs the current agent into a new type of agent and replaces the
+	 * current agent with it on both the map and the world scheduler.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param newAgentType
+	 *            the type of agent into which the current agent will morph
+	 * @return the morphed agent
+	 */
+	protected ActiveAgent replace(ThiefWorld world, Class<?> newAgentType) {
+		ActiveAgent morphedAgent = morph(newAgentType);
+
+		if (morphedAgent != null) {
+			// add agent on the map in the same place as the current agent
+			world.map.setObjectLocation(morphedAgent,
+					world.map.getObjectLocation(this));
+
+			// schedule agent firing
+			Stoppable stoppable = world.schedule
+					.scheduleRepeating(morphedAgent);
+			morphedAgent.stoppable = stoppable;
+
+			// remove the current agent
+			world.map.remove(this);
+
+			// stop the old agent from firing
+			this.stoppable.stop();
+
+			// log the event
+			Logger log = Logger.getLogger(this.getName());
+			log.log(Level.INFO, this.getName() + " morphed into "
+					+ morphedAgent.getName());
+		}
+
+		return morphedAgent;
 	}
 }
