@@ -13,6 +13,13 @@ public class Hunter extends ActiveAgent {
 		this.setName("hunter #" + hunterNo);
 	}
 
+	public Hunter(ActiveAgent agent) {
+		super(agent);
+
+		hunterNo++;
+		this.setName("hunter #" + hunterNo);
+	}
+
 	/**
 	 * 
 	 */
