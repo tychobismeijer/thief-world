@@ -5,11 +5,6 @@ import thiefworld.main.ThiefWorld;
 public class Child extends ActiveAgent {
 	private static int childNo = 0;
 
-	public Child() {
-		childNo++;
-		this.setName("child #" + childNo);
-	}
-
 	/**
 	 * 
 	 */
@@ -17,18 +12,23 @@ public class Child extends ActiveAgent {
 
 	private int age;
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
+	public Child() {
+		childNo++;
+		this.setName("child #" + childNo);
 	}
 
 	@Override
 	protected void act(ThiefWorld world) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	@Override

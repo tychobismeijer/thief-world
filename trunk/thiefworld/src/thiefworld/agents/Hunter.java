@@ -5,6 +5,11 @@ import thiefworld.main.ThiefWorld;
 public class Hunter extends ActiveAgent {
 	private static int hunterNo = 0;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1865632885952375111L;
+
 	public Hunter() {
 		// set name
 		hunterNo++;
@@ -18,11 +23,6 @@ public class Hunter extends ActiveAgent {
 		this.setName("hunter #" + hunterNo);
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1865632885952375111L;
-
 	protected void act(ThiefWorld world) {
 		// check if the agent is returning food
 		if (isReturningFood())
@@ -35,7 +35,8 @@ public class Hunter extends ActiveAgent {
 
 	@Override
 	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
-		// check if it's better as a Gatherer
+		// TODO Auto-generated method stub
+		
 	}
 
 }

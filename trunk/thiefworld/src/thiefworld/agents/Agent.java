@@ -9,22 +9,22 @@ public abstract class Agent implements Steppable {
 	 */
 	private static final long serialVersionUID = -2592497966272000992L;
 	
+	private String name;
+
 	public Stoppable stoppable;
 
-	private String name;
+	private int teamNo;
 
 	public String getName() {
 		return name;
 	}
+	
+	public int getTeamNo() {
+		return teamNo;
+	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	private int teamNo;
-
-	public int getTeamNo() {
-		return teamNo;
 	}
 
 	public void setTeamNo(int teamNo) {

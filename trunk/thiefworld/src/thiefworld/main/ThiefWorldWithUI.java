@@ -35,28 +35,6 @@ import thiefworld.agents.Thief;
  */
 public class ThiefWorldWithUI extends GUIState {
 
-	public Display2D display;
-	public JFrame displayFrame;
-	public ContinuousPortrayal2D mapPortrayal = new ContinuousPortrayal2D();
-
-	public Object getSimulationInspectedObject() {
-		return state;
-	}
-
-	public Inspector getInspector() {
-		Inspector i = super.getInspector();
-		i.setVolatile(true);
-		return i;
-	}
-
-	public ThiefWorldWithUI() {
-		super(new ThiefWorld(System.currentTimeMillis()));
-	}
-
-	public ThiefWorldWithUI(SimState state) {
-		super(state);
-	}
-
 	/**
 	 * Retrieves the title of the simulation window. (for display purposes).
 	 * 
@@ -65,7 +43,6 @@ public class ThiefWorldWithUI extends GUIState {
 	public static String getName() {
 		return "thief-world";
 	}
-
 	/**
 	 * Starter method for the GUI simulation.
 	 * 
@@ -76,15 +53,66 @@ public class ThiefWorldWithUI extends GUIState {
 		Console c = new Console(gui);
 		c.setVisible(true);
 	}
+	public Display2D display;
 
+	public JFrame displayFrame;
+
+	public ContinuousPortrayal2D mapPortrayal = new ContinuousPortrayal2D();
+
+	public ThiefWorldWithUI() {
+		super(new ThiefWorld(System.currentTimeMillis()));
+	}
+
+	public ThiefWorldWithUI(SimState state) {
+		super(state);
+	}
+
+	private void clearWorld() {
+		ThiefWorld world = (ThiefWorld) state;
+		
+		world.childrenBag.clear();
+		world.fruitSourcesBag.clear();
+		world.gatherersBag.clear();
+		world.huntersBag.clear();
+		world.meatSourcesBag.clear();
+		world.nestsBag.clear();
+		world.protectorsBag.clear();
+		world.thievesBag.clear();
+	}
+
+	@Override
+	public void finish() {
+		clearWorld();
+	}
+
+	public Inspector getInspector() {
+		Inspector i = super.getInspector();
+		i.setVolatile(true);
+		return i;
+	}
+
+	public Object getSimulationInspectedObject() {
+		return state;
+	}
+	
 	/**
-	 * Starts the GUI.
+	 * Initializes the GUI window.
 	 */
 	@Override
-	public void start() {
-		super.start();
-		setupPortrayals();
-	}
+	public void init(Controller controller) {
+		super.init(controller);
+
+		display = new Display2D(600, 600, this);
+		display.setClipping(false);
+
+		displayFrame = display.createFrame();
+		displayFrame.setTitle("thief-world-map");
+
+		controller.registerFrame(displayFrame);
+
+		displayFrame.setVisible(true);
+		display.attach(mapPortrayal, "map");
+	};
 
 	/**
 	 * Loads the GUI components.
@@ -98,23 +126,19 @@ public class ThiefWorldWithUI extends GUIState {
 
 		setupPortrayals();
 	}
-	
-	@Override
-	public void finish() {
-		clearWorld();
-	};
 
-	private void clearWorld() {
-		ThiefWorld world = (ThiefWorld) state;
-		
-		world.childrenBag.clear();
-		world.fruitSourcesBag.clear();
-		world.gatherersBag.clear();
-		world.huntersBag.clear();
-		world.meatSourcesBag.clear();
-		world.nestsBag.clear();
-		world.protectorsBag.clear();
-		world.thievesBag.clear();
+	/**
+	 * Disposes of the allocated GUI resources and exists the simulation.
+	 */
+	@Override
+	public void quit() {
+		super.quit();
+
+		if (displayFrame != null)
+			displayFrame.dispose();
+
+		displayFrame = null;
+		display = null;
 	}
 
 	/**
@@ -326,35 +350,11 @@ public class ThiefWorldWithUI extends GUIState {
 	}
 
 	/**
-	 * Initializes the GUI window.
+	 * Starts the GUI.
 	 */
 	@Override
-	public void init(Controller controller) {
-		super.init(controller);
-
-		display = new Display2D(600, 600, this);
-		display.setClipping(false);
-
-		displayFrame = display.createFrame();
-		displayFrame.setTitle("thief-world-map");
-
-		controller.registerFrame(displayFrame);
-
-		displayFrame.setVisible(true);
-		display.attach(mapPortrayal, "map");
-	}
-
-	/**
-	 * Disposes of the allocated GUI resources and exists the simulation.
-	 */
-	@Override
-	public void quit() {
-		super.quit();
-
-		if (displayFrame != null)
-			displayFrame.dispose();
-
-		displayFrame = null;
-		display = null;
+	public void start() {
+		super.start();
+		setupPortrayals();
 	}
 }

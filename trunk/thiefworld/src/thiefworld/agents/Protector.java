@@ -6,6 +6,11 @@ import thiefworld.util.Utilities;
 public class Protector extends ActiveAgent {
 	private static int protectorNo = 0;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 223400888051741701L;
+
 	public Protector() {
 		// set name
 		protectorNo++;
@@ -14,11 +19,6 @@ public class Protector extends ActiveAgent {
 		// set task switching threshold
 		this.setSwitchThreshold(Utilities.nextDouble());
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 223400888051741701L;
 
 	@Override
 	protected void act(ThiefWorld world) {
