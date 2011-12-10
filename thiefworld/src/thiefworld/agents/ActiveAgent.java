@@ -28,12 +28,12 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The maximum range within which the agent can observe.
 	 */
-	private static double agentRange = 10.0;
+	private static double agentRange = 30.0;
 
 	/**
 	 * The maximum quantity of food which an agent can carry by default.
 	 */
-	private static double defaultMaxCarriedFood = 1.0;
+	private static double defaultMaxCarriedFood = 2.0;
 
 	/**
 	 * The maximum allowed movement step size for an agent.
@@ -265,7 +265,7 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's disposition towards changing its role.
 	 */
-	protected double switchThreshold = Utilities.nextDouble(0.05,1.0);
+	protected double switchThreshold = Utilities.nextDouble(0.1,0.95);
 
 	/*
 	 * Keeps track of time since last role switch, might be used for logarithmic skill change
