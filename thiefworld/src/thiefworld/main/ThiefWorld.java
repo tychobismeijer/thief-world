@@ -227,6 +227,20 @@ public class ThiefWorld extends SimState {
 		return Pheromone.getDefaultPheromoneStrength();
 	}
 
+	/*
+	 * Retrieves skill decay rate of agents
+	 */
+	public double getDefaultSkillDecayStep(){
+		return ActiveAgent.getSkillDecayRate();
+	}
+	
+	/*
+	 * Retrieves skill increase rate of agents
+	 */
+	public double getDefaultSkillIncreaseStep() {
+		return ActiveAgent.getSkillIncreaseRate();
+	}
+	
 	/**
 	 * Retrieves the number of fruit sources with which the simulation starts.
 	 * 
@@ -689,6 +703,21 @@ public class ThiefWorld extends SimState {
 			Pheromone.setDefaultPheromoneStrength(defaultPheromoneStrength);
 	}
 
+	/*
+	 * Retrieves skill decay rate of agents
+	 */
+	public void setDefaultSkillDecayStep(double newRate){
+		ActiveAgent.setSkillDecayRate(newRate);
+	}
+	
+	/*
+	 * Retrieves skill increase rate of agents
+	 */
+	public void setDefaultSkillIncreaseStep(double newRate) {
+		ActiveAgent.setSkillIncreaseRate(newRate);
+	}
+	
+	
 	/**
 	 * Sets the number of fruit sources with which the simulation starts.
 	 * 
