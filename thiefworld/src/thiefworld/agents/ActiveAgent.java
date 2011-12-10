@@ -252,6 +252,53 @@ public abstract class ActiveAgent extends Agent {
 		// allow the agent to return whenever it has any amount of food loaded
 		return this.getCarriedFood() > 0;
 	}
+	
+	protected abstract void act(ThiefWorld world);
+
+	/**
+	 * Drops a default strength pheromone based on the agent's type.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	protected void dropPheromone(ThiefWorld world) {
+		// TODO check if a pheromone is not already in the same position. If so,
+		// increase the pheromone strength in that position by the required
+		// value (i.e. unit).
+
+		Pheromone pheromone = null;
+		if (this.getClass() == Gatherer.class) {
+			// drop pheromone
+			pheromone = new Pheromone(Pheromone.getDefaultPheromoneStrength(),
+					PheromoneType.Gatherer, isReturningFood(),
+					!isReturningFood());
+		}
+
+		if (this.getClass() == Hunter.class) {
+			// drop pheromone
+			pheromone = new Pheromone(Pheromone.getDefaultPheromoneStrength(),
+					PheromoneType.Hunter, isReturningFood(), !isReturningFood());
+		}
+
+		if (this.getClass() == Thief.class) {
+			// drop pheromone
+			pheromone = new Pheromone(Pheromone.getDefaultPheromoneStrength(),
+					PheromoneType.Thief, isReturningFood(), !isReturningFood());
+		}
+
+		if (this.getClass() == Protector.class) {
+			// drop pheromone
+			pheromone = new Pheromone(Pheromone.getDefaultPheromoneStrength(),
+					PheromoneType.Protector, isReturningFood(),
+					!isReturningFood());
+		}
+
+		Stoppable stoppable = world.schedule.scheduleRepeating(pheromone);
+		pheromone.stoppable = stoppable;
+
+		world.map.setObjectLocation(pheromone,
+				world.map.getObjectLocation(this));
+	}
 
 	/**
 	 * Wonders around in search of a food source guided by the pheromone trail.
@@ -563,7 +610,7 @@ public abstract class ActiveAgent extends Agent {
 	 * Simulates the decay of the success rate.
 	 */
 	protected void decaySkills() {
-		// TODO
+		
 	}
 
 	/**
@@ -626,4 +673,13 @@ public abstract class ActiveAgent extends Agent {
 
 		return morphedAgent;
 	}
+
+	/**
+	 * Makes the agent think about switching jobs based on its previous success
+	 * rate and the current information it has from other agents in the world.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
+	protected abstract void thinkAboutSwitchingJobs(ThiefWorld world);
 }

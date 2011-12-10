@@ -25,9 +25,23 @@ public class Thief extends ActiveAgent {
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
 
+		decaySkills();
+
 		// drop pheromone
 		Pheromone pheromone = new Pheromone(PheromoneType.Thief);
 		world.schedule.scheduleRepeating(pheromone);
+	}
+
+	@Override
+	protected void act(ThiefWorld world) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

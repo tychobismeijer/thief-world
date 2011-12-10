@@ -30,4 +30,16 @@ public class Protector extends ActiveAgent {
 		world.schedule.scheduleRepeating(pheromone);
 	}
 
+	@Override
+	protected void act(ThiefWorld world) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
