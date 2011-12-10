@@ -265,7 +265,7 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's disposition towards changing its role.
 	 */
-	protected double switchThreshold = Utilities.nextDouble();
+	protected double switchThreshold = Utilities.nextDouble(0.05,1.0);
 
 	/*
 	 * Keeps track of time since last role switch, might be used for logarithmic skill change
