@@ -45,6 +45,18 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	private static double randomMovementFactor = 0.1;
 
+	/*
+	 * Determines decay of skill level per timestep
+	 * *it's not really a rate though...*
+	 */
+	private static double skillDecayRate = 0.005; // Agent loses all skill in 200 time steps
+	
+	/*
+	 * Determines increase of skill level per dropOffFood action
+	 * *it's not really a rate though...*
+	 */
+	private static double skillIncreaseRate = 0.02; // Agent is fully specialized after 50 actions
+	
 	private static final long serialVersionUID = 5597485865861516823L;
 
 	/**
@@ -96,6 +108,20 @@ public abstract class ActiveAgent extends Agent {
 		return ActiveAgent.randomMovementFactor;
 	}
 
+	/*
+	 * Retrieves skill decay rate per timestep for the agent
+	 */
+	public static double getSkillDecayRate() {
+		return skillDecayRate;
+	}
+	
+	/*
+	 * Retrieves skill increase rate per returnFood action for the agent
+	 */
+	public static double getSkillIncreaseRate() {
+		return skillIncreaseRate;
+	}
+	
 	/**
 	 * Sets the range within which the agent can perform actions.
 	 * 
@@ -155,6 +181,20 @@ public abstract class ActiveAgent extends Agent {
 			ActiveAgent.randomMovementFactor = randomMovementFactor;
 	}
 
+	/*
+	 * Sets skill decay rate per timestep for the agent
+	 */
+	public static void setSkillDecayRate(double newRate) {
+		skillDecayRate = newRate;
+	}
+	
+	/*
+	 * Sets skill increase rate per returnFood action for the agent
+	 */
+	public static void setSkillIncreaseRate(double newRate) {
+		skillIncreaseRate = newRate;
+	}
+	
 	/**
 	 * The fruit quantity which the agent currently carries.
 	 */
@@ -168,13 +208,13 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's skill for gathering fruit.
 	 */
-	private double gatheringSkill;
+	private double gatheringSkill = 0.00;
 
 	/**
 	 * The gathering success rate of the other agents which the current agent
 	 * interacts with over time.
 	 */
-	private double gatheringSuccess;
+	private double gatheringSuccess = 0.0;
 
 	/**
 	 * The agent's current health level.
@@ -184,13 +224,13 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's skill for hunting.
 	 */
-	private double huntingSkill;
+	private double huntingSkill = 0.00;
 
 	/**
 	 * The hunting success rate of the other agents which the current agent
 	 * interacts with over time.
 	 */
-	private double huntingSuccess;
+	private double huntingSuccess = 0.0;
 
 	/**
 	 * The maximum allowed food quantity that can be carried at once.
@@ -206,18 +246,29 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's success rate on performing the current role it has.
 	 */
-	private double personalSuccess;
+	private double personalSuccess = 0.0;
 
 	/**
 	 * The agent's skill in stealing food from other teams.
 	 */
-	private double stealingSkill;
+	private double stealingSkill = 0.0;
 
 	/**
 	 * The agent's disposition towards changing its role.
 	 */
 	private double switchThreshold;
 
+	/*
+	 * Keeps track of time since last role switch, might be used for logarithmic skill change
+	 * NOT USED YET
+	 */
+	private int timeSinceLastMorph = 0;
+	
+	/*
+	 * Keeps track of time since last food drop off, used for determining personalSucces
+	 */
+	private int timeSinceLastDropOff = 0;
+	
 	/**
 	 * Creates a new agent and initializes its parameters to default values.
 	 */
@@ -264,12 +315,30 @@ public abstract class ActiveAgent extends Agent {
 	protected abstract void act(ThiefWorld world);
 
 	/**
-	 * Simulates the decay of the success rate.
+	 * Simulates the decay of the agent's unused skills
 	 */
 	protected void decaySkills() {
-
+		if(this.getClass() == Hunter.class) {
+			this.gatheringSkill -= skillDecayRate;
+			this.stealingSkill -= skillDecayRate;
+		} 
+		else if(this.getClass() == Gatherer.class) {
+			this.huntingSkill -= skillDecayRate;
+			this.stealingSkill -= skillDecayRate;
+		}
+		else if(this.getClass() == Thief.class) {
+			this.huntingSkill -= skillDecayRate;
+			this.gatheringSkill -= skillDecayRate;
+		}
+		if(this.gatheringSkill < 0)
+			this.gatheringSkill = 0;
+		if(this.huntingSkill < 0)
+			this.huntingSkill = 0;
+		if(this.stealingSkill < 0)
+			this.stealingSkill = 0;
+		
 	}
-
+	
 	/**
 	 * Decreases the quantity of carried fruit by a specified amount.
 	 * 
@@ -348,6 +417,12 @@ public abstract class ActiveAgent extends Agent {
 				this.setCarriedMeat(0.0);
 			}
 		}
+		//increase skill after dropping of
+		increaseSkill();
+		
+		//keep track of succes
+		updatePersonalSucces();
+		this.timeSinceLastDropOff = 0;
 	}
 
 	/**
@@ -627,6 +702,34 @@ public abstract class ActiveAgent extends Agent {
 			this.carriedMeat = maxAllowedFood;
 	}
 
+	protected void increaseSkill() {
+		Logger log = Logger.getLogger(getName());
+		
+		if(this.getClass() == Gatherer.class) {
+			this.gatheringSkill += skillIncreaseRate;
+			log.log(Level.INFO,
+					this.getName() + " increased its' gathering skill to " + this.gatheringSkill );
+		} 
+		else if(this.getClass() == Hunter.class) {
+			this.huntingSkill += skillIncreaseRate;
+			log.log(Level.INFO,
+					this.getName() + " increased its' hunting skill to " + this.huntingSkill);
+		}
+		else if(this.getClass() == Thief.class) {
+			this.stealingSkill += skillIncreaseRate;
+			log.log(Level.INFO,
+					this.getName() + " increased its' stealing skill to " + this.stealingSkill );
+		}
+		
+		if(this.gatheringSkill > 1.0)
+			this.gatheringSkill = 1.0;
+		if(this.huntingSkill > 1.0)
+			this.huntingSkill = 1.0;
+		if(this.stealingSkill > 1.0)
+			this.stealingSkill = 1.0;
+	
+	}
+	
 	/**
 	 * Checks to see if the agent has gathered the maximum allowed food and
 	 * should thus is on its way back to the nest to drop off the carried food.
@@ -650,7 +753,8 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected ActiveAgent morph(Class<?> newAgentType) {
 		ActiveAgent morphedAgent = null;
-
+		this.timeSinceLastMorph = 0;
+		
 		if (newAgentType == Gatherer.class) {
 			// morph into a gatherer
 			morphedAgent = new Gatherer(this);
@@ -660,7 +764,6 @@ public abstract class ActiveAgent extends Agent {
 			// morph into a hunter
 			morphedAgent = new Hunter(this);
 		}
-
 		return morphedAgent;
 	}
 
@@ -906,7 +1009,11 @@ public abstract class ActiveAgent extends Agent {
 	@Override
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
-
+		
+		//update time
+		this.timeSinceLastDropOff++;
+		this.timeSinceLastMorph++;
+		
 		// interact with other agents within the world
 		observeWorld(world);
 
@@ -932,6 +1039,18 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected abstract void thinkAboutSwitchingJobs(ThiefWorld world);
 
+	
+	/*
+	 * Keeps updates personal succes of the agent. Called after each dropOff action
+	 */
+	protected void updatePersonalSucces() {
+		if(this.timeSinceLastDropOff != 0)
+			this.personalSuccess = 1.0 / this.timeSinceLastDropOff;
+		else
+			System.out.println("Division by zero prevented. You're doing something wrong!!!");
+	}
+	
+	
 	/**
 	 * Wonders around in search of a food source guided by the pheromone trail.
 	 * 
