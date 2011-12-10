@@ -378,13 +378,18 @@ public abstract class ActiveAgent extends Agent {
 	protected void dropOffFood(ThiefWorld world, Nest nest) {
 		Logger log = Logger.getLogger(getName());
 
+
+		this.timeSinceLastDropOff = 0;
+		
 		if (this.getClass() == Hunter.class) {
 			// drop off meat
 			log.log(Level.INFO,
 					this.getName() + " dropped off " + this.getCarriedFood()
 							+ " meat at " + nest.getName());
-
+			
 			nest.increaseMeatQuantity(this.getCarriedMeat());
+			//keep track of succes just after dropping off
+			updatePersonalSucces(this.getCarriedMeat());
 			this.setCarriedMeat(0.0);
 		}
 
@@ -395,12 +400,16 @@ public abstract class ActiveAgent extends Agent {
 							+ " fruit at " + nest.getName());
 
 			nest.increaseFruitQuantity(this.getCarriedFruit());
+			//keep track of succes just after dropping off
+			updatePersonalSucces(this.getCarriedFruit());
 			this.setCarriedFruit(0.0);
 		}
 
 		if (this.getClass() == Thief.class) {
 			nest.increaseMeatQuantity(this.getCarriedFood());
-
+			//keep track of succes
+			updatePersonalSucces(this.getCarriedFood());
+			
 			if (this.getCarriedFruit() > 0.0) {
 				log.log(Level.INFO,
 						this.getName() + " dropped off "
@@ -417,12 +426,9 @@ public abstract class ActiveAgent extends Agent {
 				this.setCarriedMeat(0.0);
 			}
 		}
-		//increase skill after dropping of
+		//increase skill after dropping of 
 		increaseSkill();
-		
-		//keep track of succes
-		updatePersonalSucces();
-		this.timeSinceLastDropOff = 0;
+
 	}
 
 	/**
@@ -1043,9 +1049,9 @@ public abstract class ActiveAgent extends Agent {
 	/*
 	 * Keeps updates personal succes of the agent. Called after each dropOff action
 	 */
-	protected void updatePersonalSucces() {
+	protected void updatePersonalSucces(double retrievedFood) {
 		if(this.timeSinceLastDropOff != 0)
-			this.personalSuccess = 1.0 / this.timeSinceLastDropOff;
+			this.personalSuccess = retrievedFood / this.timeSinceLastDropOff;
 		else
 			System.out.println("Division by zero prevented. You're doing something wrong!!!");
 	}
