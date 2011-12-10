@@ -4,6 +4,11 @@ import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
 public class Thief extends ActiveAgent {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -660441960033117671L;
+
 	private static int thiefNo = 0;
 
 	public Thief() {
@@ -14,11 +19,6 @@ public class Thief extends ActiveAgent {
 		// set task switching threshold
 		this.setSwitchThreshold(Utilities.nextDouble());
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -660441960033117671L;
 
 	@Override
 	protected void act(ThiefWorld world) {

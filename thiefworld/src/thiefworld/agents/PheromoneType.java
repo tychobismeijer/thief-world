@@ -7,5 +7,5 @@ package thiefworld.agents;
  * 
  */
 public enum PheromoneType {
-	Hunter, Gatherer, Thief, Protector, Child, Unknown
+	Child, Gatherer, Hunter, Protector, Thief, Unknown
 }

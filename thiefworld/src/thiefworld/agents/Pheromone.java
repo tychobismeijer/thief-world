@@ -13,15 +13,21 @@ import thiefworld.util.Utilities;
  */
 public class Pheromone extends Agent {
 
+	private static double defaultPheromoneStrength = 1.0;
+
+	private static double pheromoneDecayRate = 50;
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1180313912816310627L;
 
-	private static double defaultPheromoneStrength = 1.0;
-
 	public static double getDefaultPheromoneStrength() {
 		return Pheromone.defaultPheromoneStrength;
+	}
+
+	public static double getPheromoneDecayRate() {
+		return pheromoneDecayRate;
 	}
 
 	public static void setDefaultPheromoneStrength(
@@ -30,27 +36,9 @@ public class Pheromone extends Agent {
 			Pheromone.defaultPheromoneStrength = defaultPheromoneStrength;
 	}
 
-	private static double pheromoneDecayRate = 50;
-
-	public static double getPheromoneDecayRate() {
-		return pheromoneDecayRate;
-	}
-
 	public static void setPheromoneDecayRate(double pheromoneDecayRate) {
 		Pheromone.pheromoneDecayRate = pheromoneDecayRate;
 	}
-
-	/**
-	 * The pheromone strength. This will eventually influence the number of time
-	 * steps in which it completely decays.
-	 */
-	private double strength = 1.0;
-
-	/**
-	 * Flag describing whether the pheromone was placed on the path returning
-	 * from the food source or going towards the food source.
-	 */
-	private boolean returningFromFoodSource;
 
 	/**
 	 * Flag describing whether the pheromone was placed on the path from the
@@ -59,25 +47,28 @@ public class Pheromone extends Agent {
 	private boolean comingFromNest;
 
 	/**
+	 * Flag describing whether the pheromone was placed on the path returning
+	 * from the food source or going towards the food source.
+	 */
+	private boolean returningFromFoodSource;
+
+	/**
+	 * The pheromone strength. This will eventually influence the number of time
+	 * steps in which it completely decays.
+	 */
+	private double strength = 1.0;
+
+	/**
+	 * The type of pheromone.
+	 */
+	private PheromoneType type;
+
+	/**
 	 * Creates a new unknown type pheromone drop using the default strength of
 	 * one unit.
 	 */
 	public Pheromone() {
 		this.setType(PheromoneType.Unknown);
-
-		this.setReturningFromFoodSource(false);
-		this.setComingFromNest(false);
-	}
-
-	/**
-	 * Creates a new specific type pheromone drop using the default strength of
-	 * one unit. The trip direction is towards the food source.
-	 * 
-	 * @param type
-	 *            the pheromone type.
-	 */
-	public Pheromone(PheromoneType type) {
-		this.setType(type);
 
 		this.setReturningFromFoodSource(false);
 		this.setComingFromNest(false);
@@ -117,32 +108,17 @@ public class Pheromone extends Agent {
 	}
 
 	/**
-	 * Retrieves the current pheromone strength.
+	 * Creates a new specific type pheromone drop using the default strength of
+	 * one unit. The trip direction is towards the food source.
 	 * 
-	 * @return the current pheromone strength.
+	 * @param type
+	 *            the pheromone type.
 	 */
-	public double getStrength() {
-		return strength;
-	}
+	public Pheromone(PheromoneType type) {
+		this.setType(type);
 
-	/**
-	 * Sets the strength of the pheromone.
-	 * 
-	 * @param strength
-	 *            the strength of the pheromone.
-	 */
-	public void setStrength(double strength) {
-		this.strength = strength;
-	}
-
-	/**
-	 * Increments the strength of the pheromone with a specific value.
-	 * 
-	 * @param increment
-	 *            the pheromone strength increment.
-	 */
-	public void incrementStrength(double increment) {
-		this.strength += increment;
+		this.setReturningFromFoodSource(false);
+		this.setComingFromNest(false);
 	}
 
 	/**
@@ -156,9 +132,13 @@ public class Pheromone extends Agent {
 	}
 
 	/**
-	 * The type of pheromone.
+	 * Retrieves the current pheromone strength.
+	 * 
+	 * @return the current pheromone strength.
 	 */
-	private PheromoneType type;
+	public double getStrength() {
+		return strength;
+	}
 
 	/**
 	 * Retrieves the type of pheromone.
@@ -170,13 +150,17 @@ public class Pheromone extends Agent {
 	}
 
 	/**
-	 * Sets the type of pheromone.
+	 * Increments the strength of the pheromone with a specific value.
 	 * 
-	 * @param type
-	 *            the type of pheromone.
+	 * @param increment
+	 *            the pheromone strength increment.
 	 */
-	public void setType(PheromoneType type) {
-		this.type = type;
+	public void incrementStrength(double increment) {
+		this.strength += increment;
+	}
+
+	public boolean isComingFromNest() {
+		return comingFromNest;
 	}
 
 	/**
@@ -188,6 +172,10 @@ public class Pheromone extends Agent {
 	 */
 	public boolean isReturningFromFoodSource() {
 		return returningFromFoodSource;
+	}
+
+	public void setComingFromNest(boolean comingFromNest) {
+		this.comingFromNest = comingFromNest;
 	}
 
 	/**
@@ -202,12 +190,24 @@ public class Pheromone extends Agent {
 		this.returningFromFoodSource = returningFromFoodSource;
 	}
 
-	public boolean isComingFromNest() {
-		return comingFromNest;
+	/**
+	 * Sets the strength of the pheromone.
+	 * 
+	 * @param strength
+	 *            the strength of the pheromone.
+	 */
+	public void setStrength(double strength) {
+		this.strength = strength;
 	}
 
-	public void setComingFromNest(boolean comingFromNest) {
-		this.comingFromNest = comingFromNest;
+	/**
+	 * Sets the type of pheromone.
+	 * 
+	 * @param type
+	 *            the type of pheromone.
+	 */
+	public void setType(PheromoneType type) {
+		this.type = type;
 	}
 
 	@Override

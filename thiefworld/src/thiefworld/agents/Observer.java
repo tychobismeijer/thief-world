@@ -15,115 +15,6 @@ public class Observer extends Agent {
 	}
 
 	/**
-	 * Searches for a close by nest within a specified range.
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @return the closest nest within range or null if there is none.
-	 */
-	protected Nest searchForNestWithinRange(ThiefWorld world) {
-		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
-		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
-
-		double closebyNestDistance = Double.MAX_VALUE;
-		Nest closebyNest = null;
-
-		for (int i = 0; i < closebyAgents.size(); i++) {
-			if (closebyAgents.get(i).getClass() == Nest.class) {
-				Nest nest = (Nest) closebyAgents.get(i);
-
-				Double2D nestPosition = world.map.getObjectLocation(nest);
-				if (myPosition.distance(nestPosition) < closebyNestDistance) {
-					closebyNestDistance = myPosition.distance(nestPosition);
-					closebyNest = nest;
-				}
-			}
-		}
-
-		return closebyNest;
-	}
-
-	/**
-	 * Searches for the closest nest, no matter what the range is.
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @return the closest nest in the world or null if there is none.
-	 */
-	protected Nest searchForNest(ThiefWorld world) {
-		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
-		Bag allAgents = world.map.getAllObjects();
-
-		double closebyNestDistance = Double.MAX_VALUE;
-		Nest closebyNest = null;
-
-		for (int i = 0; i < allAgents.size(); i++) {
-			if (allAgents.get(i).getClass() == Nest.class) {
-				Nest nest = (Nest) allAgents.get(i);
-
-				Double2D nestPosition = world.map.getObjectLocation(nest);
-				if (myPosition.distance(nestPosition) < closebyNestDistance) {
-					closebyNestDistance = myPosition.distance(nestPosition);
-					closebyNest = nest;
-				}
-			}
-		}
-
-		return closebyNest;
-	}
-
-	/**
-	 * Finds desired pheromones within range
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @param pheromonesType
-	 *            the type of pheromones which you are looking for.
-	 * @return a Bag of nearby pheromones
-	 */
-	protected Bag getPheromonesWithinRange(ThiefWorld world,
-			PheromoneType pheromonesType) {
-		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
-		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
-
-		Bag selectedPheromones = new Bag();
-		for (int i = 0; i < pheromonesCloseby.size(); i++) {
-			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
-				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
-				if (pheromone.getType() == pheromonesType)
-					selectedPheromones.add(pheromone);
-			}
-		}
-
-		return selectedPheromones;
-	}
-
-	/**
-	 * Finds all pheromones within range
-	 * 
-	 * @param world
-	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @return a Bag of nearby pheromones
-	 */
-	protected Bag getPheromonesWithinRange(ThiefWorld world) {
-		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
-		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
-
-		Bag selectedPheromones = new Bag();
-		for (int i = 0; i < pheromonesCloseby.size(); i++) {
-			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
-				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
-				selectedPheromones.add(pheromone);
-			}
-		}
-
-		return selectedPheromones;
-	}
-
-	/**
 	 * Finds the average success of a task type (hunter/gatherer) within range,
 	 * which can be used to adjust internal success value(s)
 	 * 
@@ -155,6 +46,46 @@ public class Observer extends Agent {
 
 		// Return the average success rate
 		return totalSuccessRates / selectedAgents.size();
+	}
+
+	/**
+	 * Searches for the food source with the highest quantity of food within
+	 * range
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param foodSourceType
+	 *            the type of food source which you are looking for.
+	 * @return the fullest food source or null if there is none in the agent's
+	 *         range.
+	 */
+	protected FoodSource getBestFoodSourceWithinRange(ThiefWorld world,
+			Class<?> foodSourceType) {
+		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
+
+		// follow the pheromone trail to a food source
+		Bag agentsInRange = world.map.getObjectsWithinDistance(myPosition,
+				ActiveAgent.getAgentRange());
+
+		FoodSource bestFoodSource = null;
+
+		// go through all food sources of the required type
+		for (int i = 0; i < agentsInRange.size(); i++) {
+			if (agentsInRange.get(i).getClass() == foodSourceType) {
+				FoodSource foodSource = (FoodSource) agentsInRange.get(i);
+
+				// if the food source is better, replace the best food source so
+				// far
+				if (foodSource.isActive())
+					if (bestFoodSource == null)
+						bestFoodSource = foodSource;
+					else if (bestFoodSource.getFoodQuantiy() < foodSource
+							.getFoodQuantiy())
+						bestFoodSource = foodSource;
+
+			}
+		}
+		return bestFoodSource;
 	}
 
 	/**
@@ -203,43 +134,112 @@ public class Observer extends Agent {
 	}
 
 	/**
-	 * Searches for the food source with the highest quantity of food within
-	 * range
+	 * Finds all pheromones within range
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @param foodSourceType
-	 *            the type of food source which you are looking for.
-	 * @return the fullest food source or null if there is none in the agent's
-	 *         range.
+	 * @return a Bag of nearby pheromones
 	 */
-	protected FoodSource getBestFoodSourceWithinRange(ThiefWorld world,
-			Class<?> foodSourceType) {
+	protected Bag getPheromonesWithinRange(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
-
-		// follow the pheromone trail to a food source
-		Bag agentsInRange = world.map.getObjectsWithinDistance(myPosition,
+		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
 				ActiveAgent.getAgentRange());
 
-		FoodSource bestFoodSource = null;
-
-		// go through all food sources of the required type
-		for (int i = 0; i < agentsInRange.size(); i++) {
-			if (agentsInRange.get(i).getClass() == foodSourceType) {
-				FoodSource foodSource = (FoodSource) agentsInRange.get(i);
-
-				// if the food source is better, replace the best food source so
-				// far
-				if (foodSource.isActive())
-					if (bestFoodSource == null)
-						bestFoodSource = foodSource;
-					else if (bestFoodSource.getFoodQuantiy() < foodSource
-							.getFoodQuantiy())
-						bestFoodSource = foodSource;
-
+		Bag selectedPheromones = new Bag();
+		for (int i = 0; i < pheromonesCloseby.size(); i++) {
+			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
+				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
+				selectedPheromones.add(pheromone);
 			}
 		}
-		return bestFoodSource;
+
+		return selectedPheromones;
+	}
+
+	/**
+	 * Finds desired pheromones within range
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param pheromonesType
+	 *            the type of pheromones which you are looking for.
+	 * @return a Bag of nearby pheromones
+	 */
+	protected Bag getPheromonesWithinRange(ThiefWorld world,
+			PheromoneType pheromonesType) {
+		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
+		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
+				ActiveAgent.getAgentRange());
+
+		Bag selectedPheromones = new Bag();
+		for (int i = 0; i < pheromonesCloseby.size(); i++) {
+			if (pheromonesCloseby.get(i).getClass() == Pheromone.class) {
+				Pheromone pheromone = (Pheromone) pheromonesCloseby.get(i);
+				if (pheromone.getType() == pheromonesType)
+					selectedPheromones.add(pheromone);
+			}
+		}
+
+		return selectedPheromones;
+	}
+
+	/**
+	 * Searches for the closest nest, no matter what the range is.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @return the closest nest in the world or null if there is none.
+	 */
+	protected Nest searchForNest(ThiefWorld world) {
+		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
+		Bag allAgents = world.map.getAllObjects();
+
+		double closebyNestDistance = Double.MAX_VALUE;
+		Nest closebyNest = null;
+
+		for (int i = 0; i < allAgents.size(); i++) {
+			if (allAgents.get(i).getClass() == Nest.class) {
+				Nest nest = (Nest) allAgents.get(i);
+
+				Double2D nestPosition = world.map.getObjectLocation(nest);
+				if (myPosition.distance(nestPosition) < closebyNestDistance) {
+					closebyNestDistance = myPosition.distance(nestPosition);
+					closebyNest = nest;
+				}
+			}
+		}
+
+		return closebyNest;
+	}
+
+	/**
+	 * Searches for a close by nest within a specified range.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @return the closest nest within range or null if there is none.
+	 */
+	protected Nest searchForNestWithinRange(ThiefWorld world) {
+		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
+		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
+				ActiveAgent.getAgentRange());
+
+		double closebyNestDistance = Double.MAX_VALUE;
+		Nest closebyNest = null;
+
+		for (int i = 0; i < closebyAgents.size(); i++) {
+			if (closebyAgents.get(i).getClass() == Nest.class) {
+				Nest nest = (Nest) closebyAgents.get(i);
+
+				Double2D nestPosition = world.map.getObjectLocation(nest);
+				if (myPosition.distance(nestPosition) < closebyNestDistance) {
+					closebyNestDistance = myPosition.distance(nestPosition);
+					closebyNest = nest;
+				}
+			}
+		}
+
+		return closebyNest;
 	}
 
 	@Override

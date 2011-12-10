@@ -5,6 +5,11 @@ import thiefworld.main.ThiefWorld;
 public class Gatherer extends ActiveAgent {
 	private static int gathererNo = 0;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3915111858846207408L;
+
 	public Gatherer() {
 		// set name
 		gathererNo++;
@@ -17,11 +22,6 @@ public class Gatherer extends ActiveAgent {
 		gathererNo++;
 		this.setName("gatherer #" + gathererNo);
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3915111858846207408L;
 
 	protected void act(ThiefWorld world) {
 		// check if the agent is returning food

@@ -7,11 +7,16 @@ import thiefworld.util.Utilities;
 public class FruitSource extends FoodSource {
 	private static int fruitSourceNo = 0;
 
+	private static final int harvestDepletionDay = 299;
+	private static final int harvestEndDay = 269;
 	// apple harvest begins April 24th (day 114) and ends September 26th
 	// (day 269)
 	private static final int harvestStartingDay = 114;
-	private static final int harvestEndDay = 269;
-	private static final int harvestDepletionDay = 299;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1505592202788590256L;
 
 	private boolean harvestStarted = false;
 
@@ -28,11 +33,6 @@ public class FruitSource extends FoodSource {
 		// apple trees can produce 40-200 kg each year
 		maxGeneratedFruit = Math.abs(Utilities.nextGaussian(40, 200));
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1505592202788590256L;
 
 	public double getFruitQuantity() {
 		return foodQuantity;
