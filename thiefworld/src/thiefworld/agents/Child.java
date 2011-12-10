@@ -1,9 +1,8 @@
 package thiefworld.agents;
 
-import sim.engine.SimState;
 import thiefworld.main.ThiefWorld;
 
-public class Child extends Agent {
+public class Child extends ActiveAgent {
 	private static int childNo = 0;
 
 	public Child() {
@@ -27,12 +26,15 @@ public class Child extends Agent {
 	}
 
 	@Override
-	public void step(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
+	protected void act(ThiefWorld world) {
+		// TODO Auto-generated method stub
+		
+	}
 
-		// drop pheromone
-		Pheromone pheromone = new Pheromone(PheromoneType.Child);
-		world.schedule.scheduleRepeating(pheromone);
+	@Override
+	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
