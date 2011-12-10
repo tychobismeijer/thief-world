@@ -1,6 +1,5 @@
 package thiefworld.agents;
 
-import sim.engine.SimState;
 import thiefworld.main.ThiefWorld;
 
 public class Gatherer extends ActiveAgent {
@@ -23,18 +22,6 @@ public class Gatherer extends ActiveAgent {
 	 * 
 	 */
 	private static final long serialVersionUID = 3915111858846207408L;
-
-	@Override
-	public void step(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
-
-		decaySkills();
-
-		dropPheromone(world);
-		act(world);
-
-		thinkAboutSwitchingJobs(world);
-	}
 
 	protected void act(ThiefWorld world) {
 		// check if the agent is returning food

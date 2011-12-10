@@ -3,6 +3,7 @@ package thiefworld.agents;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import sim.engine.SimState;
 import sim.engine.Stoppable;
 import sim.util.Bag;
 import sim.util.Double2D;
@@ -253,6 +254,31 @@ public abstract class ActiveAgent extends Agent {
 		return this.getCarriedFood() > 0;
 	}
 	
+	@Override
+	public void step(SimState arg0) {
+		ThiefWorld world = (ThiefWorld) arg0;
+		
+		// interact with other agents within the world
+		observeWorld(world);
+
+		// decrease the skills to simulate the passing of time
+		decaySkills();
+
+		// mark the current position with a pheromone
+		dropPheromone(world);
+		
+		// act upon the world
+		act(world);
+
+		// check if it's still worth doing the same job
+		thinkAboutSwitchingJobs(world);
+	}
+	
+	protected void observeWorld(ThiefWorld world) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	protected abstract void act(ThiefWorld world);
 
 	/**
