@@ -11,12 +11,28 @@ import sim.util.MutableDouble2D;
 import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
+/**
+ * The abstraction of an active agent that has the ability of switching between
+ * different roles within the environment.
+ * 
+ * @author Stefan Adrian Boronea, Kees van Gelder, Daniel Karavolos
+ * 
+ */
 public abstract class ActiveAgent extends Agent {
 
+	/**
+	 * The maximum range within which the agent can perform actions.
+	 */
 	private static double actionRange = 0.5;
 
+	/**
+	 * The maximum range within which the agent can observe.
+	 */
 	private static double agentRange = 10.0;
 
+	/**
+	 * The maximum quantity of food which an agent can carry by default.
+	 */
 	private static double defaultMaxCarriedFood = 1.0;
 
 	/**
@@ -31,14 +47,33 @@ public abstract class ActiveAgent extends Agent {
 
 	private static final long serialVersionUID = 5597485865861516823L;
 
+	/**
+	 * Retrieves the range within which the agent can perform actions.
+	 * 
+	 * @return the range within which the agent can perform actions.
+	 */
 	public static double getActionRange() {
 		return actionRange;
 	}
 
+	/**
+	 * Retrieves the range within which the agent can interact with other agents
+	 * and can observe the environment.
+	 * 
+	 * @return the range within which the agent can interact with other agents
+	 *         and can observe the environment.
+	 */
 	public static double getAgentRange() {
 		return ActiveAgent.agentRange;
 	}
 
+	/**
+	 * Retrieves the maximum amount of food which the agent can carry at once by
+	 * default.
+	 * 
+	 * @return the maximum amount of food which the agent can carry at once by
+	 *         default.
+	 */
 	public static double getDefaultMaxCarriedFood() {
 		return ActiveAgent.defaultMaxCarriedFood;
 	}
@@ -61,14 +96,36 @@ public abstract class ActiveAgent extends Agent {
 		return ActiveAgent.randomMovementFactor;
 	}
 
+	/**
+	 * Sets the range within which the agent can perform actions.
+	 * 
+	 * @param actionRange
+	 *            the range within which the agent can perform actions.
+	 */
 	public static void setActionRange(double actionRange) {
 		ActiveAgent.actionRange = actionRange;
 	}
 
+	/**
+	 * Sets the range within which the agent can interact with other agents and
+	 * can observe the environment.
+	 * 
+	 * @param agentRange
+	 *            the range within which the agent can interact with other
+	 *            agents and can observe the environment.
+	 */
 	public static void setAgentRange(double agentRange) {
 		ActiveAgent.agentRange = agentRange;
 	}
 
+	/**
+	 * Sets the maximum amount of food which the agent can carry at once by
+	 * default.
+	 * 
+	 * @param defaultMaxCarriedFood
+	 *            the maximum amount of food which the agent can carry at once
+	 *            by default.
+	 */
 	public static void setDefaultMaxCarriedFood(double defaultMaxCarriedFood) {
 		if (defaultMaxCarriedFood >= 0) {
 			ActiveAgent.defaultMaxCarriedFood = defaultMaxCarriedFood;
@@ -98,28 +155,72 @@ public abstract class ActiveAgent extends Agent {
 			ActiveAgent.randomMovementFactor = randomMovementFactor;
 	}
 
-	private double carriedFood;
+	/**
+	 * The fruit quantity which the agent currently carries.
+	 */
+	private double carriedFruit;
 
+	/**
+	 * The meat quantity which the agent currently carries.
+	 */
+	private double carriedMeat;
+
+	/**
+	 * The agent's skill for gathering fruit.
+	 */
 	private double gatheringSkill;
 
+	/**
+	 * The gathering success rate of the other agents which the current agent
+	 * interacts with over time.
+	 */
 	private double gatheringSuccess;
 
+	/**
+	 * The agent's current health level.
+	 */
 	private double health;
 
+	/**
+	 * The agent's skill for hunting.
+	 */
 	private double huntingSkill;
 
+	/**
+	 * The hunting success rate of the other agents which the current agent
+	 * interacts with over time.
+	 */
 	private double huntingSuccess;
 
+	/**
+	 * The maximum allowed food quantity that can be carried at once.
+	 */
 	private double maxAllowedFood = 2.0;
 
+	/**
+	 * The observer which keeps track of the other agents within its observation
+	 * range.
+	 */
 	Observer personalObserver;
 
+	/**
+	 * The agent's success rate on performing the current role it has.
+	 */
 	private double personalSuccess;
 
+	/**
+	 * The agent's skill in stealing food from other teams.
+	 */
 	private double stealingSkill;
 
+	/**
+	 * The agent's disposition towards changing its role.
+	 */
 	private double switchThreshold;
 
+	/**
+	 * Creates a new agent and initializes its parameters to default values.
+	 */
 	public ActiveAgent() {
 		// set task switching threshold
 		switchThreshold = Utilities.nextDouble();
@@ -128,9 +229,17 @@ public abstract class ActiveAgent extends Agent {
 		personalObserver = new Observer(this);
 	}
 
+	/**
+	 * Creates a new agent and initializes its parameters using another agent's
+	 * current parameters.
+	 * 
+	 * @param agent
+	 *            the agent from which the initial parameters will be copied.
+	 */
 	public ActiveAgent(ActiveAgent agent) {
 		// copy the other agent's properties
-		this.setCarriedFood(agent.getCarriedFood());
+		this.setCarriedFruit(agent.getCarriedFruit());
+		this.setCarriedMeat(agent.getCarriedMeat());
 		this.setGatheringSkill(agent.getGatheringSkill());
 		this.setGatheringSuccess(agent.getGatheringSuccess());
 		this.setHealth(agent.getHealth());
@@ -146,20 +255,47 @@ public abstract class ActiveAgent extends Agent {
 		this.personalObserver = new Observer(this);
 	}
 
+	/**
+	 * Performs agent-specific actions within the environment.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 */
 	protected abstract void act(ThiefWorld world);
 
 	/**
 	 * Simulates the decay of the success rate.
 	 */
 	protected void decaySkills() {
-		
+
 	}
 
-	public void decreaseCarriedFood(double amount) {
-		this.carriedFood -= amount;
+	/**
+	 * Decreases the quantity of carried fruit by a specified amount.
+	 * 
+	 * @param amount
+	 *            the amount with which the currently carried fruit will be
+	 *            decreased.
+	 */
+	public void decreaseCarriedFruit(double amount) {
+		this.carriedFruit -= amount;
 
-		if (this.carriedFood < 0)
-			this.carriedFood = 0;
+		if (this.carriedFruit < 0.0)
+			this.carriedFruit = 0.0;
+	}
+
+	/**
+	 * Decreases the quantity of carried meat by a specified amount.
+	 * 
+	 * @param amount
+	 *            the amount with which the currently carried meat will be
+	 *            decreased.
+	 */
+	public void decreaseCarriedMeat(double amount) {
+		this.carriedMeat -= amount;
+
+		if (this.carriedMeat < 0.0)
+			this.carriedMeat = 0.0;
 	}
 
 	/**
@@ -179,8 +315,8 @@ public abstract class ActiveAgent extends Agent {
 					this.getName() + " dropped off " + this.getCarriedFood()
 							+ " meat at " + nest.getName());
 
-			nest.increaseMeatQuantity(this.getCarriedFood());
-			this.setCarriedFood(0.0);
+			nest.increaseMeatQuantity(this.getCarriedMeat());
+			this.setCarriedMeat(0.0);
 		}
 
 		if (this.getClass() == Gatherer.class) {
@@ -189,8 +325,28 @@ public abstract class ActiveAgent extends Agent {
 					this.getName() + " dropped off " + this.getCarriedFood()
 							+ " fruit at " + nest.getName());
 
-			nest.increaseFruitQuantity(this.getCarriedFood());
-			this.setCarriedFood(0.0);
+			nest.increaseFruitQuantity(this.getCarriedFruit());
+			this.setCarriedFruit(0.0);
+		}
+
+		if (this.getClass() == Thief.class) {
+			nest.increaseMeatQuantity(this.getCarriedFood());
+
+			if (this.getCarriedFruit() > 0.0) {
+				log.log(Level.INFO,
+						this.getName() + " dropped off "
+								+ this.getCarriedFruit() + " fruit at "
+								+ nest.getName());
+				this.setCarriedFruit(0.0);
+			}
+
+			if (this.getCarriedMeat() > 0.0) {
+				log.log(Level.INFO,
+						this.getName() + " dropped off "
+								+ this.getCarriedMeat() + " meat at "
+								+ nest.getName());
+				this.setCarriedMeat(0.0);
+			}
 		}
 	}
 
@@ -282,7 +438,11 @@ public abstract class ActiveAgent extends Agent {
 		if (foodToExtract > 0) {
 			// extract food
 			foodSource.decreaseFoodQuantity(foodToExtract);
-			this.increaseCarriedFood(foodToExtract);
+
+			if (foodSource.getClass() == FruitSource.class)
+				this.increaseCarriedFruit(foodToExtract);
+			else if (foodSource.getClass() == MeatSource.class)
+				this.increaseCarriedMeat(foodToExtract);
 
 			// log event
 			Logger log = Logger.getLogger(this.getName());
@@ -291,6 +451,31 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
+	protected Bag filterPheromones(Bag pheromones, boolean comingFromNest) {
+		Bag filteredPheromones = new Bag();
+
+		if (pheromones != null) {
+			for (int i = 0; i < pheromones.size(); i++) {
+				Pheromone pheromone = (Pheromone) pheromones.get(i);
+				if (pheromone.isComingFromNest() == comingFromNest) {
+					filteredPheromones.add(pheromone);
+				}
+			}
+		}
+
+		return filteredPheromones;
+	}
+
+	/**
+	 * Follows a pheromone trail specified by a collection of pheromones. The
+	 * agent will make a step toward the averaged normalized vector for each
+	 * pheromone and will also take into account a random movement.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param pheromones
+	 *            the collection of pheromones which the agent should follow.
+	 */
 	protected void followPheromoneTrail(ThiefWorld world, Bag pheromones) {
 		MutableDouble2D pheromoneTrail = new MutableDouble2D();
 		Double2D myPosition = world.map.getObjectLocation(this);
@@ -322,10 +507,28 @@ public abstract class ActiveAgent extends Agent {
 
 	}
 
+	/**
+	 * Retrieves the amount of food which the agent currently carries.
+	 * 
+	 * @return the amount of food which the agent currently carries.
+	 */
 	public double getCarriedFood() {
-		return carriedFood;
+		return getCarriedFruit() + getCarriedMeat();
 	}
 
+	public double getCarriedFruit() {
+		return carriedFruit;
+	}
+
+	public double getCarriedMeat() {
+		return carriedMeat;
+	}
+
+	/**
+	 * Retrieves the skill with which the agent gathers fruit.
+	 * 
+	 * @return the skill with which the agent gathers fruit.
+	 */
 	public double getGatheringSkill() {
 		return gatheringSkill;
 	}
@@ -410,11 +613,18 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
-	public void increaseCarriedFood(double amount) {
-		this.carriedFood += amount;
+	public void increaseCarriedFruit(double amount) {
+		this.carriedFruit += amount;
 
-		if (this.carriedFood > maxAllowedFood)
-			this.carriedFood = maxAllowedFood;
+		if (this.carriedFruit > maxAllowedFood)
+			this.carriedFruit = maxAllowedFood;
+	}
+
+	public void increaseCarriedMeat(double amount) {
+		this.carriedMeat += amount;
+
+		if (this.carriedMeat > maxAllowedFood)
+			this.carriedMeat = maxAllowedFood;
 	}
 
 	/**
@@ -490,12 +700,48 @@ public abstract class ActiveAgent extends Agent {
 		world.map.setObjectLocation(this, new Double2D(
 				movementTowardsFoodSource));
 	}
-	
+
+	/**
+	 * Moves in the direction of a nest.
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param nest
+	 *            the nest in which direction the agent must go.
+	 */
+	protected void moveTowardsNest(ThiefWorld world, Nest nest) {
+		Double2D myPosition = world.map.getObjectLocation(this);
+		Double2D nestPosition = world.map.getObjectLocation(nest);
+
+		MutableDouble2D movementTowardsNest = new MutableDouble2D();
+
+		// add movement towards the food source
+		movementTowardsNest.addIn(
+				(nestPosition.getX() - myPosition.getX()) * 0.1,
+				(nestPosition.getY() - myPosition.getY()) * 0.1);
+
+		// add movement randomness
+		movementTowardsNest.addIn(new Double2D(
+				(Utilities.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor(), (Utilities
+						.nextDouble() * 1.0 - 0.5)
+						* ActiveAgent.getRandomMovementFactor()));
+
+		movementTowardsNest.normalize();
+		movementTowardsNest.multiplyIn(ActiveAgent.getMaxStepSize());
+
+		// add current position
+		movementTowardsNest.addIn(myPosition);
+
+		// modify the agent's position
+		world.map.setObjectLocation(this, new Double2D(movementTowardsNest));
+	}
+
 	protected void observeWorld(ThiefWorld world) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * Morphs the current agent into a new type of agent and replaces the
 	 * current agent with it on both the map and the world scheduler.
@@ -542,7 +788,8 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected void returnFood(ThiefWorld world, PheromoneType pheromonesType) {
 		// search for a nearby nest
-		Nest closestNest = personalObserver.searchForNestWithinRange(world);
+		Nest closestNest = personalObserver.searchForNestWithinRange(world,
+				true);
 
 		if (closestNest != null) {
 			// is the nest within drop-off distance?
@@ -612,8 +859,12 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
-	public void setCarriedFood(double carriedFood) {
-		this.carriedFood = carriedFood;
+	public void setCarriedFruit(double carriedFruit) {
+		this.carriedFruit = carriedFruit;
+	}
+
+	public void setCarriedMeat(double carriedMeat) {
+		this.carriedMeat = carriedMeat;
 	}
 
 	public void setGatheringSkill(double gatheringSkill) {
@@ -655,7 +906,7 @@ public abstract class ActiveAgent extends Agent {
 	@Override
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
-		
+
 		// interact with other agents within the world
 		observeWorld(world);
 
@@ -664,7 +915,7 @@ public abstract class ActiveAgent extends Agent {
 
 		// mark the current position with a pheromone
 		dropPheromone(world);
-		
+
 		// act upon the world
 		act(world);
 

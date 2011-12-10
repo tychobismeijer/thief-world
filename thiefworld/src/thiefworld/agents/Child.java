@@ -2,6 +2,12 @@ package thiefworld.agents;
 
 import thiefworld.main.ThiefWorld;
 
+/**
+ * Describes a child agent that can only observe others perform actions.
+ * 
+ * @author Stefan Adrian Boronea
+ * 
+ */
 public class Child extends ActiveAgent {
 	private static int childNo = 0;
 
@@ -20,7 +26,7 @@ public class Child extends ActiveAgent {
 	@Override
 	protected void act(ThiefWorld world) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getAge() {
@@ -34,7 +40,7 @@ public class Child extends ActiveAgent {
 	@Override
 	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

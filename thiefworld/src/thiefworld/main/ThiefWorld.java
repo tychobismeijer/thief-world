@@ -162,6 +162,11 @@ public class ThiefWorld extends SimState {
 	private boolean showThieves = true;
 
 	/**
+	 * The number of teams in the simulation.
+	 */
+	private int teams = 1;
+
+	/**
 	 * The number of thieves with which the simulation starts.
 	 */
 	private int thieves = 0;
@@ -359,6 +364,10 @@ public class ThiefWorld extends SimState {
 		return storedMeat;
 	}
 
+	public int getTeams() {
+		return teams;
+	}
+
 	/**
 	 * Retrieves the number of thieves with which the simulation starts.
 	 * 
@@ -381,126 +390,169 @@ public class ThiefWorld extends SimState {
 		int maxWidth = (int) map.getWidth();
 		int maxHeight = (int) map.getHeight();
 
-		// add nests
-		for (int i = 0; i < nests; i++) {
-			// create nest
-			Nest nest = new Nest();
-			nestsBag.add(nest);
+		for (int team = 0; team < teams; team++) {
+			// add nests
+			for (int i = 0; i < nests; i++) {
+				// create nest
+				Nest nest = new Nest();
+				nest.setTeamNo(team);
+				nestsBag.add(nest);
 
-			// position nest
-			map.setObjectLocation(nest,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position nest
+				map.setObjectLocation(nest,
+						Utilities.getRandomPosition(maxWidth, maxHeight));
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(nest);
-			nest.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(nest);
+				nest.stoppable = stoppable;
+			}
 
-		// add fruit sources
-		for (int i = 0; i < fruitSources; i++) {
-			// create fruit source
-			FruitSource fruitSource = new FruitSource();
-			fruitSourcesBag.add(fruitSource);
+			// add fruit sources
+			for (int i = 0; i < fruitSources; i++) {
+				// create fruit source
+				FruitSource fruitSource = new FruitSource();
+				fruitSource.setTeamNo(team);
+				fruitSourcesBag.add(fruitSource);
 
-			// position fruit source
-			map.setObjectLocation(fruitSource,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position fruit source
+				map.setObjectLocation(fruitSource,
+						Utilities.getRandomPosition(maxWidth, maxHeight));
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(fruitSource);
-			fruitSource.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(fruitSource);
+				fruitSource.stoppable = stoppable;
+			}
 
-		// add meat sources
-		for (int i = 0; i < meatSources; i++) {
-			// create meat source
-			MeatSource meatSource = new MeatSource();
-			meatSourcesBag.add(meatSource);
+			// add meat sources
+			for (int i = 0; i < meatSources; i++) {
+				// create meat source
+				MeatSource meatSource = new MeatSource();
+				meatSource.setTeamNo(team);
+				meatSourcesBag.add(meatSource);
 
-			// position fruit source
-			map.setObjectLocation(meatSource,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position fruit source
+				map.setObjectLocation(meatSource,
+						Utilities.getRandomPosition(maxWidth, maxHeight));
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(meatSource);
-			meatSource.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(meatSource);
+				meatSource.stoppable = stoppable;
+			}
 
-		// add hunters
-		for (int i = 0; i < hunters; i++) {
-			// create hunter
-			Hunter hunter = new Hunter();
-			huntersBag.add(hunter);
+			// add hunters
+			for (int i = 0; i < hunters; i++) {
+				// create hunter
+				Hunter hunter = new Hunter();
+				hunter.setTeamNo(team);
+				huntersBag.add(hunter);
 
-			// position hunter
-			int positionAtNest = random.nextInt(nests);
-			map.setObjectLocation(hunter,
-					map.getObjectLocation(nestsBag.get(positionAtNest)));
+				// position hunter
+				if (nests > 0) {
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
+					map.setObjectLocation(hunter,
+							map.getObjectLocation(nestsBag.get(positionAtNest)));
+				} else {
+					map.setObjectLocation(hunter,
+							Utilities.getRandomPosition(maxWidth, maxHeight));
+				}
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(hunter);
-			hunter.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(hunter);
+				hunter.stoppable = stoppable;
+			}
 
-		// add gatherers
-		for (int i = 0; i < gatherers; i++) {
-			// create gatherer
-			Gatherer gatherer = new Gatherer();
-			gatherersBag.add(gatherer);
+			// add gatherers
+			for (int i = 0; i < gatherers; i++) {
+				// create gatherer
+				Gatherer gatherer = new Gatherer();
+				gatherer.setTeamNo(team);
+				gatherersBag.add(gatherer);
 
-			// position gatherer
-			int positionAtNest = random.nextInt(nests);
-			map.setObjectLocation(gatherer,
-					map.getObjectLocation(nestsBag.get(positionAtNest)));
+				// position gatherer
+				if (nests > 0) {
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
+					map.setObjectLocation(gatherer,
+							map.getObjectLocation(nestsBag.get(positionAtNest)));
+				} else {
+					map.setObjectLocation(gatherer,
+							Utilities.getRandomPosition(maxWidth, maxHeight));
+				}
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(gatherer);
-			gatherer.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(gatherer);
+				gatherer.stoppable = stoppable;
+			}
 
-		// add thieves
-		for (int i = 0; i < thieves; i++) {
-			// create thief
-			Thief thief = new Thief();
-			thievesBag.add(thief);
+			// add thieves
+			for (int i = 0; i < thieves; i++) {
+				// create thief
+				Thief thief = new Thief();
+				thief.setTeamNo(team);
+				thievesBag.add(thief);
 
-			// position thief
-			map.setObjectLocation(thief,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position thief
+				if (nests > 0) {
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
+					map.setObjectLocation(thief,
+							map.getObjectLocation(nestsBag.get(positionAtNest)));
+				} else {
+					map.setObjectLocation(thief,
+							Utilities.getRandomPosition(maxWidth, maxHeight));
+				}
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(thief);
-			thief.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(thief);
+				thief.stoppable = stoppable;
+			}
 
-		// add children
-		for (int i = 0; i < children; i++) {
-			// create child
-			Child child = new Child();
-			childrenBag.add(child);
+			// add children
+			for (int i = 0; i < children; i++) {
+				// create child
+				Child child = new Child();
+				child.setTeamNo(team);
+				childrenBag.add(child);
 
-			// position child
-			map.setObjectLocation(child,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position child
+				if (nests > 0) {
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
+					map.setObjectLocation(child,
+							map.getObjectLocation(nestsBag.get(positionAtNest)));
+				} else {
+					map.setObjectLocation(child,
+							Utilities.getRandomPosition(maxWidth, maxHeight));
+				}
 
-			// schedule cyclic firing
-			Stoppable stoppable = schedule.scheduleRepeating(child);
-			child.stoppable = stoppable;
-		}
+				// schedule cyclic firing
+				Stoppable stoppable = schedule.scheduleRepeating(child);
+				child.stoppable = stoppable;
+			}
 
-		// add protectors
-		for (int i = 0; i < protectors; i++) {
-			// create protector
-			Protector protector = new Protector();
-			protectorsBag.add(protector);
+			// add protectors
+			for (int i = 0; i < protectors; i++) {
+				// create protector
+				Protector protector = new Protector();
+				protector.setTeamNo(team);
+				protectorsBag.add(protector);
 
-			// position protector
-			map.setObjectLocation(protector,
-					Utilities.getRandomPosition(maxWidth, maxHeight));
+				// position protector
+				if (nests > 0) {
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
+					map.setObjectLocation(protector,
+							map.getObjectLocation(nestsBag.get(positionAtNest)));
+				} else {
+					map.setObjectLocation(protector,
+							Utilities.getRandomPosition(maxWidth, maxHeight));
+				}
 
-			// shedule cycling firing
-			Stoppable stoppable = schedule.scheduleRepeating(protector);
-			protector.stoppable = stoppable;
+				// shedule cycling firing
+				Stoppable stoppable = schedule.scheduleRepeating(protector);
+				protector.stoppable = stoppable;
+			}
 		}
 	}
 
@@ -812,6 +864,10 @@ public class ThiefWorld extends SimState {
 	 */
 	public void setShowThieves(boolean showThieves) {
 		this.showThieves = showThieves;
+	}
+
+	public void setTeams(int teams) {
+		this.teams = teams;
 	}
 
 	/**
