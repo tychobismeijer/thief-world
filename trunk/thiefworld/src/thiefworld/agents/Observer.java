@@ -56,7 +56,10 @@ public class Observer extends Agent {
 					.getPersonalSuccess();
 
 		// Return the average success rate
-		return totalSuccessRates / selectedAgents.size();
+		if(selectedAgents.size() != 0)
+			return totalSuccessRates / selectedAgents.size();
+		else
+			return -1;
 	}
 
 	/**

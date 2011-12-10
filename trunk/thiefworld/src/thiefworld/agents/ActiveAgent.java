@@ -57,6 +57,8 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	private static double skillIncreaseRate = 0.02; // Agent is fully specialized after 50 actions
 	
+	protected static double switchProb = 0.05;
+	
 	private static final long serialVersionUID = 5597485865861516823L;
 
 	/**
@@ -120,6 +122,13 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	public static double getSkillIncreaseRate() {
 		return skillIncreaseRate;
+	}
+	
+	/**
+	 * @return the switchProb
+	 */
+	public static double getSwitchProbability() {
+		return switchProb;
 	}
 	
 	/**
@@ -208,13 +217,13 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's skill for gathering fruit.
 	 */
-	private double gatheringSkill = 0.00;
+	protected double gatheringSkill = 0.00;
 
 	/**
 	 * The gathering success rate of the other agents which the current agent
 	 * interacts with over time.
 	 */
-	private double gatheringSuccess = 0.0;
+	protected double gatheringSuccess = 0.0;
 
 	/**
 	 * The agent's current health level.
@@ -224,13 +233,13 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's skill for hunting.
 	 */
-	private double huntingSkill = 0.00;
+	protected double huntingSkill = 0.00;
 
 	/**
 	 * The hunting success rate of the other agents which the current agent
 	 * interacts with over time.
 	 */
-	private double huntingSuccess = 0.0;
+	protected double huntingSuccess = 0.0;
 
 	/**
 	 * The maximum allowed food quantity that can be carried at once.
@@ -246,17 +255,17 @@ public abstract class ActiveAgent extends Agent {
 	/**
 	 * The agent's success rate on performing the current role it has.
 	 */
-	private double personalSuccess = 0.0;
+	protected double personalSuccess = 0.0;
 
 	/**
 	 * The agent's skill in stealing food from other teams.
 	 */
-	private double stealingSkill = 0.0;
+	protected double stealingSkill = 0.0;
 
 	/**
 	 * The agent's disposition towards changing its role.
 	 */
-	private double switchThreshold;
+	protected double switchThreshold = Utilities.nextDouble();
 
 	/*
 	 * Keeps track of time since last role switch, might be used for logarithmic skill change
@@ -378,9 +387,6 @@ public abstract class ActiveAgent extends Agent {
 	protected void dropOffFood(ThiefWorld world, Nest nest) {
 		Logger log = Logger.getLogger(getName());
 
-
-		this.timeSinceLastDropOff = 0;
-		
 		if (this.getClass() == Hunter.class) {
 			// drop off meat
 			log.log(Level.INFO,
@@ -428,7 +434,7 @@ public abstract class ActiveAgent extends Agent {
 		}
 		//increase skill after dropping of 
 		increaseSkill();
-
+		this.timeSinceLastDropOff = 0;
 	}
 
 	/**
@@ -1012,6 +1018,13 @@ public abstract class ActiveAgent extends Agent {
 		this.switchThreshold = switchThreshold;
 	}
 
+	/**
+	 * @param switchProb the switchProb to set
+	 */
+	public static void setSwitchProbability(double switchProb) {
+		ActiveAgent.switchProb = switchProb;
+	}
+
 	@Override
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
@@ -1050,12 +1063,19 @@ public abstract class ActiveAgent extends Agent {
 	 * Keeps updates personal succes of the agent. Called after each dropOff action
 	 */
 	protected void updatePersonalSucces(double retrievedFood) {
-		if(this.timeSinceLastDropOff != 0)
-			this.personalSuccess = retrievedFood / this.timeSinceLastDropOff;
-		else
+		Logger log = Logger.getLogger(getName());
+		log.log(Level.INFO,
+				this.getName() + " increased its' gathering skill to " + this.gatheringSkill );
+		
+		if(this.timeSinceLastDropOff != 0){
+			double currentSucces = retrievedFood / (0.1 * this.timeSinceLastDropOff); //perhaps per 10 timesteps is better
+			this.personalSuccess += 0.1 * (currentSucces - this.personalSuccess);
+		} else
 			System.out.println("Division by zero prevented. You're doing something wrong!!!");
+		log.log(Level.INFO,
+				this.getName() + "'s current personalSuccess is " + this.personalSuccess +
+				" units of food per 10 time steps");
 	}
-	
 	
 	/**
 	 * Wonders around in search of a food source guided by the pheromone trail.
