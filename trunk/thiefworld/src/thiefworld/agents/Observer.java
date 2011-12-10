@@ -5,9 +5,23 @@ import sim.util.Bag;
 import sim.util.Double2D;
 import thiefworld.main.ThiefWorld;
 
+/**
+ * Describes an internal observer which manages the interactions with other
+ * agents and maintains the internal agent representation of the environment.
+ * 
+ * @author Kees van Gelder
+ * 
+ */
 public class Observer extends Agent {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -2220784702275759607L;
+
+	/**
+	 * The agent which the observer is linked to.
+	 */
 	private ActiveAgent correspondingAgent;
 
 	public Observer(ActiveAgent agent) {
@@ -20,13 +34,10 @@ public class Observer extends Agent {
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
-	 * @param range
-	 *            the type of task which you want the success rate within range
-	 *            for.
 	 * @return a value of the average success rate of the specified task within
 	 *         range
 	 */
-	protected double getAverageSuccessWithinRange(ThiefWorld world,
+	public double getAverageSuccessWithinRange(ThiefWorld world,
 			Class<?> taskType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag agentsNearby = world.map.getObjectsWithinDistance(myPosition,
@@ -59,7 +70,7 @@ public class Observer extends Agent {
 	 * @return the fullest food source or null if there is none in the agent's
 	 *         range.
 	 */
-	protected FoodSource getBestFoodSourceWithinRange(ThiefWorld world,
+	public FoodSource getBestFoodSourceWithinRange(ThiefWorld world,
 			Class<?> foodSourceType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 
@@ -99,7 +110,7 @@ public class Observer extends Agent {
 	 * @return the closest food source or null if there is none in the agent's
 	 *         range.
 	 */
-	protected FoodSource getClosestFoodSourceWithinRange(ThiefWorld world,
+	public FoodSource getClosestFoodSourceWithinRange(ThiefWorld world,
 			Class<?> foodSourceType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 
@@ -140,7 +151,7 @@ public class Observer extends Agent {
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @return a Bag of nearby pheromones
 	 */
-	protected Bag getPheromonesWithinRange(ThiefWorld world) {
+	public Bag getPheromonesWithinRange(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
 				ActiveAgent.getAgentRange());
@@ -165,7 +176,7 @@ public class Observer extends Agent {
 	 *            the type of pheromones which you are looking for.
 	 * @return a Bag of nearby pheromones
 	 */
-	protected Bag getPheromonesWithinRange(ThiefWorld world,
+	public Bag getPheromonesWithinRange(ThiefWorld world,
 			PheromoneType pheromonesType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
@@ -190,7 +201,7 @@ public class Observer extends Agent {
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @return the closest nest in the world or null if there is none.
 	 */
-	protected Nest searchForNest(ThiefWorld world) {
+	public Nest searchForNest(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag allAgents = world.map.getAllObjects();
 
@@ -213,13 +224,26 @@ public class Observer extends Agent {
 	}
 
 	/**
-	 * Searches for a close by nest within a specified range.
+	 * Searches for a close by nest within a specified range that is owned by
+	 * the agent's team.
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 * @return the closest nest within range or null if there is none.
 	 */
-	protected Nest searchForNestWithinRange(ThiefWorld world) {
+	public Nest searchForNestWithinRange(ThiefWorld world) {
+		return searchForNestWithinRange(world, true);
+	}
+
+	/**
+	 * Searches for a close by nest within a specified range. The nest's owner
+	 * may be specified (owned by the agent's team or by other teams).
+	 * 
+	 * @param world
+	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @return the closest nest within range or null if there is none.
+	 */
+	public Nest searchForNestWithinRange(ThiefWorld world, boolean ownNest) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
 				ActiveAgent.getAgentRange());
@@ -233,8 +257,14 @@ public class Observer extends Agent {
 
 				Double2D nestPosition = world.map.getObjectLocation(nest);
 				if (myPosition.distance(nestPosition) < closebyNestDistance) {
-					closebyNestDistance = myPosition.distance(nestPosition);
-					closebyNest = nest;
+					// check which team the nest belongs to
+
+					if ((nest.getTeamNo() == correspondingAgent.getTeamNo() && ownNest)
+							|| (nest.getTeamNo() != correspondingAgent
+									.getTeamNo() && !ownNest)) {
+						closebyNestDistance = myPosition.distance(nestPosition);
+						closebyNest = nest;
+					}
 				}
 			}
 		}
