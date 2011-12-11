@@ -20,6 +20,8 @@ import thiefworld.util.Utilities;
  */
 public abstract class ActiveAgent extends Agent {
 
+	protected int stagnatingFor = 0;
+	
 	/**
 	 * The maximum range within which the agent can perform actions.
 	 */
@@ -45,6 +47,8 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	private static double randomMovementFactor = 0.1;
 
+	private static final long serialVersionUID = 5597485865861516823L;
+
 	/*
 	 * Determines decay of skill level per timestep *it's not really a rate
 	 * though...*
@@ -61,8 +65,6 @@ public abstract class ActiveAgent extends Agent {
 													// actions
 
 	protected static double switchProb = 0.05;
-
-	private static final long serialVersionUID = 5597485865861516823L;
 
 	/**
 	 * Retrieves the range within which the agent can perform actions.
@@ -208,6 +210,14 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	/**
+	 * @param switchProb
+	 *            the switchProb to set
+	 */
+	public static void setSwitchProbability(double switchProb) {
+		ActiveAgent.switchProb = switchProb;
+	}
+
+	/**
 	 * The fruit quantity which the agent currently carries.
 	 */
 	private double carriedFruit;
@@ -265,22 +275,24 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected double stealingSkill = 0.0;
 
+	private double stealingSuccess = 0.0;
+
 	/**
 	 * The agent's disposition towards changing its role.
 	 */
-	protected double switchThreshold = Utilities.nextDouble(0.1,0.95);
-
-	/*
-	 * Keeps track of time since last role switch, might be used for logarithmic
-	 * skill change NOT USED YET
-	 */
-	private int timeSinceLastMorph = 0;
+	protected double switchThreshold = Utilities.nextDouble(0.1, 0.95);
 
 	/*
 	 * Keeps track of time since last food drop off, used for determining
 	 * personalSucces
 	 */
 	private int timeSinceLastDropOff = 0;
+
+	/*
+	 * Keeps track of time since last role switch, might be used for logarithmic
+	 * skill change NOT USED YET
+	 */
+	private int timeSinceLastMorph = 0;
 
 	/**
 	 * Creates a new agent and initializes its parameters to default values.
@@ -331,20 +343,16 @@ public abstract class ActiveAgent extends Agent {
 	 * Simulates the decay of the agent's unused skills
 	 */
 	protected void decaySkills() {
-		if (this.getClass() == Hunter.class) {
-			this.gatheringSkill -= skillDecayRate;
-			this.stealingSkill -= skillDecayRate;
-		} else if (this.getClass() == Gatherer.class) {
-			this.huntingSkill -= skillDecayRate;
-			this.stealingSkill -= skillDecayRate;
-		} else if (this.getClass() == Thief.class) {
-			this.huntingSkill -= skillDecayRate;
-			this.gatheringSkill -= skillDecayRate;
-		}
+		this.gatheringSkill -= skillDecayRate;
+		this.stealingSkill -= skillDecayRate;
+		this.huntingSkill -= skillDecayRate;
+
 		if (this.gatheringSkill < 0)
 			this.gatheringSkill = 0;
+
 		if (this.huntingSkill < 0)
 			this.huntingSkill = 0;
+
 		if (this.stealingSkill < 0)
 			this.stealingSkill = 0;
 
@@ -623,6 +631,9 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	public double getGatheringSuccess() {
+		if (personalObserver != null)
+			return personalObserver.getAverageGatheringSuccess();
+
 		return gatheringSuccess;
 	}
 
@@ -635,6 +646,8 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	public double getHuntingSuccess() {
+		if (personalObserver != null)
+			return personalObserver.getAverageHuntingSuccess();
 		return huntingSuccess;
 	}
 
@@ -648,6 +661,12 @@ public abstract class ActiveAgent extends Agent {
 
 	public double getStealingSkill() {
 		return stealingSkill;
+	}
+
+	public double getStealingSuccess() {
+		if (personalObserver != null)
+			return personalObserver.getAverageStealingSuccess();
+		return stealingSuccess;
 	}
 
 	public double getSwitchThreshold() {
@@ -777,6 +796,15 @@ public abstract class ActiveAgent extends Agent {
 			// morph into a hunter
 			morphedAgent = new Hunter(this);
 		}
+
+		if (newAgentType == Thief.class) {
+			// morph into a thief
+			morphedAgent = new Thief(this);
+		}
+
+		if (morphedAgent != null)
+			morphedAgent.setPersonalSuccess(0.0);
+
 		return morphedAgent;
 	}
 
@@ -854,8 +882,7 @@ public abstract class ActiveAgent extends Agent {
 	}
 
 	protected void observeWorld(ThiefWorld world) {
-		// TODO Auto-generated method stub
-
+		personalObserver.exchangeInformation(world);
 	}
 
 	/**
@@ -892,7 +919,7 @@ public abstract class ActiveAgent extends Agent {
 
 			// remove the current agent
 			world.map.remove(this);
-			
+
 			if (this.getClass() == Hunter.class) {
 				world.huntersBag.remove(this);
 			}
@@ -1034,16 +1061,12 @@ public abstract class ActiveAgent extends Agent {
 		this.stealingSkill = stealingSkill;
 	}
 
-	public void setSwitchThreshold(double switchThreshold) {
-		this.switchThreshold = switchThreshold;
+	public void setStealingSuccess(double stealingSuccess) {
+		this.stealingSuccess = stealingSuccess;
 	}
 
-	/**
-	 * @param switchProb
-	 *            the switchProb to set
-	 */
-	public static void setSwitchProbability(double switchProb) {
-		ActiveAgent.switchProb = switchProb;
+	public void setSwitchThreshold(double switchThreshold) {
+		this.switchThreshold = switchThreshold;
 	}
 
 	@Override
@@ -1066,8 +1089,11 @@ public abstract class ActiveAgent extends Agent {
 		// act upon the world
 		act(world);
 
-		// check if it's still worth doing the same job
-		thinkAboutSwitchingJobs(world);
+		// only switch job if agent is not carrying anything
+		if (!isReturningFood()) {
+			// check if it's still worth doing the same job
+			thinkAboutSwitchingJobs(world);
+		}
 	}
 
 	/**
@@ -1080,7 +1106,7 @@ public abstract class ActiveAgent extends Agent {
 	protected abstract void thinkAboutSwitchingJobs(ThiefWorld world);
 
 	/*
-	 * Keeps updates personal succes of the agent. Called after each dropOff
+	 * Keeps updates personal success of the agent. Called after each dropOff
 	 * action
 	 */
 	protected void updatePersonalSucces(double retrievedFood) {

@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import sim.util.Bag;
 import sim.util.Double2D;
 import thiefworld.main.ThiefWorld;
-import thiefworld.util.Utilities;
 
 /**
  * Describes an agent that steals food from other nests.
@@ -32,9 +31,13 @@ public class Thief extends ActiveAgent {
 		// set name
 		thiefNo++;
 		this.setName("thief #" + thiefNo);
+	}
 
-		// set task switching threshold
-		this.setSwitchThreshold(Utilities.nextDouble());
+	public Thief(ActiveAgent agent) {
+		super(agent);
+
+		thiefNo++;
+		this.setName("thief #" + thiefNo);
 	}
 
 	@Override
