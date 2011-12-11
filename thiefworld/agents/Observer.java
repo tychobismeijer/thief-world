@@ -1,5 +1,10 @@
 package thiefworld.agents;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import sim.engine.SimState;
 import sim.util.Bag;
 import sim.util.Double2D;
@@ -9,15 +14,87 @@ import thiefworld.main.ThiefWorld;
  * Describes an internal observer which manages the interactions with other
  * agents and maintains the internal agent representation of the environment.
  * 
- * @author Kees van Gelder
+ * @author Kees van Gelder, Stefan Boronea
  * 
  */
 public class Observer extends Agent {
+
+	protected class ExchangedInfo {
+		private long exchangedAtStep;
+
+		private ActiveAgent exchangedWith;
+
+		private double gatheringSuccess;
+
+		private double huntingSuccess;
+
+		private double personalSuccessRate;
+
+		private double stealingSuccess;
+
+		public ExchangedInfo(ActiveAgent agent, long step) {
+			this.setExchangedWith(agent);
+			this.setPersonalSuccessRate(agent.getPersonalSuccess());
+			this.setHuntingSuccess(agent.getHuntingSuccess());
+			this.setGatheringSuccess(agent.getGatheringSuccess());
+			this.setStealingSuccess(agent.getStealingSuccess());
+		}
+
+		public long getExchangedAtStep() {
+			return exchangedAtStep;
+		}
+
+		public ActiveAgent getExchangedWith() {
+			return exchangedWith;
+		}
+
+		public double getGatheringSuccess() {
+			return gatheringSuccess;
+		}
+
+		public double getHuntingSuccess() {
+			return huntingSuccess;
+		}
+
+		public double getPersonalSuccessRate() {
+			return personalSuccessRate;
+		}
+
+		public double getStealingSuccess() {
+			return stealingSuccess;
+		}
+
+		public void setExchangedAtStep(long exchangedAtStep) {
+			this.exchangedAtStep = exchangedAtStep;
+		}
+
+		public void setExchangedWith(ActiveAgent exchangedWith) {
+			this.exchangedWith = exchangedWith;
+		}
+
+		public void setGatheringSuccess(double gatheringSuccess) {
+			this.gatheringSuccess = gatheringSuccess;
+		}
+
+		public void setHuntingSuccess(double huntingSuccess) {
+			this.huntingSuccess = huntingSuccess;
+		}
+
+		public void setPersonalSuccessRate(double personalSuccessRate) {
+			this.personalSuccessRate = personalSuccessRate;
+		}
+
+		public void setStealingSuccess(double stealingSuccess) {
+			this.stealingSuccess = stealingSuccess;
+		}
+	}
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2220784702275759607L;
+
+	private Map<ActiveAgent, ExchangedInfo> agentsInteractedWith = new HashMap<ActiveAgent, ExchangedInfo>();
 
 	/**
 	 * The agent which the observer is linked to.
@@ -26,6 +103,119 @@ public class Observer extends Agent {
 
 	public Observer(ActiveAgent agent) {
 		correspondingAgent = agent;
+	}
+
+	public void exchangeInformation(ThiefWorld world, ActiveAgent agent) {
+		long step = world.schedule.getSteps();
+
+		if (agentsInteractedWith.containsKey(agent)) {
+			agentsInteractedWith.remove(agent);
+		}
+
+		ExchangedInfo info = new ExchangedInfo(agent, step);
+		agentsInteractedWith.put(agent, info);
+	}
+
+	public void exchangeInformation(ThiefWorld world) {
+		Bag nearbyAgents = world.map.getObjectsWithinDistance(
+				world.map.getObjectLocation(correspondingAgent),
+				ActiveAgent.getAgentRange());
+
+		if (nearbyAgents != null && nearbyAgents.size() > 0) {
+			for (int i = 0; i < nearbyAgents.size(); i++) {
+				if (nearbyAgents.get(i).getClass() == Hunter.class
+						|| nearbyAgents.get(i).getClass() == Gatherer.class
+						|| nearbyAgents.get(i).getClass() == Thief.class) {
+					ActiveAgent agent = (ActiveAgent) nearbyAgents.get(i);
+
+					if (agent.getTeamNo() == correspondingAgent.getTeamNo()) {
+						// agents are in the same team - exchange info
+						exchangeInformation(world, agent);
+					}
+				}
+			}
+		}
+	}
+
+	public double getAverageHuntingSuccess() {
+		double average = 0.0;
+
+		Set<Entry<ActiveAgent, ExchangedInfo>> entries = agentsInteractedWith
+				.entrySet();
+		if (entries != null) {
+			int averaged = 0;
+			for (Entry<ActiveAgent, ExchangedInfo> entry : entries) {
+				ExchangedInfo info = entry.getValue();
+				if (info != null) {
+					averaged++;
+					average += info.getHuntingSuccess();
+
+					if (info.getExchangedWith().getClass() == Hunter.class) {
+						averaged++;
+						average += info.getPersonalSuccessRate();
+					}
+				}
+			}
+
+			if (averaged > 0)
+				average /= averaged;
+		}
+
+		return average;
+	}
+
+	public double getAverageGatheringSuccess() {
+		double average = 0.0;
+
+		Set<Entry<ActiveAgent, ExchangedInfo>> entries = agentsInteractedWith
+				.entrySet();
+		if (entries != null) {
+			int averaged = 0;
+			for (Entry<ActiveAgent, ExchangedInfo> entry : entries) {
+				ExchangedInfo info = entry.getValue();
+				if (info != null) {
+					averaged++;
+					average += info.getGatheringSuccess();
+
+					if (info.getExchangedWith().getClass() == Gatherer.class) {
+						averaged++;
+						average += info.getPersonalSuccessRate();
+					}
+				}
+			}
+
+			if (averaged > 0)
+				average /= averaged;
+		}
+
+		return average;
+	}
+
+	public double getAverageStealingSuccess() {
+		double average = 0.0;
+
+		Set<Entry<ActiveAgent, ExchangedInfo>> entries = agentsInteractedWith
+				.entrySet();
+		if (entries != null) {
+			int averaged = 0;
+			for (Entry<ActiveAgent, ExchangedInfo> entry : entries) {
+				ExchangedInfo info = entry.getValue();
+				if (info != null) {
+					averaged++;
+					average += info.getStealingSuccess();
+
+					if (info.getExchangedWith().getClass() == Thief.class) {
+						averaged++;
+						average += info.getPersonalSuccessRate();
+					}
+				}
+			}
+
+			if (averaged > 0)
+				average /= averaged;
+		}
+
+		return average;
 	}
 
 	/**
@@ -56,7 +246,7 @@ public class Observer extends Agent {
 					.getPersonalSuccess();
 
 		// Return the average success rate
-		if(selectedAgents.size() != 0)
+		if (selectedAgents.size() != 0)
 			return totalSuccessRates / selectedAgents.size();
 		else
 			return -1;
