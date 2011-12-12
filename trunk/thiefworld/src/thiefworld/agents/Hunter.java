@@ -77,10 +77,29 @@ public class Hunter extends ActiveAgent {
 		// Regardless of performance, there is always a probability of switching
 		if(probability - 0.1*this.huntingSkill > (threshold) ) {
 			System.out.println("SWITCHING");
-			log.log(Level.INFO,
-					this.getName() + " is switching from Hunter to Gatherer");
+			log.log(Level.INFO, this.getName() + " is switching from Hunter to Gatherer");
 			this.replace(world, Gatherer.class);
-		}
+		}		
 	}
 
+	protected void thinkAboutSwitchingJobsSimple(ThiefWorld world) {
+		Logger log = Logger.getLogger(getName());
+		//System.out.println("initial switch probability: "+ probability);
+		
+		//Gather information about success of other agents
+		double currentHuntingSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Hunter.class);
+		double currentGatheringSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Gatherer.class);
+	
+		if(currentHuntingSuccess != -1)
+			this.huntingSuccess += 0.7 * (currentHuntingSuccess - huntingSuccess);
+		if(currentGatheringSuccess != -1)
+			this.gatheringSuccess += 0.7 * (currentGatheringSuccess - gatheringSuccess);
+		
+		if(this.gatheringSuccess > this.huntingSuccess || huntingSuccess < Utilities.nextDouble(0,0.1)){
+			log.log(Level.INFO, this.getName() + " is switching from Hunter to Gatherer");
+			this.replace(world, Gatherer.class);
+		}
+		
+	}
+	
 }
