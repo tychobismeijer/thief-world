@@ -126,5 +126,11 @@ public class Thief extends ActiveAgent {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	protected void thinkAboutSwitchingJobsSimple(ThiefWorld world) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

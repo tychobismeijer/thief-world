@@ -112,4 +112,24 @@ public class Gatherer extends ActiveAgent {
 		}
 		*/
 	}
+	
+	protected void thinkAboutSwitchingJobsSimple(ThiefWorld world) {
+		Logger log = Logger.getLogger(getName());
+		//System.out.println("initial switch probability: "+ probability);
+		
+		//Gather information about success of other agents
+		double currentHuntingSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Hunter.class);
+		double currentGatheringSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Gatherer.class);
+	
+		if(currentHuntingSuccess != -1)
+			this.huntingSuccess += 0.7 * (currentHuntingSuccess - huntingSuccess);
+		if(currentGatheringSuccess != -1)
+			this.gatheringSuccess += 0.7 * (currentGatheringSuccess - gatheringSuccess);
+		
+		if(this.gatheringSuccess < this.huntingSuccess || gatheringSuccess < Utilities.nextDouble(0,0.1)){
+			log.log(Level.INFO, this.getName() + " is switching from Gatherer to Hunter");
+			this.replace(world, Hunter.class);
+		}
+		
+	}
 }
