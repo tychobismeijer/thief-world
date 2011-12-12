@@ -189,18 +189,6 @@ public class ThiefWorld extends SimState {
 		super(seed);
 	}
 
-	public int getActualGatherers() {
-		return gatherersBag.size();
-	}
-
-	public int getActualHunters() {
-		return huntersBag.size();
-	}
-
-	public int getActualThieves() {
-		return thievesBag.size();
-	}
-
 	/**
 	 * Retrieves the visibility range within which the agent can see.
 	 * 
@@ -242,17 +230,21 @@ public class ThiefWorld extends SimState {
 	/*
 	 * Retrieves skill decay rate of agents
 	 */
-	public double getDefaultSkillDecayStep() {
+	public double getDefaultSkillDecayStep(){
 		return ActiveAgent.getSkillDecayRate();
 	}
-
+	
 	/*
 	 * Retrieves skill increase rate of agents
 	 */
 	public double getDefaultSkillIncreaseStep() {
 		return ActiveAgent.getSkillIncreaseRate();
 	}
-
+	
+	public static double getDefaultSwitchProb() {
+		return ActiveAgent.getSwitchProbability();
+	}
+	
 	/**
 	 * Retrieves the number of fruit sources with which the simulation starts.
 	 * 
@@ -270,6 +262,17 @@ public class ThiefWorld extends SimState {
 	public int getGatherers() {
 		return gatherers;
 	}
+	
+	public int getNrOfGatherers(){
+		Bag gatherers = map.getAllObjects();
+		int count = 0;
+		for(int idx = 0;idx < gatherers.size(); idx++){
+			if(gatherers.get(idx).getClass() == Gatherer.class)
+				count++;
+		}
+		
+		return count;
+	}
 
 	/**
 	 * Retrieves the number of hunters with which the simulation starts.
@@ -278,6 +281,17 @@ public class ThiefWorld extends SimState {
 	 */
 	public int getHunters() {
 		return hunters;
+	}
+	
+	public int getNrOfHunters() {
+		Bag gatherers = map.getAllObjects();
+		int count = 0;
+		for(int idx = 0;idx < gatherers.size(); idx++){
+			if(gatherers.get(idx).getClass() == Hunter.class)
+				count++;
+		}
+		
+		return count;
 	}
 
 	/**
@@ -474,7 +488,8 @@ public class ThiefWorld extends SimState {
 
 				// position hunter
 				if (nests > 0) {
-					int positionAtNest = team * nests + random.nextInt(nests);
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
 					map.setObjectLocation(hunter,
 							map.getObjectLocation(nestsBag.get(positionAtNest)));
 				} else {
@@ -496,7 +511,8 @@ public class ThiefWorld extends SimState {
 
 				// position gatherer
 				if (nests > 0) {
-					int positionAtNest = team * nests + random.nextInt(nests);
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
 					map.setObjectLocation(gatherer,
 							map.getObjectLocation(nestsBag.get(positionAtNest)));
 				} else {
@@ -518,7 +534,8 @@ public class ThiefWorld extends SimState {
 
 				// position thief
 				if (nests > 0) {
-					int positionAtNest = team * nests + random.nextInt(nests);
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
 					map.setObjectLocation(thief,
 							map.getObjectLocation(nestsBag.get(positionAtNest)));
 				} else {
@@ -540,7 +557,8 @@ public class ThiefWorld extends SimState {
 
 				// position child
 				if (nests > 0) {
-					int positionAtNest = team * nests + random.nextInt(nests);
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
 					map.setObjectLocation(child,
 							map.getObjectLocation(nestsBag.get(positionAtNest)));
 				} else {
@@ -562,7 +580,8 @@ public class ThiefWorld extends SimState {
 
 				// position protector
 				if (nests > 0) {
-					int positionAtNest = team * nests + random.nextInt(nests);
+					int positionAtNest = team * nests
+							+ random.nextInt(nests);
 					map.setObjectLocation(protector,
 							map.getObjectLocation(nestsBag.get(positionAtNest)));
 				} else {
@@ -713,17 +732,25 @@ public class ThiefWorld extends SimState {
 	/*
 	 * Retrieves skill decay rate of agents
 	 */
-	public void setDefaultSkillDecayStep(double newRate) {
+	public void setDefaultSkillDecayStep(double newRate){
 		ActiveAgent.setSkillDecayRate(newRate);
 	}
-
+	
 	/*
 	 * Retrieves skill increase rate of agents
 	 */
 	public void setDefaultSkillIncreaseStep(double newRate) {
 		ActiveAgent.setSkillIncreaseRate(newRate);
 	}
+	
+	/**
+	 * @param switchProb the switchProbability to set
+	 */
+	public static void setSwitchProbability(double newProb) {
+		ActiveAgent.setSwitchProbability(newProb);
+	}
 
+	
 	/**
 	 * Sets the number of fruit sources with which the simulation starts.
 	 * 
