@@ -19,17 +19,39 @@ import thiefworld.main.ThiefWorld;
  */
 public class Observer extends Agent {
 
+	/**
+	 * @author  Stefan
+	 */
 	protected class ExchangedInfo {
+		/**
+		 * @uml.property  name="exchangedAtStep"
+		 */
 		private long exchangedAtStep;
 
+		/**
+		 * @uml.property  name="exchangedWith"
+		 * @uml.associationEnd  
+		 */
 		private ActiveAgent exchangedWith;
 
+		/**
+		 * @uml.property  name="gatheringSuccess"
+		 */
 		private double gatheringSuccess;
 
+		/**
+		 * @uml.property  name="huntingSuccess"
+		 */
 		private double huntingSuccess;
 
+		/**
+		 * @uml.property  name="personalSuccessRate"
+		 */
 		private double personalSuccessRate;
 
+		/**
+		 * @uml.property  name="stealingSuccess"
+		 */
 		private double stealingSuccess;
 
 		public ExchangedInfo(ActiveAgent agent, long step) {
@@ -40,50 +62,98 @@ public class Observer extends Agent {
 			this.setStealingSuccess(agent.getStealingSuccess());
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="exchangedAtStep"
+		 */
 		public long getExchangedAtStep() {
 			return exchangedAtStep;
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="exchangedWith"
+		 */
 		public ActiveAgent getExchangedWith() {
 			return exchangedWith;
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="gatheringSuccess"
+		 */
 		public double getGatheringSuccess() {
 			return gatheringSuccess;
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="huntingSuccess"
+		 */
 		public double getHuntingSuccess() {
 			return huntingSuccess;
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="personalSuccessRate"
+		 */
 		public double getPersonalSuccessRate() {
 			return personalSuccessRate;
 		}
 
+		/**
+		 * @return
+		 * @uml.property  name="stealingSuccess"
+		 */
 		public double getStealingSuccess() {
 			return stealingSuccess;
 		}
 
+		/**
+		 * @param exchangedAtStep
+		 * @uml.property  name="exchangedAtStep"
+		 */
 		public void setExchangedAtStep(long exchangedAtStep) {
 			this.exchangedAtStep = exchangedAtStep;
 		}
 
+		/**
+		 * @param exchangedWith
+		 * @uml.property  name="exchangedWith"
+		 */
 		public void setExchangedWith(ActiveAgent exchangedWith) {
 			this.exchangedWith = exchangedWith;
 		}
 
+		/**
+		 * @param gatheringSuccess
+		 * @uml.property  name="gatheringSuccess"
+		 */
 		public void setGatheringSuccess(double gatheringSuccess) {
 			this.gatheringSuccess = gatheringSuccess;
 		}
 
+		/**
+		 * @param huntingSuccess
+		 * @uml.property  name="huntingSuccess"
+		 */
 		public void setHuntingSuccess(double huntingSuccess) {
 			this.huntingSuccess = huntingSuccess;
 		}
 
+		/**
+		 * @param personalSuccessRate
+		 * @uml.property  name="personalSuccessRate"
+		 */
 		public void setPersonalSuccessRate(double personalSuccessRate) {
 			this.personalSuccessRate = personalSuccessRate;
 		}
 
+		/**
+		 * @param stealingSuccess
+		 * @uml.property  name="stealingSuccess"
+		 */
 		public void setStealingSuccess(double stealingSuccess) {
 			this.stealingSuccess = stealingSuccess;
 		}
@@ -94,10 +164,16 @@ public class Observer extends Agent {
 	 */
 	private static final long serialVersionUID = -2220784702275759607L;
 
+	/**
+	 * @uml.property  name="agentsInteractedWith"
+	 * @uml.associationEnd  inverse="this$0:thiefworld.agents.Observer$ExchangedInfo" qualifier="agent:thiefworld.agents.ActiveAgent thiefworld.agents.Observer$ExchangedInfo"
+	 */
 	private Map<ActiveAgent, ExchangedInfo> agentsInteractedWith = new HashMap<ActiveAgent, ExchangedInfo>();
 
 	/**
 	 * The agent which the observer is linked to.
+	 * @uml.property  name="correspondingAgent"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="personalObserver:thiefworld.agents.ActiveAgent"
 	 */
 	private ActiveAgent correspondingAgent;
 

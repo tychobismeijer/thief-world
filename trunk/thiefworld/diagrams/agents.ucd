@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="agents" size="1338,1338" id="thiefworld.agents" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="23" scrolledY="215" tag="10" key="32303037303533312D3130207468696566776F726C64">
+  <children xsi:type="editmodel:EnumerationEditModel" name="PheromoneType" location="50,1157" size="146,161" id="thiefworld.agents/PheromoneType" runTimeClassModel="Child%,Hunter%,Unknown%,Gatherer%,Protector%,Thief%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="65,108">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Gatherer" id="thiefworld.agents/PheromoneType#Gatherer%"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Unknown" id="thiefworld.agents/PheromoneType#Unknown%"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Hunter" id="thiefworld.agents/PheromoneType#Hunter%"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Child" id="thiefworld.agents/PheromoneType#Child%"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Thief" id="thiefworld.agents/PheromoneType#Thief%"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Protector" id="thiefworld.agents/PheromoneType#Protector%"/>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Observer" location="459,221" size="223,319" id="thiefworld.agents/Observer" runTimeClassModel="getBestFoodSourceWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;),step(Lsim.engine.SimState;),getClosestFoodSourceWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;),getAverageHuntingSuccess(),exchangeInformation(Lthiefworld.main.ThiefWorld;),Observer(Lthiefworld.agents.ActiveAgent;),getAverageGatheringSuccess(),getAverageStealingSuccess(),getPheromonesWithinRange(Lthiefworld.main.ThiefWorld;),searchForNest(Lthiefworld.main.ThiefWorld;),exchangeInformation(Lthiefworld.main.ThiefWorld;Lthiefworld.agents.ActiveAgent;),searchForNestWithinRange(Lthiefworld.main.ThiefWorld;),searchForNestWithinRange(Lthiefworld.main.ThiefWorld;Z),getPheromonesWithinRange(Lthiefworld.main.ThiefWorld;Lthiefworld.agents.PheromoneType;),getAverageSuccessWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="200,270">
+      <children xsi:type="editmodel:MethodEditModel" name="Observer" id="thiefworld.agents/Observer#Observer(Lthiefworld.agents.ActiveAgent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="exchangeInformation" id="thiefworld.agents/Observer#exchangeInformation(Lthiefworld.main.ThiefWorld;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="exchangeInformation" id="thiefworld.agents/Observer#exchangeInformation(Lthiefworld.main.ThiefWorld;Lthiefworld.agents.ActiveAgent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAverageGatheringSuccess" id="thiefworld.agents/Observer#getAverageGatheringSuccess()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAverageHuntingSuccess" id="thiefworld.agents/Observer#getAverageHuntingSuccess()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAverageStealingSuccess" id="thiefworld.agents/Observer#getAverageStealingSuccess()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAverageSuccessWithinRange" id="thiefworld.agents/Observer#getAverageSuccessWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBestFoodSourceWithinRange" id="thiefworld.agents/Observer#getBestFoodSourceWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClosestFoodSourceWithinRange" id="thiefworld.agents/Observer#getClosestFoodSourceWithinRange(Lthiefworld.main.ThiefWorld;Ljava.lang.Class;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPheromonesWithinRange" id="thiefworld.agents/Observer#getPheromonesWithinRange(Lthiefworld.main.ThiefWorld;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPheromonesWithinRange" id="thiefworld.agents/Observer#getPheromonesWithinRange(Lthiefworld.main.ThiefWorld;Lthiefworld.agents.PheromoneType;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchForNest" id="thiefworld.agents/Observer#searchForNest(Lthiefworld.main.ThiefWorld;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchForNestWithinRange" id="thiefworld.agents/Observer#searchForNestWithinRange(Lthiefworld.main.ThiefWorld;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchForNestWithinRange" id="thiefworld.agents/Observer#searchForNestWithinRange(Lthiefworld.main.ThiefWorld;Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/Observer#step(Lsim.engine.SimState;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/Agent&lt;-thiefworld.agents/Observer" source="//@children.1" target="//@children.4/@sourceConnections.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Hunter" location="50,986" size="85,85" id="thiefworld.agents/Hunter" runTimeClassModel="Hunter(Lthiefworld.agents.ActiveAgent;),Hunter()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="62,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Hunter" id="thiefworld.agents/Hunter#Hunter()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Hunter" id="thiefworld.agents/Hunter#Hunter(Lthiefworld.agents.ActiveAgent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.13/@sourceConnections.0 //@children.11/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.9/@sourceConnections.0" autoLocated="true" id="thiefworld.agents/ActiveAgent&lt;-thiefworld.agents/Hunter" source="//@children.2" target="//@children.4" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="42,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,715" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.0" name="FoodSource" location="954,221" size="163,139" id="thiefworld.agents/FoodSource" runTimeClassModel="increaseFoodQuantity(D),decreaseFoodQuantity(D),getFoodQuantiy(),foodQuantity,isActive()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="119,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="foodQuantity" id="thiefworld.agents/FoodSource#foodQuantity"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="140,72">
+      <children xsi:type="editmodel:MethodEditModel" name="decreaseFoodQuantity" id="thiefworld.agents/FoodSource#decreaseFoodQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFoodQuantiy" id="thiefworld.agents/FoodSource#getFoodQuantiy()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="increaseFoodQuantity" id="thiefworld.agents/FoodSource#increaseFoodQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isActive" id="thiefworld.agents/FoodSource#isActive()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/Agent&lt;-thiefworld.agents/FoodSource" source="//@children.3" target="//@children.4/@sourceConnections.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.0" name="ActiveAgent" location="242,221" size="187,715" id="thiefworld.agents/ActiveAgent" runTimeClassModel="getMaxStepSize(),step(Lsim.engine.SimState;),getAgentRange(),setSkillIncreaseRate(D),personalSuccess,getActionRange(),stealingSuccess,ActiveAgent(Lthiefworld.agents.ActiveAgent;),stealingSkill,huntingSkill,getSkillIncreaseRate(),switchThreshold,carriedMeat,increaseCarriedFruit(D),carriedFruit,maxAllowedFood,setSkillDecayRate(D),decreaseCarriedFruit(D),getSkillDecayRate(),getRandomMovementFactor(),gatheringSuccess,health,getDefaultMaxCarriedFood(),increaseCarriedMeat(D),huntingSuccess,ActiveAgent(),decreaseCarriedMeat(D),setActionRange(D),isReturningFood(),setRandomMovementFactor(D),setDefaultMaxCarriedFood(D),setMaxStepSize(D),setSwitchProbability(D),setAgentRange(D),getCarriedFood(),gatheringSkill,getSwitchProbability()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="145,216">
+      <children xsi:type="editmodel:AttributeEditModel" name="carriedFruit" id="thiefworld.agents/ActiveAgent#carriedFruit"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="carriedMeat" id="thiefworld.agents/ActiveAgent#carriedMeat"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="gatheringSkill" id="thiefworld.agents/ActiveAgent#gatheringSkill"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="gatheringSuccess" id="thiefworld.agents/ActiveAgent#gatheringSuccess"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="health" id="thiefworld.agents/ActiveAgent#health"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="huntingSkill" id="thiefworld.agents/ActiveAgent#huntingSkill"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="huntingSuccess" id="thiefworld.agents/ActiveAgent#huntingSuccess"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="maxAllowedFood" id="thiefworld.agents/ActiveAgent#maxAllowedFood"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="personalSuccess" id="thiefworld.agents/ActiveAgent#personalSuccess"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stealingSkill" id="thiefworld.agents/ActiveAgent#stealingSkill"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stealingSuccess" id="thiefworld.agents/ActiveAgent#stealingSuccess"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="switchThreshold" id="thiefworld.agents/ActiveAgent#switchThreshold"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="164,450">
+      <children xsi:type="editmodel:MethodEditModel" name="ActiveAgent" id="thiefworld.agents/ActiveAgent#ActiveAgent(Lthiefworld.agents.ActiveAgent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ActiveAgent" id="thiefworld.agents/ActiveAgent#ActiveAgent()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="decreaseCarriedFruit" id="thiefworld.agents/ActiveAgent#decreaseCarriedFruit(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="decreaseCarriedMeat" id="thiefworld.agents/ActiveAgent#decreaseCarriedMeat(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getActionRange" id="thiefworld.agents/ActiveAgent#getActionRange()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAgentRange" id="thiefworld.agents/ActiveAgent#getAgentRange()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCarriedFood" id="thiefworld.agents/ActiveAgent#getCarriedFood()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDefaultMaxCarriedFood" id="thiefworld.agents/ActiveAgent#getDefaultMaxCarriedFood()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMaxStepSize" id="thiefworld.agents/ActiveAgent#getMaxStepSize()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRandomMovementFactor" id="thiefworld.agents/ActiveAgent#getRandomMovementFactor()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSkillDecayRate" id="thiefworld.agents/ActiveAgent#getSkillDecayRate()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSkillIncreaseRate" id="thiefworld.agents/ActiveAgent#getSkillIncreaseRate()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSwitchProbability" id="thiefworld.agents/ActiveAgent#getSwitchProbability()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="increaseCarriedFruit" id="thiefworld.agents/ActiveAgent#increaseCarriedFruit(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="increaseCarriedMeat" id="thiefworld.agents/ActiveAgent#increaseCarriedMeat(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isReturningFood" id="thiefworld.agents/ActiveAgent#isReturningFood()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setActionRange" id="thiefworld.agents/ActiveAgent#setActionRange(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setAgentRange" id="thiefworld.agents/ActiveAgent#setAgentRange(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDefaultMaxCarriedFood" id="thiefworld.agents/ActiveAgent#setDefaultMaxCarriedFood(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMaxStepSize" id="thiefworld.agents/ActiveAgent#setMaxStepSize(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setRandomMovementFactor" id="thiefworld.agents/ActiveAgent#setRandomMovementFactor(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSkillDecayRate" id="thiefworld.agents/ActiveAgent#setSkillDecayRate(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSkillIncreaseRate" id="thiefworld.agents/ActiveAgent#setSkillIncreaseRate(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSwitchProbability" id="thiefworld.agents/ActiveAgent#setSwitchProbability(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/ActiveAgent#step(Lsim.engine.SimState;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.3/@sourceConnections.0 //@children.1/@sourceConnections.0 //@children.12/@sourceConnections.0" autoLocated="true" id="thiefworld.agents/Agent&lt;-thiefworld.agents/ActiveAgent" source="//@children.4" target="//@children.7" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,121" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MeatSource" location="810,986" size="131,121" id="thiefworld.agents/MeatSource" runTimeClassModel="step(Lsim.engine.SimState;),MeatSource(),setMeatQuantity(D),getMeatQuantity()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,72">
+      <children xsi:type="editmodel:MethodEditModel" name="MeatSource" id="thiefworld.agents/MeatSource#MeatSource()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMeatQuantity" id="thiefworld.agents/MeatSource#getMeatQuantity()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMeatQuantity" id="thiefworld.agents/MeatSource#setMeatQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/MeatSource#step(Lsim.engine.SimState;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.6/@sourceConnections.0" autoLocated="true" id="thiefworld.agents/FoodSource&lt;-thiefworld.agents/MeatSource" source="//@children.5" target="//@children.3" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="65,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,139" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="FruitSource" location="971,986" size="129,121" id="thiefworld.agents/FruitSource" runTimeClassModel="step(Lsim.engine.SimState;),getFruitQuantity(),FruitSource(),setFruitQuantity(D)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="106,72">
+      <children xsi:type="editmodel:MethodEditModel" name="FruitSource" id="thiefworld.agents/FruitSource#FruitSource()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFruitQuantity" id="thiefworld.agents/FruitSource#getFruitQuantity()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFruitQuantity" id="thiefworld.agents/FruitSource#setFruitQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/FruitSource#step(Lsim.engine.SimState;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/FoodSource&lt;-thiefworld.agents/FruitSource" source="//@children.6" target="//@children.5/@sourceConnections.0" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="Agent" location="527,50" size="102,121" id="thiefworld.agents/Agent" runTimeClassModel="getName(),teamNo,name,toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="thiefworld.agents/Agent#name"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="teamNo" id="thiefworld.agents/Agent#teamNo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="72,36">
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="thiefworld.agents/Agent#getName()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="thiefworld.agents/Agent#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Gatherer" location="379,986" size="98,85" id="thiefworld.agents/Gatherer" runTimeClassModel="Gatherer(Lthiefworld.agents.ActiveAgent;),Gatherer()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="73,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Gatherer" id="thiefworld.agents/Gatherer#Gatherer(Lthiefworld.agents.ActiveAgent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Gatherer" id="thiefworld.agents/Gatherer#Gatherer()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/ActiveAgent&lt;-thiefworld.agents/Gatherer" source="//@children.8" target="//@children.2/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="49,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Protector" location="507,986" size="100,67" id="thiefworld.agents/Protector" runTimeClassModel="Protector()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Protector" id="thiefworld.agents/Protector#Protector()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/ActiveAgent&lt;-thiefworld.agents/Protector" source="//@children.9" target="//@children.2/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="50,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Nest" location="50,221" size="162,211" id="thiefworld.agents/Nest" runTimeClassModel="decreaseMeatQuantity(D),increaseFruitQuantity(D),step(Lsim.engine.SimState;),Nest(),fruitQuantity,getFoodQuantity(),increaseMeatQuantity(D),decreaseFruitQuantity(D),meatQuantity">
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="fruitQuantity" id="thiefworld.agents/Nest#fruitQuantity"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="meatQuantity" id="thiefworld.agents/Nest#meatQuantity"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="139,126">
+      <children xsi:type="editmodel:MethodEditModel" name="Nest" id="thiefworld.agents/Nest#Nest()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="decreaseFruitQuantity" id="thiefworld.agents/Nest#decreaseFruitQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="decreaseMeatQuantity" id="thiefworld.agents/Nest#decreaseMeatQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFoodQuantity" id="thiefworld.agents/Nest#getFoodQuantity()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="increaseFruitQuantity" id="thiefworld.agents/Nest#increaseFruitQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="increaseMeatQuantity" id="thiefworld.agents/Nest#increaseMeatQuantity(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/Nest#step(Lsim.engine.SimState;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/Agent&lt;-thiefworld.agents/Nest" source="//@children.10" target="//@children.4/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Child" location="272,986" size="77,85" id="thiefworld.agents/Child" runTimeClassModel="age,Child()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="54,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="age" id="thiefworld.agents/Child#age"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="53,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Child" id="thiefworld.agents/Child#Child()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/ActiveAgent&lt;-thiefworld.agents/Child" source="//@children.11" target="//@children.2/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="38,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Pheromone" location="712,221" size="212,319" id="thiefworld.agents/Pheromone" runTimeClassModel="comingFromNest,step(Lsim.engine.SimState;),getPheromoneDecayRate(),Pheromone(DLthiefworld.agents.PheromoneType;),strength,Pheromone(),setDefaultPheromoneStrength(D),toString(),Pheromone(DLthiefworld.agents.PheromoneType;ZZ),getDefaultPheromoneStrength(),returningFromFoodSource,incrementStrength(D),decrementStrength(D),setPheromoneDecayRate(D),Pheromone(Lthiefworld.agents.PheromoneType;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="189,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="comingFromNest" id="thiefworld.agents/Pheromone#comingFromNest"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="returningFromFoodSource" id="thiefworld.agents/Pheromone#returningFromFoodSource"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="strength" id="thiefworld.agents/Pheromone#strength"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="174,216">
+      <children xsi:type="editmodel:MethodEditModel" name="Pheromone" id="thiefworld.agents/Pheromone#Pheromone(DLthiefworld.agents.PheromoneType;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Pheromone" id="thiefworld.agents/Pheromone#Pheromone(DLthiefworld.agents.PheromoneType;ZZ)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Pheromone" id="thiefworld.agents/Pheromone#Pheromone(Lthiefworld.agents.PheromoneType;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Pheromone" id="thiefworld.agents/Pheromone#Pheromone()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="decrementStrength" id="thiefworld.agents/Pheromone#decrementStrength(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDefaultPheromoneStrength" id="thiefworld.agents/Pheromone#getDefaultPheromoneStrength()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPheromoneDecayRate" id="thiefworld.agents/Pheromone#getPheromoneDecayRate()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="incrementStrength" id="thiefworld.agents/Pheromone#incrementStrength(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDefaultPheromoneStrength" id="thiefworld.agents/Pheromone#setDefaultPheromoneStrength(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPheromoneDecayRate" id="thiefworld.agents/Pheromone#setPheromoneDecayRate(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="step" id="thiefworld.agents/Pheromone#step(Lsim.engine.SimState;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="thiefworld.agents/Pheromone#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/Agent&lt;-thiefworld.agents/Pheromone" source="//@children.12" target="//@children.4/@sourceConnections.0" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Thief" location="165,986" size="77,85" id="thiefworld.agents/Thief" runTimeClassModel="Thief(),Thief(Lthiefworld.agents.ActiveAgent;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="54,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Thief" id="thiefworld.agents/Thief#Thief(Lthiefworld.agents.ActiveAgent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Thief" id="thiefworld.agents/Thief#Thief()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="thiefworld.agents/ActiveAgent&lt;-thiefworld.agents/Thief" source="//@children.13" target="//@children.2/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="38,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" level="-1" showScope="InPackage" properties="wireOptions=1;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

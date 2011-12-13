@@ -20,6 +20,9 @@ import thiefworld.util.Utilities;
  */
 public abstract class ActiveAgent extends Agent {
 
+	/**
+	 * @uml.property  name="stagnatingFor"
+	 */
 	protected int stagnatingFor = 0;
 	
 	/**
@@ -219,72 +222,88 @@ public abstract class ActiveAgent extends Agent {
 
 	/**
 	 * The fruit quantity which the agent currently carries.
+	 * @uml.property  name="carriedFruit"
 	 */
 	private double carriedFruit;
 
 	/**
 	 * The meat quantity which the agent currently carries.
+	 * @uml.property  name="carriedMeat"
 	 */
 	private double carriedMeat;
 
 	/**
 	 * The agent's skill for gathering fruit.
+	 * @uml.property  name="gatheringSkill"
 	 */
 	protected double gatheringSkill = 0.00;
 
 	/**
-	 * The gathering success rate of the other agents which the current agent
-	 * interacts with over time.
+	 * The gathering success rate of the other agents which the current agent interacts with over time.
+	 * @uml.property  name="gatheringSuccess"
 	 */
 	protected double gatheringSuccess = 0.0;
 
 	/**
 	 * The agent's current health level.
+	 * @uml.property  name="health"
 	 */
 	private double health;
 
 	/**
 	 * The agent's skill for hunting.
+	 * @uml.property  name="huntingSkill"
 	 */
 	protected double huntingSkill = 0.00;
 
 	/**
-	 * The hunting success rate of the other agents which the current agent
-	 * interacts with over time.
+	 * The hunting success rate of the other agents which the current agent interacts with over time.
+	 * @uml.property  name="huntingSuccess"
 	 */
 	protected double huntingSuccess = 0.0;
 
 	/**
 	 * The maximum allowed food quantity that can be carried at once.
+	 * @uml.property  name="maxAllowedFood"
 	 */
 	private double maxAllowedFood = 2.0;
 
 	/**
-	 * The observer which keeps track of the other agents within its observation
-	 * range.
+	 * The observer which keeps track of the other agents within its observation range.
+	 * @uml.property  name="personalObserver"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="correspondingAgent:thiefworld.agents.Observer"
 	 */
 	Observer personalObserver;
 
 	/**
 	 * The agent's success rate on performing the current role it has.
+	 * @uml.property  name="personalSuccess"
 	 */
 	protected double personalSuccess = 0.0;
 
 	/**
 	 * The agent's skill in stealing food from other teams.
+	 * @uml.property  name="stealingSkill"
 	 */
 	protected double stealingSkill = 0.0;
 
+	/**
+	 * @uml.property  name="stealingSuccess"
+	 */
 	private double stealingSuccess = 0.0;
 
 	/**
 	 * The agent's disposition towards changing its role.
+	 * @uml.property  name="switchThreshold"
 	 */
 	protected double switchThreshold = Utilities.nextDouble(0.1, 0.95);
 
 	/*
 	 * Keeps track of time since last food drop off, used for determining
 	 * personalSucces
+	 */
+	/**
+	 * @uml.property  name="timeSinceLastDropOff"
 	 */
 	private int timeSinceLastDropOff = 0;
 	
@@ -603,23 +622,35 @@ public abstract class ActiveAgent extends Agent {
 		return getCarriedFruit() + getCarriedMeat();
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="carriedFruit"
+	 */
 	public double getCarriedFruit() {
 		return carriedFruit;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="carriedMeat"
+	 */
 	public double getCarriedMeat() {
 		return carriedMeat;
 	}
 
 	/**
 	 * Retrieves the skill with which the agent gathers fruit.
-	 * 
-	 * @return the skill with which the agent gathers fruit.
+	 * @return  the skill with which the agent gathers fruit.
+	 * @uml.property  name="gatheringSkill"
 	 */
 	public double getGatheringSkill() {
 		return gatheringSkill;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="gatheringSuccess"
+	 */
 	public double getGatheringSuccess() {
 		if (personalObserver != null)
 			return personalObserver.getAverageGatheringSuccess();
@@ -627,38 +658,70 @@ public abstract class ActiveAgent extends Agent {
 		return gatheringSuccess;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="health"
+	 */
 	public double getHealth() {
 		return health;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="huntingSkill"
+	 */
 	public double getHuntingSkill() {
 		return huntingSkill;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="huntingSuccess"
+	 */
 	public double getHuntingSuccess() {
 		if (personalObserver != null)
 			return personalObserver.getAverageHuntingSuccess();
 		return huntingSuccess;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="maxAllowedFood"
+	 */
 	public double getMaxAllowedFood() {
 		return maxAllowedFood;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="personalSuccess"
+	 */
 	public double getPersonalSuccess() {
 		return personalSuccess;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="stealingSkill"
+	 */
 	public double getStealingSkill() {
 		return stealingSkill;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="stealingSuccess"
+	 */
 	public double getStealingSuccess() {
 		if (personalObserver != null)
 			return personalObserver.getAverageStealingSuccess();
 		return stealingSuccess;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="switchThreshold"
+	 */
 	public double getSwitchThreshold() {
 		return switchThreshold;
 	}
@@ -1010,50 +1073,98 @@ public abstract class ActiveAgent extends Agent {
 		}
 	}
 
+	/**
+	 * @param carriedFruit
+	 * @uml.property  name="carriedFruit"
+	 */
 	public void setCarriedFruit(double carriedFruit) {
 		this.carriedFruit = carriedFruit;
 	}
 
+	/**
+	 * @param carriedMeat
+	 * @uml.property  name="carriedMeat"
+	 */
 	public void setCarriedMeat(double carriedMeat) {
 		this.carriedMeat = carriedMeat;
 	}
 
+	/**
+	 * @param gatheringSkill
+	 * @uml.property  name="gatheringSkill"
+	 */
 	public void setGatheringSkill(double gatheringSkill) {
 		this.gatheringSkill = gatheringSkill;
 	}
 
+	/**
+	 * @param gatheringSuccess
+	 * @uml.property  name="gatheringSuccess"
+	 */
 	public void setGatheringSuccess(double gatheringSuccess) {
 		this.gatheringSuccess = gatheringSuccess;
 	}
 
+	/**
+	 * @param health
+	 * @uml.property  name="health"
+	 */
 	public void setHealth(double health) {
 		this.health = health;
 	}
 
+	/**
+	 * @param huntingSkill
+	 * @uml.property  name="huntingSkill"
+	 */
 	public void setHuntingSkill(double huntingSkill) {
 		this.huntingSkill = huntingSkill;
 	}
 
+	/**
+	 * @param huntingSuccess
+	 * @uml.property  name="huntingSuccess"
+	 */
 	public void setHuntingSuccess(double huntingSuccess) {
 		this.huntingSuccess = huntingSuccess;
 	}
 
+	/**
+	 * @param maxAllowedFood
+	 * @uml.property  name="maxAllowedFood"
+	 */
 	public void setMaxAllowedFood(double maxAllowedFood) {
 		this.maxAllowedFood = maxAllowedFood;
 	}
 
+	/**
+	 * @param personalSuccess
+	 * @uml.property  name="personalSuccess"
+	 */
 	public void setPersonalSuccess(double personalSuccess) {
 		this.personalSuccess = personalSuccess;
 	}
 
+	/**
+	 * @param stealingSkill
+	 * @uml.property  name="stealingSkill"
+	 */
 	public void setStealingSkill(double stealingSkill) {
 		this.stealingSkill = stealingSkill;
 	}
 
+	/**
+	 * @param stealingSuccess
+	 * @uml.property  name="stealingSuccess"
+	 */
 	public void setStealingSuccess(double stealingSuccess) {
 		this.stealingSuccess = stealingSuccess;
 	}
 
+	/**
+	 * @param switchThreshold
+	 * @uml.property  name="switchThreshold"
+	 */
 	public void setSwitchThreshold(double switchThreshold) {
 		this.switchThreshold = switchThreshold;
 	}

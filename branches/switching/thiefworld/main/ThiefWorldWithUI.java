@@ -53,10 +53,22 @@ public class ThiefWorldWithUI extends GUIState {
 		Console c = new Console(gui);
 		c.setVisible(true);
 	}
+	/**
+	 * @uml.property  name="display"
+	 * @uml.associationEnd  
+	 */
 	public Display2D display;
 
+	/**
+	 * @uml.property  name="displayFrame"
+	 * @uml.associationEnd  
+	 */
 	public JFrame displayFrame;
 
+	/**
+	 * @uml.property  name="mapPortrayal"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	public ContinuousPortrayal2D mapPortrayal = new ContinuousPortrayal2D();
 
 	public ThiefWorldWithUI() {
