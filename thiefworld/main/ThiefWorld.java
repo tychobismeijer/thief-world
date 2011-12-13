@@ -43,139 +43,178 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * The number of children with which the simulation starts.
+	 * @uml.property  name="children"
 	 */
 	private int children = 0;
 
 	/**
 	 * The children present in the system.
+	 * @uml.property  name="childrenBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Child"
 	 */
 	public Bag childrenBag = new Bag();
 
 	/**
 	 * The number of fruit sources with which the simulation starts.
+	 * @uml.property  name="fruitSources"
 	 */
 	private int fruitSources = 10;
 
 	/**
 	 * The fruit sources present in the system.
+	 * @uml.property  name="fruitSourcesBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.FruitSource"
 	 */
 	public Bag fruitSourcesBag = new Bag();
 
 	/**
 	 * The number of gatherers with which the simulation starts.
+	 * @uml.property  name="gatherers"
 	 */
 	private int gatherers = 50;
 
 	/**
 	 * The gatherers present in the system.
+	 * @uml.property  name="gatherersBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Gatherer"
 	 */
 	public Bag gatherersBag = new Bag();
 
 	/**
 	 * The number of hunters with which the simulation starts.
+	 * @uml.property  name="hunters"
 	 */
 	private int hunters = 50;
 
 	/**
 	 * The hunters present in the system.
+	 * @uml.property  name="huntersBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Hunter"
 	 */
 	public Bag huntersBag = new Bag();
 
 	/**
 	 * The map structure for the GUI.
+	 * @uml.property  name="map"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Agent" qualifier="this:thiefworld.agents.Agent java.lang.Object"
 	 */
 	public Continuous2D map = new Continuous2D(1.0, 100, 100);
 
 	/**
 	 * The number of meat sources with which the simulation starts.
+	 * @uml.property  name="meatSources"
 	 */
 	private int meatSources = 10;
 
 	/**
 	 * The meat sources present in the system.
+	 * @uml.property  name="meatSourcesBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.MeatSource"
 	 */
 	public Bag meatSourcesBag = new Bag();
 
 	/**
 	 * The number of nests present in the system
+	 * @uml.property  name="nests"
 	 */
 	private int nests = 1;
 
 	/**
 	 * The nests present in the system.
+	 * @uml.property  name="nestsBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Nest"
 	 */
 	public Bag nestsBag = new Bag();
 
 	/**
 	 * The number of protectors with which the simulation starts.
+	 * @uml.property  name="protectors"
 	 */
 	private int protectors = 0;
 
 	/**
 	 * The protectors present in the system.
+	 * @uml.property  name="protectorsBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Protector"
 	 */
 	public Bag protectorsBag = new Bag();
 
 	/**
 	 * Show children on the map?
+	 * @uml.property  name="showChildren"
 	 */
 	private boolean showChildren = true;
 
 	/**
 	 * Show fruit sources on the map?
+	 * @uml.property  name="showFruitSources"
 	 */
 	private boolean showFruitSources = true;
 
 	/**
 	 * Show gatherers on the map?
+	 * @uml.property  name="showGatherers"
 	 */
 	private boolean showGatherers = true;
 
 	/**
 	 * Show hunters on the map?
+	 * @uml.property  name="showHunters"
 	 */
 	private boolean showHunters = true;
 
 	/**
 	 * Show meat sources on the map?
+	 * @uml.property  name="showMeatSources"
 	 */
 	private boolean showMeatSources = true;
 
 	/**
 	 * Show nests on the map?
+	 * @uml.property  name="showNests"
 	 */
 	private boolean showNests = true;
 
 	/**
 	 * Show pheromones on the map?
+	 * @uml.property  name="showPheromones"
 	 */
 	private boolean showPheromones = false;
 
 	/**
 	 * Show protectors on the map?
+	 * @uml.property  name="showProtectors"
 	 */
 	private boolean showProtectors = true;
 
 	/**
 	 * Show thieves on the map?
+	 * @uml.property  name="showThieves"
 	 */
 	private boolean showThieves = true;
 
 	/**
 	 * The number of teams in the simulation.
+	 * @uml.property  name="teams"
 	 */
 	private int teams = 1;
 
 	/**
 	 * The number of thieves with which the simulation starts.
+	 * @uml.property  name="thieves"
 	 */
 	private int thieves = 0;
 
 	/**
 	 * The thieves present in the system.
+	 * @uml.property  name="thievesBag"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="thiefworld.agents.Thief"
 	 */
 	public Bag thievesBag = new Bag();
 
+	/**
+	 * @uml.property  name="timeMultipler"
+	 */
 	private double timeMultipler = 1.0;
 
 	/**
@@ -212,8 +251,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of children with which the simulation starts.
-	 * 
-	 * @return the number of children with which the simulation starts.
+	 * @return  the number of children with which the simulation starts.
+	 * @uml.property  name="children"
 	 */
 	public int getChildren() {
 		return children;
@@ -255,8 +294,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of fruit sources with which the simulation starts.
-	 * 
-	 * @return the number of fruit sources with which the simulation starts.
+	 * @return  the number of fruit sources with which the simulation starts.
+	 * @uml.property  name="fruitSources"
 	 */
 	public int getFruitSources() {
 		return fruitSources;
@@ -264,8 +303,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of gatherers with which the simulation starts.
-	 * 
-	 * @return the number of gatherers with which the simulation starts.
+	 * @return  the number of gatherers with which the simulation starts.
+	 * @uml.property  name="gatherers"
 	 */
 	public int getGatherers() {
 		return gatherers;
@@ -273,8 +312,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of hunters with which the simulation starts.
-	 * 
-	 * @return the number of hunters with which the simulation starts.
+	 * @return  the number of hunters with which the simulation starts.
+	 * @uml.property  name="hunters"
 	 */
 	public int getHunters() {
 		return hunters;
@@ -282,8 +321,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of meat sources with which the simulation starts.
-	 * 
-	 * @return the number of meat sources with which the simulation starts.
+	 * @return  the number of meat sources with which the simulation starts.
+	 * @uml.property  name="meatSources"
 	 */
 	public int getMeatSources() {
 		return meatSources;
@@ -291,8 +330,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the nests present in the system.
-	 * 
-	 * @return the nests present in the system
+	 * @return  the nests present in the system
+	 * @uml.property  name="nests"
 	 */
 	public int getNests() {
 		return nests;
@@ -345,8 +384,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Retrieves the number of protectors with which the simulation starts.
-	 * 
-	 * @return the number of protectors with which the simulation starts.
+	 * @return  the number of protectors with which the simulation starts.
+	 * @uml.property  name="protectors"
 	 */
 	public int getProtectors() {
 		return protectors;
@@ -390,19 +429,27 @@ public class ThiefWorld extends SimState {
 		return storedMeat;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="teams"
+	 */
 	public int getTeams() {
 		return teams;
 	}
 
 	/**
 	 * Retrieves the number of thieves with which the simulation starts.
-	 * 
-	 * @return the number of thieves with which the simulation starts.
+	 * @return  the number of thieves with which the simulation starts.
+	 * @uml.property  name="thieves"
 	 */
 	public int getThieves() {
 		return thieves;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="timeMultipler"
+	 */
 	public double getTimeMultipler() {
 		return timeMultipler;
 	}
@@ -579,8 +626,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the children are visible on the map.
-	 * 
-	 * @return true if the children are visible, false otherwise.
+	 * @return  true if the children are visible, false otherwise.
+	 * @uml.property  name="showChildren"
 	 */
 	public boolean isShowChildren() {
 		return showChildren;
@@ -588,8 +635,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the fruit sources are visible on the map.
-	 * 
-	 * @return true if the fruit sources are visible, false otherwise.
+	 * @return  true if the fruit sources are visible, false otherwise.
+	 * @uml.property  name="showFruitSources"
 	 */
 	public boolean isShowFruitSources() {
 		return showFruitSources;
@@ -597,8 +644,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the gatherers are visible on the map.
-	 * 
-	 * @return true if the gatherers are visible, false otherwise.
+	 * @return  true if the gatherers are visible, false otherwise.
+	 * @uml.property  name="showGatherers"
 	 */
 	public boolean isShowGatherers() {
 		return showGatherers;
@@ -606,8 +653,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the hunters are visible on the map.
-	 * 
-	 * @return true if the hunters are visible, false otherwise.
+	 * @return  true if the hunters are visible, false otherwise.
+	 * @uml.property  name="showHunters"
 	 */
 	public boolean isShowHunters() {
 		return showHunters;
@@ -615,8 +662,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the meat sources are visible on the map.
-	 * 
-	 * @return true if the meat sources are visible, false otherwise.
+	 * @return  true if the meat sources are visible, false otherwise.
+	 * @uml.property  name="showMeatSources"
 	 */
 	public boolean isShowMeatSources() {
 		return showMeatSources;
@@ -624,8 +671,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the nests are visible on the map.
-	 * 
-	 * @return true if the nests are visible, false otherwise.
+	 * @return  true if the nests are visible, false otherwise.
+	 * @uml.property  name="showNests"
 	 */
 	public boolean isShowNests() {
 		return showNests;
@@ -633,8 +680,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the pheromones are visible on the map.
-	 * 
-	 * @return true if the pheromones are visible, false otherwise.
+	 * @return  true if the pheromones are visible, false otherwise.
+	 * @uml.property  name="showPheromones"
 	 */
 	public boolean isShowPheromones() {
 		return showPheromones;
@@ -642,8 +689,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the protectors are visible on the map.
-	 * 
-	 * @return true if the protectors are visible, false otherwise.
+	 * @return  true if the protectors are visible, false otherwise.
+	 * @uml.property  name="showProtectors"
 	 */
 	public boolean isShowProtectors() {
 		return showProtectors;
@@ -651,8 +698,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Checks if the thieves are visible on the map.
-	 * 
-	 * @return true if the thieves are visible, false otherwise.
+	 * @return  true if the thieves are visible, false otherwise.
+	 * @uml.property  name="showThieves"
 	 */
 	public boolean isShowThieves() {
 		return showThieves;
@@ -676,9 +723,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of children with which the simulation starts.
-	 * 
-	 * @param children
-	 *            the number of children with which the simulation starts.
+	 * @param children  the number of children with which the simulation starts.
+	 * @uml.property  name="children"
 	 */
 	public void setChildren(int children) {
 		if (children >= 0)
@@ -726,9 +772,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of fruit sources with which the simulation starts.
-	 * 
-	 * @param fruitSources
-	 *            the number of fruit sources with which the simulation starts.
+	 * @param fruitSources  the number of fruit sources with which the simulation starts.
+	 * @uml.property  name="fruitSources"
 	 */
 	public void setFruitSources(int fruitSources) {
 		if (fruitSources >= 0)
@@ -737,9 +782,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of gatherers with which the simulation starts.
-	 * 
-	 * @param gatherers
-	 *            the number of gatherers with which the simulation starts.
+	 * @param gatherers  the number of gatherers with which the simulation starts.
+	 * @uml.property  name="gatherers"
 	 */
 	public void setGatherers(int gatherers) {
 		if (gatherers >= 0)
@@ -748,9 +792,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of hunters with which the simulation starts.
-	 * 
-	 * @param hunters
-	 *            the number of hunters with which the simulation starts.
+	 * @param hunters  the number of hunters with which the simulation starts.
+	 * @uml.property  name="hunters"
 	 */
 	public void setHunters(int hunters) {
 		if (hunters >= 0)
@@ -764,9 +807,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of meat sources with which the simulation starts.
-	 * 
-	 * @param meatSources
-	 *            the number of meat sources with which the simulation starts.
+	 * @param meatSources  the number of meat sources with which the simulation starts.
+	 * @uml.property  name="meatSources"
 	 */
 	public void setMeatSources(int meatSources) {
 		if (meatSources >= 0)
@@ -775,9 +817,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of nests with which the simulation starts.
-	 * 
-	 * @param nests
-	 *            the number of nests with which the simulation starts.
+	 * @param nests  the number of nests with which the simulation starts.
+	 * @uml.property  name="nests"
 	 */
 	public void setNests(int nests) {
 		if (nests >= 0)
@@ -797,9 +838,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets the number of protectors with which the simulation starts.
-	 * 
-	 * @param protectors
-	 *            the number of protectors with which the simulation starts.
+	 * @param protectors  the number of protectors with which the simulation starts.
+	 * @uml.property  name="protectors"
 	 */
 	public void setProtectors(int protectors) {
 		this.protectors = protectors;
@@ -813,9 +853,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the children are displayed on the map or not.
-	 * 
-	 * @param showChildren
-	 *            true if the children are displayed, false otherwise.
+	 * @param showChildren  true if the children are displayed, false otherwise.
+	 * @uml.property  name="showChildren"
 	 */
 	public void setShowChildren(boolean showChildren) {
 		this.showChildren = showChildren;
@@ -823,9 +862,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the fruit sources are displayed on the map or not.
-	 * 
-	 * @param showFruitSources
-	 *            true if the fruit sources are displayed, false otherwise.
+	 * @param showFruitSources  true if the fruit sources are displayed, false otherwise.
+	 * @uml.property  name="showFruitSources"
 	 */
 	public void setShowFruitSources(boolean showFruitSources) {
 		this.showFruitSources = showFruitSources;
@@ -833,9 +871,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the gatherers are displayed on the map or not.
-	 * 
-	 * @param showGatherers
-	 *            true if the gatherers are displayed, false otherwise.
+	 * @param showGatherers  true if the gatherers are displayed, false otherwise.
+	 * @uml.property  name="showGatherers"
 	 */
 	public void setShowGatherers(boolean showGatherers) {
 		this.showGatherers = showGatherers;
@@ -843,9 +880,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the hunters are displayed on the map or not.
-	 * 
-	 * @param showHunters
-	 *            true if the hunters are displayed, false otherwise.
+	 * @param showHunters  true if the hunters are displayed, false otherwise.
+	 * @uml.property  name="showHunters"
 	 */
 	public void setShowHunters(boolean showHunters) {
 		this.showHunters = showHunters;
@@ -853,9 +889,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the meat sources are displayed on the map or not.
-	 * 
-	 * @param showMeatSources
-	 *            true if the meat sources are displayed, false otherwise.
+	 * @param showMeatSources  true if the meat sources are displayed, false otherwise.
+	 * @uml.property  name="showMeatSources"
 	 */
 	public void setShowMeatSources(boolean showMeatSources) {
 		this.showMeatSources = showMeatSources;
@@ -863,9 +898,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the nests are displayed on the map or not.
-	 * 
-	 * @param showNests
-	 *            true if the nests are displayed, false otherwise.
+	 * @param showNests  true if the nests are displayed, false otherwise.
+	 * @uml.property  name="showNests"
 	 */
 	public void setShowNests(boolean showNests) {
 		this.showNests = showNests;
@@ -873,9 +907,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the pheromones are displayed on the map or not.
-	 * 
-	 * @param showPheromones
-	 *            true if the pheromones are displayed, false otherwise.
+	 * @param showPheromones  true if the pheromones are displayed, false otherwise.
+	 * @uml.property  name="showPheromones"
 	 */
 	public void setShowPheromones(boolean showPheromones) {
 		this.showPheromones = showPheromones;
@@ -883,9 +916,8 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the protectors are displayed on the map or not.
-	 * 
-	 * @param showProtectors
-	 *            true if the protectors are displayed, false otherwise.
+	 * @param showProtectors  true if the protectors are displayed, false otherwise.
+	 * @uml.property  name="showProtectors"
 	 */
 	public void setShowProtectors(boolean showProtectors) {
 		this.showProtectors = showProtectors;
@@ -893,29 +925,35 @@ public class ThiefWorld extends SimState {
 
 	/**
 	 * Sets if the thieves are displayed on the map or not.
-	 * 
-	 * @param showThieves
-	 *            true if the thieves are displayed, false otherwise.
+	 * @param showThieves  true if the thieves are displayed, false otherwise.
+	 * @uml.property  name="showThieves"
 	 */
 	public void setShowThieves(boolean showThieves) {
 		this.showThieves = showThieves;
 	}
 
+	/**
+	 * @param teams
+	 * @uml.property  name="teams"
+	 */
 	public void setTeams(int teams) {
 		this.teams = teams;
 	}
 
 	/**
 	 * Sets the number of thieves present with which the simulation starts.
-	 * 
-	 * @param thieves
-	 *            the number of thieves with which the simulation starts.
+	 * @param thieves  the number of thieves with which the simulation starts.
+	 * @uml.property  name="thieves"
 	 */
 	public void setThieves(int thieves) {
 		if (thieves >= 0)
 			this.thieves = thieves;
 	}
 
+	/**
+	 * @param timeMultipler
+	 * @uml.property  name="timeMultipler"
+	 */
 	public void setTimeMultipler(double timeMultipler) {
 		this.timeMultipler = timeMultipler;
 	}

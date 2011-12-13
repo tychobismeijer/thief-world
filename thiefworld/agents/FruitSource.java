@@ -18,8 +18,14 @@ public class FruitSource extends FoodSource {
 	 */
 	private static final long serialVersionUID = 1505592202788590256L;
 
+	/**
+	 * @uml.property  name="harvestStarted"
+	 */
 	private boolean harvestStarted = false;
 
+	/**
+	 * @uml.property  name="maxGeneratedFruit"
+	 */
 	private double maxGeneratedFruit;
 
 	public FruitSource() {

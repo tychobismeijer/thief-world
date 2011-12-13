@@ -16,6 +16,9 @@ public class Child extends ActiveAgent {
 	 */
 	private static final long serialVersionUID = -4281396198331579903L;
 
+	/**
+	 * @uml.property  name="age"
+	 */
 	private int age;
 
 	public Child() {
@@ -29,10 +32,18 @@ public class Child extends ActiveAgent {
 
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="age"
+	 */
 	public int getAge() {
 		return age;
 	}
 
+	/**
+	 * @param age
+	 * @uml.property  name="age"
+	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
