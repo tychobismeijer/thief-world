@@ -20,37 +20,37 @@ import thiefworld.main.ThiefWorld;
 public class Observer extends Agent {
 
 	/**
-	 * @author  Stefan
+	 * @author Stefan
 	 */
 	protected class ExchangedInfo {
 		/**
-		 * @uml.property  name="exchangedAtStep"
+		 * @uml.property name="exchangedAtStep"
 		 */
 		private long exchangedAtStep;
 
 		/**
-		 * @uml.property  name="exchangedWith"
-		 * @uml.associationEnd  
+		 * @uml.property name="exchangedWith"
+		 * @uml.associationEnd
 		 */
 		private ActiveAgent exchangedWith;
 
 		/**
-		 * @uml.property  name="gatheringSuccess"
+		 * @uml.property name="gatheringSuccess"
 		 */
 		private double gatheringSuccess;
 
 		/**
-		 * @uml.property  name="huntingSuccess"
+		 * @uml.property name="huntingSuccess"
 		 */
 		private double huntingSuccess;
 
 		/**
-		 * @uml.property  name="personalSuccessRate"
+		 * @uml.property name="personalSuccessRate"
 		 */
 		private double personalSuccessRate;
 
 		/**
-		 * @uml.property  name="stealingSuccess"
+		 * @uml.property name="stealingSuccess"
 		 */
 		private double stealingSuccess;
 
@@ -64,7 +64,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="exchangedAtStep"
+		 * @uml.property name="exchangedAtStep"
 		 */
 		public long getExchangedAtStep() {
 			return exchangedAtStep;
@@ -72,7 +72,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="exchangedWith"
+		 * @uml.property name="exchangedWith"
 		 */
 		public ActiveAgent getExchangedWith() {
 			return exchangedWith;
@@ -80,7 +80,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="gatheringSuccess"
+		 * @uml.property name="gatheringSuccess"
 		 */
 		public double getGatheringSuccess() {
 			return gatheringSuccess;
@@ -88,7 +88,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="huntingSuccess"
+		 * @uml.property name="huntingSuccess"
 		 */
 		public double getHuntingSuccess() {
 			return huntingSuccess;
@@ -96,7 +96,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="personalSuccessRate"
+		 * @uml.property name="personalSuccessRate"
 		 */
 		public double getPersonalSuccessRate() {
 			return personalSuccessRate;
@@ -104,7 +104,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @return
-		 * @uml.property  name="stealingSuccess"
+		 * @uml.property name="stealingSuccess"
 		 */
 		public double getStealingSuccess() {
 			return stealingSuccess;
@@ -112,7 +112,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param exchangedAtStep
-		 * @uml.property  name="exchangedAtStep"
+		 * @uml.property name="exchangedAtStep"
 		 */
 		public void setExchangedAtStep(long exchangedAtStep) {
 			this.exchangedAtStep = exchangedAtStep;
@@ -120,7 +120,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param exchangedWith
-		 * @uml.property  name="exchangedWith"
+		 * @uml.property name="exchangedWith"
 		 */
 		public void setExchangedWith(ActiveAgent exchangedWith) {
 			this.exchangedWith = exchangedWith;
@@ -128,7 +128,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param gatheringSuccess
-		 * @uml.property  name="gatheringSuccess"
+		 * @uml.property name="gatheringSuccess"
 		 */
 		public void setGatheringSuccess(double gatheringSuccess) {
 			this.gatheringSuccess = gatheringSuccess;
@@ -136,7 +136,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param huntingSuccess
-		 * @uml.property  name="huntingSuccess"
+		 * @uml.property name="huntingSuccess"
 		 */
 		public void setHuntingSuccess(double huntingSuccess) {
 			this.huntingSuccess = huntingSuccess;
@@ -144,7 +144,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param personalSuccessRate
-		 * @uml.property  name="personalSuccessRate"
+		 * @uml.property name="personalSuccessRate"
 		 */
 		public void setPersonalSuccessRate(double personalSuccessRate) {
 			this.personalSuccessRate = personalSuccessRate;
@@ -152,7 +152,7 @@ public class Observer extends Agent {
 
 		/**
 		 * @param stealingSuccess
-		 * @uml.property  name="stealingSuccess"
+		 * @uml.property name="stealingSuccess"
 		 */
 		public void setStealingSuccess(double stealingSuccess) {
 			this.stealingSuccess = stealingSuccess;
@@ -165,31 +165,25 @@ public class Observer extends Agent {
 	private static final long serialVersionUID = -2220784702275759607L;
 
 	/**
-	 * @uml.property  name="agentsInteractedWith"
-	 * @uml.associationEnd  inverse="this$0:thiefworld.agents.Observer$ExchangedInfo" qualifier="agent:thiefworld.agents.ActiveAgent thiefworld.agents.Observer$ExchangedInfo"
+	 * @uml.property name="agentsInteractedWith"
+	 * @uml.associationEnd 
+	 *                     inverse="this$0:thiefworld.agents.Observer$ExchangedInfo"
+	 *                     qualifier=
+	 *                     "agent:thiefworld.agents.ActiveAgent thiefworld.agents.Observer$ExchangedInfo"
 	 */
 	private Map<ActiveAgent, ExchangedInfo> agentsInteractedWith = new HashMap<ActiveAgent, ExchangedInfo>();
 
 	/**
 	 * The agent which the observer is linked to.
-	 * @uml.property  name="correspondingAgent"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="personalObserver:thiefworld.agents.ActiveAgent"
+	 * 
+	 * @uml.property name="correspondingAgent"
+	 * @uml.associationEnd multiplicity="(1 1)"
+	 *                     inverse="personalObserver:thiefworld.agents.ActiveAgent"
 	 */
 	private ActiveAgent correspondingAgent;
 
 	public Observer(ActiveAgent agent) {
 		correspondingAgent = agent;
-	}
-
-	public void exchangeInformation(ThiefWorld world, ActiveAgent agent) {
-		long step = world.schedule.getSteps();
-
-		if (agentsInteractedWith.containsKey(agent)) {
-			agentsInteractedWith.remove(agent);
-		}
-
-		ExchangedInfo info = new ExchangedInfo(agent, step);
-		agentsInteractedWith.put(agent, info);
 	}
 
 	public void exchangeInformation(ThiefWorld world) {
@@ -213,31 +207,15 @@ public class Observer extends Agent {
 		}
 	}
 
-	public double getAverageHuntingSuccess() {
-		double average = 0.0;
+	public void exchangeInformation(ThiefWorld world, ActiveAgent agent) {
+		long step = world.schedule.getSteps();
 
-		Set<Entry<ActiveAgent, ExchangedInfo>> entries = agentsInteractedWith
-				.entrySet();
-		if (entries != null) {
-			int averaged = 0;
-			for (Entry<ActiveAgent, ExchangedInfo> entry : entries) {
-				ExchangedInfo info = entry.getValue();
-				if (info != null) {
-					averaged++;
-					average += info.getHuntingSuccess();
-
-					if (info.getExchangedWith().getClass() == Hunter.class) {
-						averaged++;
-						average += info.getPersonalSuccessRate();
-					}
-				}
-			}
-
-			if (averaged > 0)
-				average /= averaged;
+		if (agentsInteractedWith.containsKey(agent)) {
+			agentsInteractedWith.remove(agent);
 		}
 
-		return average;
+		ExchangedInfo info = new ExchangedInfo(agent, step);
+		agentsInteractedWith.put(agent, info);
 	}
 
 	public double getAverageGatheringSuccess() {
@@ -254,6 +232,33 @@ public class Observer extends Agent {
 					average += info.getGatheringSuccess();
 
 					if (info.getExchangedWith().getClass() == Gatherer.class) {
+						averaged++;
+						average += info.getPersonalSuccessRate();
+					}
+				}
+			}
+
+			if (averaged > 0)
+				average /= averaged;
+		}
+
+		return average;
+	}
+
+	public double getAverageHuntingSuccess() {
+		double average = 0.0;
+
+		Set<Entry<ActiveAgent, ExchangedInfo>> entries = agentsInteractedWith
+				.entrySet();
+		if (entries != null) {
+			int averaged = 0;
+			for (Entry<ActiveAgent, ExchangedInfo> entry : entries) {
+				ExchangedInfo info = entry.getValue();
+				if (info != null) {
+					averaged++;
+					average += info.getHuntingSuccess();
+
+					if (info.getExchangedWith().getClass() == Hunter.class) {
 						averaged++;
 						average += info.getPersonalSuccessRate();
 					}

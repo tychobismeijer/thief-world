@@ -9,7 +9,7 @@ public abstract class FoodSource extends Agent {
 	private static final long serialVersionUID = -1808736756735801593L;
 
 	/**
-	 * @uml.property  name="foodQuantity"
+	 * @uml.property name="foodQuantity"
 	 */
 	protected double foodQuantity = 0.0;
 
@@ -38,7 +38,7 @@ public abstract class FoodSource extends Agent {
 
 	/**
 	 * @param foodQuantity
-	 * @uml.property  name="foodQuantity"
+	 * @uml.property name="foodQuantity"
 	 */
 	public void setFoodQuantity(double foodQuantity) {
 		this.foodQuantity = foodQuantity;

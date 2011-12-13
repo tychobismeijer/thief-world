@@ -17,20 +17,24 @@ public abstract class Agent implements Steppable {
 
 	/**
 	 * The name which identifies the agent.
-	 * @uml.property  name="name"
+	 * 
+	 * @uml.property name="name"
 	 */
 	private String name;
 
 	/**
-	 * The   {@link Stoppable   Stoppable}   reference that allows an agent to be stopped from the MASON scheduling.
-	 * @uml.property  name="stoppable"
-	 * @uml.associationEnd  
+	 * The {@link Stoppable Stoppable} reference that allows an agent to be
+	 * stopped from the MASON scheduling.
+	 * 
+	 * @uml.property name="stoppable"
+	 * @uml.associationEnd
 	 */
 	public Stoppable stoppable;
 
 	/**
 	 * The team in which the agent is assigned.
-	 * @uml.property  name="teamNo"
+	 * 
+	 * @uml.property name="teamNo"
 	 */
 	private int teamNo;
 
@@ -45,8 +49,9 @@ public abstract class Agent implements Steppable {
 
 	/**
 	 * Retrieves the team into which the agent was assigned.
-	 * @return  the team into which the agent was assigned.
-	 * @uml.property  name="teamNo"
+	 * 
+	 * @return the team into which the agent was assigned.
+	 * @uml.property name="teamNo"
 	 */
 	public int getTeamNo() {
 		return teamNo;
@@ -54,8 +59,10 @@ public abstract class Agent implements Steppable {
 
 	/**
 	 * Sets the identifying name of the agent.
-	 * @param name  the identifying name of the agent.
-	 * @uml.property  name="name"
+	 * 
+	 * @param name
+	 *            the identifying name of the agent.
+	 * @uml.property name="name"
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -63,8 +70,10 @@ public abstract class Agent implements Steppable {
 
 	/**
 	 * Assigns the agent to a specific team.
-	 * @param teamNo  the team into which the agent is assigned.
-	 * @uml.property  name="teamNo"
+	 * 
+	 * @param teamNo
+	 *            the team into which the agent is assigned.
+	 * @uml.property name="teamNo"
 	 */
 	public void setTeamNo(int teamNo) {
 		this.teamNo = teamNo;

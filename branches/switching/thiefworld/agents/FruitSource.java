@@ -19,12 +19,12 @@ public class FruitSource extends FoodSource {
 	private static final long serialVersionUID = 1505592202788590256L;
 
 	/**
-	 * @uml.property  name="harvestStarted"
+	 * @uml.property name="harvestStarted"
 	 */
 	private boolean harvestStarted = false;
 
 	/**
-	 * @uml.property  name="maxGeneratedFruit"
+	 * @uml.property name="maxGeneratedFruit"
 	 */
 	private double maxGeneratedFruit;
 
@@ -50,8 +50,8 @@ public class FruitSource extends FoodSource {
 
 	@Override
 	public void step(SimState arg0) {
-		ThiefWorld world = (ThiefWorld)arg0;
-		long day = (long)(arg0.schedule.getSteps() / world.getTimeMultipler() + 1) % 365;
+		ThiefWorld world = (ThiefWorld) arg0;
+		long day = (long) (arg0.schedule.getSteps() / world.getTimeMultipler() + 1) % 365;
 
 		if (harvestStarted) {
 			double previousDayIncrease = Utilities.nextSigmoid(day - 1,
