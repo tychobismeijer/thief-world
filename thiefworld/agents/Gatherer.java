@@ -57,7 +57,7 @@ public class Gatherer extends ActiveAgent {
 
 			if (stagnatingFor > 100) {
 				double probability = Utilities.nextDouble(0, 1);
-				if (probability > getSwitchThreshold()){
+				if (probability > getSwitchThreshold()) {
 					replace(world, Gatherer.class);
 					stagnatingFor = 0;
 				}

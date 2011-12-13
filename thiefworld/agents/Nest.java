@@ -11,12 +11,12 @@ public class Nest extends Agent {
 	private static final long serialVersionUID = -7988304303551923917L;
 
 	/**
-	 * @uml.property  name="fruitQuantity"
+	 * @uml.property name="fruitQuantity"
 	 */
 	private double fruitQuantity;
 
 	/**
-	 * @uml.property  name="meatQuantity"
+	 * @uml.property name="meatQuantity"
 	 */
 	private double meatQuantity;
 
@@ -43,7 +43,7 @@ public class Nest extends Agent {
 
 	/**
 	 * @return
-	 * @uml.property  name="fruitQuantity"
+	 * @uml.property name="fruitQuantity"
 	 */
 	public double getFruitQuantity() {
 		return fruitQuantity;
@@ -51,7 +51,7 @@ public class Nest extends Agent {
 
 	/**
 	 * @return
-	 * @uml.property  name="meatQuantity"
+	 * @uml.property name="meatQuantity"
 	 */
 	public double getMeatQuantity() {
 		return meatQuantity;
@@ -71,7 +71,7 @@ public class Nest extends Agent {
 
 	/**
 	 * @param fruitQuantity
-	 * @uml.property  name="fruitQuantity"
+	 * @uml.property name="fruitQuantity"
 	 */
 	public void setFruitQuantity(double fruitQuantity) {
 		this.fruitQuantity = fruitQuantity;
@@ -79,7 +79,7 @@ public class Nest extends Agent {
 
 	/**
 	 * @param meatQuantity
-	 * @uml.property  name="meatQuantity"
+	 * @uml.property name="meatQuantity"
 	 */
 	public void setMeatQuantity(double meatQuantity) {
 		this.meatQuantity = meatQuantity;
@@ -87,7 +87,7 @@ public class Nest extends Agent {
 
 	@Override
 	public void step(SimState state) {
-		
+
 	}
 
 }

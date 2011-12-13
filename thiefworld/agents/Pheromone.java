@@ -41,27 +41,34 @@ public class Pheromone extends Agent {
 	}
 
 	/**
-	 * Flag describing whether the pheromone was placed on the path from the nest towards a food source.
-	 * @uml.property  name="comingFromNest"
+	 * Flag describing whether the pheromone was placed on the path from the
+	 * nest towards a food source.
+	 * 
+	 * @uml.property name="comingFromNest"
 	 */
 	private boolean comingFromNest;
 
 	/**
-	 * Flag describing whether the pheromone was placed on the path returning from the food source or going towards the food source.
-	 * @uml.property  name="returningFromFoodSource"
+	 * Flag describing whether the pheromone was placed on the path returning
+	 * from the food source or going towards the food source.
+	 * 
+	 * @uml.property name="returningFromFoodSource"
 	 */
 	private boolean returningFromFoodSource;
 
 	/**
-	 * The pheromone strength. This will eventually influence the number of time steps in which it completely decays.
-	 * @uml.property  name="strength"
+	 * The pheromone strength. This will eventually influence the number of time
+	 * steps in which it completely decays.
+	 * 
+	 * @uml.property name="strength"
 	 */
 	private double strength = 1.0;
 
 	/**
 	 * The type of pheromone.
-	 * @uml.property  name="type"
-	 * @uml.associationEnd  multiplicity="(1 1)"
+	 * 
+	 * @uml.property name="type"
+	 * @uml.associationEnd multiplicity="(1 1)"
 	 */
 	private PheromoneType type;
 
@@ -135,8 +142,9 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Retrieves the current pheromone strength.
-	 * @return  the current pheromone strength.
-	 * @uml.property  name="strength"
+	 * 
+	 * @return the current pheromone strength.
+	 * @uml.property name="strength"
 	 */
 	public double getStrength() {
 		return strength;
@@ -144,8 +152,9 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Retrieves the type of pheromone.
-	 * @return  the type of pheromone.
-	 * @uml.property  name="type"
+	 * 
+	 * @return the type of pheromone.
+	 * @uml.property name="type"
 	 */
 	public PheromoneType getType() {
 		return type;
@@ -163,7 +172,7 @@ public class Pheromone extends Agent {
 
 	/**
 	 * @return
-	 * @uml.property  name="comingFromNest"
+	 * @uml.property name="comingFromNest"
 	 */
 	public boolean isComingFromNest() {
 		return comingFromNest;
@@ -171,8 +180,11 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Checks if the pheromone was dropped on the way to the nest or not.
-	 * @return  true if the pheromone was dropped on the way back from a food  source and false if it was dropped on the way from the nest to  the food source.
-	 * @uml.property  name="returningFromFoodSource"
+	 * 
+	 * @return true if the pheromone was dropped on the way back from a food
+	 *         source and false if it was dropped on the way from the nest to
+	 *         the food source.
+	 * @uml.property name="returningFromFoodSource"
 	 */
 	public boolean isReturningFromFoodSource() {
 		return returningFromFoodSource;
@@ -180,7 +192,7 @@ public class Pheromone extends Agent {
 
 	/**
 	 * @param comingFromNest
-	 * @uml.property  name="comingFromNest"
+	 * @uml.property name="comingFromNest"
 	 */
 	public void setComingFromNest(boolean comingFromNest) {
 		this.comingFromNest = comingFromNest;
@@ -188,8 +200,12 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Sets if the pheromone was dropped on the way to the nest or not.
-	 * @param returningFromFoodSource  true if the pheromone was dropped on the way back from a food  source and false if it was dropped on the way from the nest to  the food source.
-	 * @uml.property  name="returningFromFoodSource"
+	 * 
+	 * @param returningFromFoodSource
+	 *            true if the pheromone was dropped on the way back from a food
+	 *            source and false if it was dropped on the way from the nest to
+	 *            the food source.
+	 * @uml.property name="returningFromFoodSource"
 	 */
 	public void setReturningFromFoodSource(boolean returningFromFoodSource) {
 		this.returningFromFoodSource = returningFromFoodSource;
@@ -197,8 +213,10 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Sets the strength of the pheromone.
-	 * @param strength  the strength of the pheromone.
-	 * @uml.property  name="strength"
+	 * 
+	 * @param strength
+	 *            the strength of the pheromone.
+	 * @uml.property name="strength"
 	 */
 	public void setStrength(double strength) {
 		this.strength = strength;
@@ -206,8 +224,10 @@ public class Pheromone extends Agent {
 
 	/**
 	 * Sets the type of pheromone.
-	 * @param type  the type of pheromone.
-	 * @uml.property  name="type"
+	 * 
+	 * @param type
+	 *            the type of pheromone.
+	 * @uml.property name="type"
 	 */
 	public void setType(PheromoneType type) {
 		this.type = type;

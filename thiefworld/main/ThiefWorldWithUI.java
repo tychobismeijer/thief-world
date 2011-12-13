@@ -43,6 +43,7 @@ public class ThiefWorldWithUI extends GUIState {
 	public static String getName() {
 		return "thief-world";
 	}
+
 	/**
 	 * Starter method for the GUI simulation.
 	 * 
@@ -53,21 +54,22 @@ public class ThiefWorldWithUI extends GUIState {
 		Console c = new Console(gui);
 		c.setVisible(true);
 	}
+
 	/**
-	 * @uml.property  name="display"
-	 * @uml.associationEnd  
+	 * @uml.property name="display"
+	 * @uml.associationEnd
 	 */
 	public Display2D display;
 
 	/**
-	 * @uml.property  name="displayFrame"
-	 * @uml.associationEnd  
+	 * @uml.property name="displayFrame"
+	 * @uml.associationEnd
 	 */
 	public JFrame displayFrame;
 
 	/**
-	 * @uml.property  name="mapPortrayal"
-	 * @uml.associationEnd  multiplicity="(1 1)"
+	 * @uml.property name="mapPortrayal"
+	 * @uml.associationEnd multiplicity="(1 1)"
 	 */
 	public ContinuousPortrayal2D mapPortrayal = new ContinuousPortrayal2D();
 
@@ -81,7 +83,7 @@ public class ThiefWorldWithUI extends GUIState {
 
 	private void clearWorld() {
 		ThiefWorld world = (ThiefWorld) state;
-		
+
 		world.childrenBag.clear();
 		world.fruitSourcesBag.clear();
 		world.gatherersBag.clear();
@@ -106,7 +108,7 @@ public class ThiefWorldWithUI extends GUIState {
 	public Object getSimulationInspectedObject() {
 		return state;
 	}
-	
+
 	/**
 	 * Initializes the GUI window.
 	 */
