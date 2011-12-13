@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="lib/jfreechart-1.0.13.jar;lib/mason.16.jar;lib/jcommon-1.0.16.jar;lib/itext-1.2.jar;lib/jmf.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="thiefworld.test,thiefworld.agents,thiefworld.util,thiefworld.main" source="1.7" sourcepath="src" splitindex="true" stylesheetfile="D:\develop\workspace\thiefworld\images\javadoc\style.css" use="true" version="true"/>
+    </target>
+</project>

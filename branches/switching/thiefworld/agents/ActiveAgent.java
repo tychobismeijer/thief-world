@@ -287,13 +287,7 @@ public abstract class ActiveAgent extends Agent {
 	 * personalSucces
 	 */
 	private int timeSinceLastDropOff = 0;
-
-	/*
-	 * Keeps track of time since last role switch, might be used for logarithmic
-	 * skill change NOT USED YET
-	 */
-	private int timeSinceLastMorph = 0;
-
+	
 	/**
 	 * Creates a new agent and initializes its parameters to default values.
 	 */
@@ -454,10 +448,6 @@ public abstract class ActiveAgent extends Agent {
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 */
 	protected void dropPheromone(ThiefWorld world) {
-		// TODO check if a pheromone is not already in the same position. If so,
-		// increase the pheromone strength in that position by the required
-		// value (i.e. unit).
-
 		Pheromone pheromone = null;
 		if (this.getClass() == Gatherer.class) {
 			// drop pheromone
@@ -785,7 +775,6 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected ActiveAgent morph(Class<?> newAgentType) {
 		ActiveAgent morphedAgent = null;
-		this.timeSinceLastMorph = 0;
 
 		if (newAgentType == Gatherer.class) {
 			// morph into a gatherer
@@ -1075,7 +1064,6 @@ public abstract class ActiveAgent extends Agent {
 
 		// update time
 		this.timeSinceLastDropOff++;
-		this.timeSinceLastMorph++;
 
 		// interact with other agents within the world
 		observeWorld(world);
