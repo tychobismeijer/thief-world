@@ -314,15 +314,6 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected double switchThreshold = Utilities.nextDouble(0.1, 0.95);
 
-	/*
-	 * Keeps track of time since last food drop off, used for determining
-	 * personalSucces
-	 */
-	/**
-	 * @uml.property name="timeSinceLastDropOff"
-	 */
-	private int timeSinceLastDropOff = 0;
-
 	/**
 	 * Creates a new agent and initializes its parameters to default values.
 	 */
@@ -433,8 +424,7 @@ public abstract class ActiveAgent extends Agent {
 							+ " meat at " + nest.getName());
 
 			nest.increaseMeatQuantity(this.getCarriedMeat());
-			// keep track of succes just after dropping off
-			updatePersonalSucces(this.getCarriedMeat());
+
 			this.setCarriedMeat(0.0);
 		}
 
@@ -445,15 +435,12 @@ public abstract class ActiveAgent extends Agent {
 							+ " fruit at " + nest.getName());
 
 			nest.increaseFruitQuantity(this.getCarriedFruit());
-			// keep track of succes just after dropping off
-			updatePersonalSucces(this.getCarriedFruit());
+
 			this.setCarriedFruit(0.0);
 		}
 
 		if (this.getClass() == Thief.class) {
 			nest.increaseMeatQuantity(this.getCarriedFood());
-			// keep track of succes
-			updatePersonalSucces(this.getCarriedFood());
 
 			if (this.getCarriedFruit() > 0.0) {
 				log.log(Level.INFO,
@@ -473,7 +460,6 @@ public abstract class ActiveAgent extends Agent {
 		}
 		// increase skill after dropping of
 		increaseSkill();
-		this.timeSinceLastDropOff = 0;
 	}
 
 	/**
@@ -1190,9 +1176,6 @@ public abstract class ActiveAgent extends Agent {
 	public void step(SimState arg0) {
 		ThiefWorld world = (ThiefWorld) arg0;
 
-		// update time
-		this.timeSinceLastDropOff++;
-
 		// interact with other agents within the world
 		observeWorld(world);
 
@@ -1221,28 +1204,6 @@ public abstract class ActiveAgent extends Agent {
 	 */
 	protected abstract void thinkAboutSwitchingJobs(ThiefWorld world);
 
-	/*
-	 * Keeps updates personal success of the agent. Called after each dropOff
-	 * action
-	 */
-	protected void updatePersonalSucces(double retrievedFood) {
-		Logger log = Logger.getLogger(getName());
-		log.log(Level.INFO, this.getName()
-				+ " increased its' gathering skill to " + this.gatheringSkill);
-
-		if (this.timeSinceLastDropOff != 0) {
-			double currentSucces = retrievedFood
-					/ (0.1 * this.timeSinceLastDropOff); // perhaps per 10
-															// timesteps is
-															// better
-			this.personalSuccess += 0.1 * (currentSucces - this.personalSuccess);
-		} else
-			System.out
-					.println("Division by zero prevented. You're doing something wrong!!!");
-		log.log(Level.INFO, this.getName() + "'s current personalSuccess is "
-				+ this.personalSuccess + " units of food per 10 time steps");
-	}
-
 	/**
 	 * Wonders around in search of a food source guided by the pheromone trail.
 	 * 
@@ -1250,6 +1211,10 @@ public abstract class ActiveAgent extends Agent {
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
 	 */
 	protected void wonderAround(ThiefWorld world) {
+		personalSuccess -= (0.001 * personalSuccess);
+		if (personalSuccess < 0.0)
+			personalSuccess = 0.0;
+
 		MutableDouble2D wonderingMovement = new MutableDouble2D();
 
 		// add movement randomness

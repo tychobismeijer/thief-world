@@ -53,6 +53,8 @@ public class Observer extends Agent {
 		 * @uml.property name="stealingSuccess"
 		 */
 		private double stealingSuccess;
+		
+		private Class<?> agentType;
 
 		public ExchangedInfo(ActiveAgent agent, long step) {
 			this.setExchangedWith(agent);
@@ -60,6 +62,7 @@ public class Observer extends Agent {
 			this.setHuntingSuccess(agent.getHuntingSuccess());
 			this.setGatheringSuccess(agent.getGatheringSuccess());
 			this.setStealingSuccess(agent.getStealingSuccess());
+			this.setAgentType(agent.getClass());
 		}
 
 		/**
@@ -157,6 +160,14 @@ public class Observer extends Agent {
 		public void setStealingSuccess(double stealingSuccess) {
 			this.stealingSuccess = stealingSuccess;
 		}
+
+		public Class<?> getAgentType() {
+			return agentType;
+		}
+
+		public void setAgentType(Class<?> agentType) {
+			this.agentType = agentType;
+		}
 	}
 
 	/**
@@ -231,7 +242,7 @@ public class Observer extends Agent {
 					averaged++;
 					average += info.getGatheringSuccess();
 
-					if (info.getExchangedWith().getClass() == Gatherer.class) {
+					if (info.getAgentType() == Gatherer.class) {
 						averaged++;
 						average += info.getPersonalSuccessRate();
 					}
@@ -258,7 +269,7 @@ public class Observer extends Agent {
 					averaged++;
 					average += info.getHuntingSuccess();
 
-					if (info.getExchangedWith().getClass() == Hunter.class) {
+					if (info.getAgentType() == Hunter.class) {
 						averaged++;
 						average += info.getPersonalSuccessRate();
 					}
@@ -285,7 +296,7 @@ public class Observer extends Agent {
 					averaged++;
 					average += info.getStealingSuccess();
 
-					if (info.getExchangedWith().getClass() == Thief.class) {
+					if (info.getAgentType() == Thief.class) {
 						averaged++;
 						average += info.getPersonalSuccessRate();
 					}

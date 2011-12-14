@@ -13,12 +13,12 @@ public class Nest extends Agent {
 	/**
 	 * @uml.property name="fruitQuantity"
 	 */
-	private double fruitQuantity;
+	private double fruitQuantity = 1000;
 
 	/**
 	 * @uml.property name="meatQuantity"
 	 */
-	private double meatQuantity;
+	private double meatQuantity = 1000;
 
 	public Nest() {
 		nestNo++;
