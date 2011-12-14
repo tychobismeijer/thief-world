@@ -46,8 +46,8 @@ public class Gatherer extends ActiveAgent {
 		//Gather information about success of other agents
 		double currentHuntingSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Hunter.class);
 		double currentGatheringSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Gatherer.class);
-		//System.out.println("Current hunting succes: "+ currentHuntingSuccess);
-		//System.out.println("Current Gathering succes: "+ currentGatheringSuccess);
+		//System.out.println("Current hunting success: "+ currentHuntingSuccess);
+		//System.out.println("Current Gathering success: "+ currentGatheringSuccess);
 		//Only update information if there are other agents in the neighborhood
 		if(currentHuntingSuccess != -1)
 			this.huntingSuccess += 0.7 * (currentHuntingSuccess - huntingSuccess);
@@ -62,16 +62,19 @@ public class Gatherer extends ActiveAgent {
 		 * add the difference in performance to the switch probability
 		*/
 		if(this.personalSuccess <= this.gatheringSuccess && this.gatheringSuccess < this.huntingSuccess){
-			probability += weight * (huntingSuccess - gatheringSuccess);
+			if(gatheringSuccess != 0)
+				probability += (huntingSuccess / gatheringSuccess);
+			else
+				probability += huntingSuccess; // just in case
 		}
 		
 		//System.out.println("new switch probability: "+ probability);
 		double threshold = 0.05 + Utilities.nextDouble(-0.05, 0.05);//this.switchThreshold + Utilities.nextDouble(-0.05, 0.05);
-		System.out.println("switch depends on:\n "+ (probability - gatheringSkill) + "being larger than "
-							+ threshold);
+		System.out.println("switch depends on:\n "+ probability + " - " 
+				+ gatheringSkill + "being larger than " + threshold);
 		
 		// Regardless of performance, there is always a probability of switching
-		if(probability - 0.5*this.gatheringSkill > (threshold) ) {
+		if(probability - this.gatheringSkill > threshold || Utilities.nextDouble() < 0.1 ) {
 			System.out.println("SWITCHING");
 			log.log(Level.INFO,
 					this.getName() + " is switching from Gatherer to Hunter");
@@ -126,7 +129,7 @@ public class Gatherer extends ActiveAgent {
 		if(currentGatheringSuccess != -1)
 			this.gatheringSuccess += 0.7 * (currentGatheringSuccess - gatheringSuccess);
 		
-		if(this.gatheringSuccess < this.huntingSuccess || gatheringSuccess < Utilities.nextDouble(0,0.1)){
+		if(this.gatheringSuccess < this.huntingSuccess && gatheringSuccess < Utilities.nextDouble(0,0.1)){
 			log.log(Level.INFO, this.getName() + " is switching from Gatherer to Hunter");
 			this.replace(world, Hunter.class);
 		}

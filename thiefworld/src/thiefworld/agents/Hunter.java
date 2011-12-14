@@ -50,8 +50,6 @@ public class Hunter extends ActiveAgent {
 		//Gather information about success of other agents
 		double currentHuntingSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Hunter.class);
 		double currentGatheringSuccess = this.personalObserver.getAverageSuccessWithinRange(world, Gatherer.class);
-		//System.out.println("Current hunting succes: "+ currentHuntingSuccess);
-		//System.out.println("Current Gathering succes: "+ currentGatheringSuccess);
 		//Only update information if there are other agents in the neighborhood
 		if(currentHuntingSuccess != -1)
 			this.huntingSuccess += 0.7 * (currentHuntingSuccess - huntingSuccess);
@@ -66,16 +64,19 @@ public class Hunter extends ActiveAgent {
 		 * add the difference in performance to the switch probability
 		*/
 		if(this.personalSuccess <= this.huntingSuccess && this.gatheringSuccess > this.huntingSuccess){
-			probability += weight * (gatheringSuccess - huntingSuccess);
+			if(huntingSuccess != 0)
+				probability += (gatheringSuccess / huntingSuccess);
+			else
+				probability += gatheringSuccess; //just in case
 		}
 		
 		//System.out.println("new switch probability: "+ probability);
 		double threshold = 0.05 + Utilities.nextDouble(-0.05, 0.05);//this.switchThreshold + Utilities.nextDouble(-0.05, 0.05);
-		System.out.println("switch depends on:\n "+ (probability - huntingSkill) + "being larger than "
-							+ threshold);
+		System.out.println("switch depends on:\n "+ probability + " - " 
+							+ huntingSkill + "being larger than " + threshold);
 		
 		// Regardless of performance, there is always a probability of switching
-		if(probability - 0.1*this.huntingSkill > (threshold) ) {
+		if(probability - this.huntingSkill > threshold || Utilities.nextDouble() < 0.1) {
 			System.out.println("SWITCHING");
 			log.log(Level.INFO, this.getName() + " is switching from Hunter to Gatherer");
 			this.replace(world, Gatherer.class);
@@ -95,7 +96,7 @@ public class Hunter extends ActiveAgent {
 		if(currentGatheringSuccess != -1)
 			this.gatheringSuccess += 0.7 * (currentGatheringSuccess - gatheringSuccess);
 		
-		if(this.gatheringSuccess > this.huntingSuccess || huntingSuccess < Utilities.nextDouble(0,0.1)){
+		if(this.gatheringSuccess > this.huntingSuccess && huntingSuccess < Utilities.nextDouble(0,0.1)){
 			log.log(Level.INFO, this.getName() + " is switching from Hunter to Gatherer");
 			this.replace(world, Gatherer.class);
 		}
