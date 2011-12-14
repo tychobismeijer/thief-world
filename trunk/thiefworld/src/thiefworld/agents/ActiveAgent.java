@@ -1049,7 +1049,7 @@ public abstract class ActiveAgent extends Agent {
 		act(world);
 
 		// check if it's still worth doing the same job
-		if(timeSinceLastMorph > 10)
+		if(timeSinceLastMorph > 50)
 			thinkAboutSwitchingJobsSimple(world);
 		
 		if(timeSinceLastDropOff > 100){
@@ -1076,13 +1076,13 @@ public abstract class ActiveAgent extends Agent {
 		Logger log = Logger.getLogger(getName());
 
 		if(this.timeSinceLastDropOff != 0){
-			double currentSucces = retrievedFood / (0.1 * this.timeSinceLastDropOff); //perhaps per 10 timesteps is better
+			double currentSucces = retrievedFood / (0.01 * this.timeSinceLastDropOff); //retrieved food per 100 time steps
 			this.personalSuccess += 0.1 * (currentSucces - this.personalSuccess);
 		} else
 			System.out.println("Division by zero prevented. You're doing something wrong!!!");
 		log.log(Level.INFO,
 				this.getName() + "'s current personalSuccess is " + this.personalSuccess +
-				" units of food per 10 time steps");
+				" units of food per 100 time steps");
 	}
 	
 	/**
