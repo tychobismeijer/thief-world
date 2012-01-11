@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+
+%opening
+\title{Transporting Goods using Cellular Automata}
+\author{Tycho Bismeijer \and Stefan Boronea}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Literature}
+Our project is based on the cellular automata model presented in \cite{1013457}. The idea of using a cellular automata to control self configurable robots is inspired by Butler's work.
+
+\section{Objectives}
+Our goal within the current project is to show the applicability of the cellular automata model in transporting goods within a 2D environment. In this sense we are trting to design a cellular automata that can perform this task. We would like to limit our goal to the design of this system, that could be further extended afterwards. The physical realism of the model will not be considered within the project, since our goal is to show that a self-rganizing system can achieve such behavior.
+
+\section{Model}
+The environment in which the simulation takes place will be represented by a 2D cellular grid in which gravity affects the objects. A floor is placed on the bottom and there are gaps with the depth of 1 cell and a variable length. The bots, which are also subject to gravity move acording to cellular automata rules, that is every bot considers the surrounding bots and objects to decide its movement. Bots act in turn but not in a specific order. The bots can also push an object to either direction (left or right) and bots can cooperate in order to move heavier objects. The weight of objects and strength of robots have integer values.
+
+The design of the cellular automata model for transporting objects will take into account the following scenarios. We will begin by transporting blocks of weight 1 over a flat surface. Then we would like to see how a single gap (of width 1) within the surface affects the movements of bots. One further aspect we would like to consider is whether the size of the gap would influence the movement of the bots. Finally, we want to increase the weight of objects and see the effect it has on the overall system. As extensions for the model we would also like to vary the object size and add different environment parameters, such as friction.
+
+\section{Questions}
+Research question: How to transport objects over gaps in a cellular automata model of self-configurable robots?
+
+
+\section{Hypotheses}
+Our hypotheses are the following:
+\begin{itemize}
+ \item The number of extra robots needed to push over a gap is independent of the gap size
+ \item The number of reconfigurations is linearly dependent on the gap size.
+ \item There is a linear correlation between the weight of the object that is transported and the minimum number of bots.
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{research-question}
+
+\end{document}
