@@ -2,31 +2,48 @@
 \label{sec:model}
 \addcontentsline{toc}{chapter}{Model}
 
-We model very simple robots like in \cite{butler02}, we call bots. Furthermore there are
+We model very simple robots like in \cite{butler02}, we call them bots. Furthermore there are
 obstacles, which provide the bots a surface to stand on, and boxes, which can be
 pushed around. The bots, as we call them, are able to move around a surface,
 climb up each other and small obstacles, and to push boxes around. The goal of
 the bots is to push a box over a surface with a gap. They can do this by filling
 the gap with bots to supply a surface to push the box over.
 
-This is modelled in a 2 dimensinal cellular automata. There is gravity
+This is modelled in a 2 dimensional cellular automata. There is gravity
 applied to boxes and bots in the downward direction and bots push boxes to the
 right, as specified in section \ref{sec:world}. The movement of the bots is
-determined by cellular automa rules, which are specified in section
+determined by cellular automata rules, which are specified in section
 \ref{sec:ca-rules}.
 
 
 \subsection{The world}
 \label{sec:world}
-Falling
+Boxes and bots fall down immediately if they are not supported by a box, bot or
+obstacle under it. The world is initialised with a floor of obstacles on the
+bottom, to prevent bots from falling out of the world. On top of the first layer
+of obstacles is another layer with an single optional gap in it with an integer
+length between 1 and 10.
 
-Pushing
+If a bot  has a box to it's right it immediately and automatically pushes thay box to the
+right, if possible. A box has a integer weight between 1 and 10. Bots can work
+together pushing a box if they are in a line left of a box. If the length of
+this line is equal or longer than the combined weight of a line of boxes lying
+to the right of the bots the boxes get pushed one square to the right. Bots
+never push a box in a gap, and also never push boxes that have something on top
+of them.
 
 \subsection{Cellular Automata}
 \label{sec:ca-rules}
-The bots move according to cellular automa rules. Every time a bots is activated
-a There is no guarantee the bots
-get to apply 
+The bots move according to cellular automata rules, which are presented in figure
+\ref{fig:ca-rules}. Bots get randomly selected to activate. There is particular
+order the bots activate in, and a bot can not activate at all in a time
+span while another bot gets activated multiple times. If a bot activates it tries
+to apply a cellular automate rule. The rules are applied in order, the first one
+that matches gets executed.
+
+%Maybe say something about that all the rules can activate when there is another
+%bot on top. And about bots jumping down arbitrary distances if they are on top
+%of a box.
 
 \begin{figure}
 
