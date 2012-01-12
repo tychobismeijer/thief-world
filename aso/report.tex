@@ -4,7 +4,68 @@
 \usepackage{subfig}
 \usepackage{caption}
 
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{caption}
+\usepackage[cc]{titlepic}
+\usepackage{fullpage}
+\usepackage[
+bookmarks, 
+colorlinks=true, 
+linkcolor=black,          % color of internal links
+citecolor=black,        % color of links to bibliography
+pdftitle={Transporting Goods using Cellular Automata}, 
+pdfauthor={Stefan Boronea, Tycho Bismeijer}, 
+pdfsubject={cellular automata}, 
+pdfkeywords={cellular, automata, transportation, netlogo}]{hyperref}
+
+\DeclareCaptionFont{blue}{\color{blue}} 
+
+  \captionsetup[lstlisting]{singlelinecheck=false, labelfont={blue}, textfont={blue}}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
 \captionsetup[subfloat]{labelformat=empty,labelsep=none}
+
+ \lstset{
+         basicstyle=\footnotesize\ttfamily, % Standardschrift
+         %numbers=left,               % Ort der Zeilennummern
+         numberstyle=\tiny,          % Stil der Zeilennummern
+         %stepnumber=2,               % Abstand zwischen den Zeilennummern
+         numbersep=5pt,              % Abstand der Nummern zum Text
+         tabsize=2,                  % Groesse von Tabs
+         extendedchars=true,         %
+         breaklines=true,            % Zeilen werden Umgebrochen
+         keywordstyle=\color{red},
+    		frame=b,         
+         keywordstyle=[1]\textbf,    % Stil der Keywords
+         keywordstyle=[2]\textbf,    %
+         keywordstyle=[3]\textbf,    %
+ %        keywordstyle=[4]\textbf,   \sqrt{\sqrt{}} %
+         stringstyle=\color{white}\ttfamily, % Farbe der String
+         showspaces=false,           % Leerzeichen anzeigen ?
+         showtabs=false,             % Tabs anzeigen ?
+         xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         %backgroundcolor=\color{lightgray},
+         showstringspaces=false      % Leerzeichen in Strings anzeigen ?        
+ }
+ \lstloadlanguages{% Check Dokumentation for further languages ...
+         %[Visual]Basic
+         %Pascal
+         %C
+         %C++
+         %XML
+         %HTML
+         Java
+ }
 
 \title{Transporting Goods using Cellular Automata}
 \titlerunning{Transporting Goods using Cellular Automata}
@@ -27,9 +88,10 @@
 
 \input{experiments}
 
-\input{conclusion}
+\input{conclusions}
 
 \bibliographystyle{splncs}
 \bibliography{report}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
