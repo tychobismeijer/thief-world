@@ -2,15 +2,31 @@
 \label{sec:model}
 \addcontentsline{toc}{chapter}{Model}
 
-2D cellular automa with gravity. Bots, obstacles and boxes. Pushing.
+We model very simple robots like in \cite{butler02}, we call bots. Furthermore there are
+obstacles, which provide the bots a surface to stand on, and boxes, which can be
+pushed around. The bots, as we call them, are able to move around a surface,
+climb up each other and small obstacles, and to push boxes around. The goal of
+the bots is to push a box over a surface with a gap. They can do this by filling
+the gap with bots to supply a surface to push the box over.
+
+This is modelled in a 2 dimensinal cellular automata. There is gravity
+applied to boxes and bots in the downward direction and bots push boxes to the
+right, as specified in section \ref{sec:world}. The movement of the bots is
+determined by cellular automa rules, which are specified in section
+\ref{sec:ca-rules}.
+
 
 \subsection{The world}
+\label{sec:world}
 Falling
 
 Pushing
 
 \subsection{Cellular Automata}
-The bots move according to cellular automa rules.
+\label{sec:ca-rules}
+The bots move according to cellular automa rules. Every time a bots is activated
+a There is no guarantee the bots
+get to apply 
 
 \begin{figure}
 
@@ -89,6 +105,7 @@ The bots move according to cellular automa rules.
 \subfloat[]{
     \begin{minipage}[b]{\linewidth}
     \centering
+    Active Bot: \includegraphics[scale=1.2]{images/bot-active}\quad
     Bot: \includegraphics[scale=1.2]{images/bot}\quad%
     Obstacle: \includegraphics[scale=1.2]{images/obstacle}\quad%
     Box: \includegraphics[scale=1.2]{images/box}\quad
