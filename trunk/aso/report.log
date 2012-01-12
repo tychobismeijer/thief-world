@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.9.20)  12 JAN 2012 16:24
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.9.20)  12 JAN 2012 23:21
 entering extended mode
 **report.tex
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.tex
@@ -228,143 +228,336 @@ tempboxa \hfil }\fi \vskip \belowcaptionskip .
 \c@lotdepth=\count125
 \sf@top=\skip48
 \sf@bottom=\skip49
-) (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count126
+\float@exts=\toks24
+\float@box=\box54
+\@float@everytoks=\toks25
+\@floatcapt=\box55
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
+\lst@mode=\count127
+\lst@gtempboxa=\box56
+\lst@token=\toks26
+\lst@length=\count128
+\lst@currlwidth=\dimen133
+\lst@column=\count129
+\lst@pos=\count130
+\lst@lostspace=\dimen134
+\lst@width=\dimen135
+\lst@newlines=\count131
+\lst@lineno=\count132
+\lst@maxwidth=\dimen136
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count133
+\lst@skipnumbers=\count134
+\lst@framebox=\box57
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\courier.sty"
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\titlepic\titlepic.sty
+Package: titlepic 2009/08/03 1.1 Package to display a picture on the title page
+
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\preprint\fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip50
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2011/08/19 v6.82h Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
+Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
+Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
+Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
+Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+)
+\@linkdim=\dimen137
+\Hy@linkcounter=\count135
+\Hy@pagecounter=\count136
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2011/08/19 v6.82h Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count137
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 3932.
+Package hyperref Info: Option `colorlinks' set `true' on input line 3932.
+Package hyperref Info: Hyper figures OFF on input line 4053.
+Package hyperref Info: Link nesting OFF on input line 4058.
+Package hyperref Info: Hyper index ON on input line 4061.
+Package hyperref Info: Plain pages OFF on input line 4068.
+Package hyperref Info: Backreferencing OFF on input line 4073.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4291.
+\c@Hy@tempcnt=\count138
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4644.
+\Fld@menulength=\count139
+\Field@Width=\dimen138
+\Fld@charsize=\dimen139
+Package hyperref Info: Hyper figures OFF on input line 5730.
+Package hyperref Info: Link nesting OFF on input line 5735.
+Package hyperref Info: Hyper index ON on input line 5738.
+Package hyperref Info: backreferencing OFF on input line 5745.
+Package hyperref Info: Link coloring ON on input line 5748.
+Package hyperref Info: Link coloring with OCG OFF on input line 5755.
+Package hyperref Info: PDF/A mode OFF on input line 5760.
+LaTeX Info: Redefining \ref on input line 5800.
+LaTeX Info: Redefining \pageref on input line 5804.
+\Hy@abspage=\count140
+\c@Item=\count141
+\c@Hfootnote=\count142
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2011/08/19 v6.82h Hyperref driver for pdfTeX
+\Fld@listcount=\count143
+\c@bookmark@seq@number=\count144
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip51
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 
 (C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\unicode\ucsencs.def
 File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
 )
 (C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen133
-\scratchbox=\box54
-\nofMPsegments=\count127
-\nofMParguments=\count128
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen134
-\MPnumerator=\count130
-\makeMPintoPDFobject=\count131
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count145
+\scratchdimen=\dimen140
+\scratchbox=\box58
+\nofMPsegments=\count146
+\nofMParguments=\count147
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count148
+\MPscratchDim=\dimen141
+\MPnumerator=\count149
+\makeMPintoPDFobject=\count150
+\everyMPtoPDFconversion=\toks28
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count151
+\AtBeginShipoutBox=\box59
+Package hyperref Info: Link coloring ON on input line 77.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count152
+)
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
+
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.out)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.out)
+\@outlinefile=\write3
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 18.
+(Font)              <7> on input line 80.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 18.
- (C:\Users\Stefan\Documents\VU\ASO\project\repository\introduction.tex)
+(Font)              <5> on input line 80.
+
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\introduction.tex)
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\literature.tex)
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\model.tex
-<images/rule1.pdf, id=1, 96.7615pt x 24.4915pt>
+<images/rule1.pdf, id=37, 96.7615pt x 24.4915pt>
 File: images/rule1.pdf Graphic file (type pdf)
  <use images/rule1.pdf>
-Package pdftex.def Info: images/rule1.pdf used on input line 21.
+Package pdftex.def Info: images/rule1.pdf used on input line 23.
 (pdftex.def)             Requested size: 116.1132pt x 29.38963pt.
 
-Overfull \hbox (11.9751pt too wide) in paragraph at lines 21--21
- [][] 
- []
-
-<images/rule2a.pdf, id=2, 80.7015pt x 16.4615pt>
+<images/rule2a.pdf, id=38, 80.7015pt x 16.4615pt>
 File: images/rule2a.pdf Graphic file (type pdf)
  <use images/rule2a.pdf>
-Package pdftex.def Info: images/rule2a.pdf used on input line 29.
+Package pdftex.def Info: images/rule2a.pdf used on input line 31.
 (pdftex.def)             Requested size: 96.84132pt x 19.75368pt.
 
-<images/rule2b.pdf, id=3, 80.7015pt x 16.4615pt>
+<images/rule2b.pdf, id=39, 80.7015pt x 16.4615pt>
 File: images/rule2b.pdf Graphic file (type pdf)
  <use images/rule2b.pdf>
-Package pdftex.def Info: images/rule2b.pdf used on input line 37.
+Package pdftex.def Info: images/rule2b.pdf used on input line 39.
 (pdftex.def)             Requested size: 96.84132pt x 19.75368pt.
 
-<images/rule3.pdf, id=4, 64.6415pt x 16.4615pt>
+<images/rule3.pdf, id=40, 64.6415pt x 16.4615pt>
 File: images/rule3.pdf Graphic file (type pdf)
  <use images/rule3.pdf>
-Package pdftex.def Info: images/rule3.pdf used on input line 45.
+Package pdftex.def Info: images/rule3.pdf used on input line 47.
 (pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
 
-<images/rule4.pdf, id=5, 64.6415pt x 24.4915pt>
+<images/rule4.pdf, id=41, 64.6415pt x 24.4915pt>
 File: images/rule4.pdf Graphic file (type pdf)
  <use images/rule4.pdf>
-Package pdftex.def Info: images/rule4.pdf used on input line 53.
+Package pdftex.def Info: images/rule4.pdf used on input line 55.
 (pdftex.def)             Requested size: 77.56937pt x 29.38963pt.
 
-<images/rule5a.pdf, id=6, 64.6415pt x 16.4615pt>
+<images/rule5a.pdf, id=42, 64.6415pt x 16.4615pt>
 File: images/rule5a.pdf Graphic file (type pdf)
  <use images/rule5a.pdf>
-Package pdftex.def Info: images/rule5a.pdf used on input line 61.
+Package pdftex.def Info: images/rule5a.pdf used on input line 63.
 (pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
 
-<images/rule5b.pdf, id=7, 64.6415pt x 16.4615pt>
+<images/rule5b.pdf, id=43, 64.6415pt x 16.4615pt>
 File: images/rule5b.pdf Graphic file (type pdf)
  <use images/rule5b.pdf>
-Package pdftex.def Info: images/rule5b.pdf used on input line 69.
+Package pdftex.def Info: images/rule5b.pdf used on input line 71.
 (pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
 
-<images/rule6.pdf, id=8, 64.6415pt x 24.4915pt>
+<images/rule6.pdf, id=44, 64.6415pt x 24.4915pt>
 File: images/rule6.pdf Graphic file (type pdf)
  <use images/rule6.pdf>
-Package pdftex.def Info: images/rule6.pdf used on input line 77.
+Package pdftex.def Info: images/rule6.pdf used on input line 79.
 (pdftex.def)             Requested size: 77.56937pt x 29.38963pt.
 
-<images/rule7.pdf, id=9, 64.6415pt x 16.4615pt>
+<images/rule7.pdf, id=45, 64.6415pt x 16.4615pt>
 File: images/rule7.pdf Graphic file (type pdf)
  <use images/rule7.pdf>
-Package pdftex.def Info: images/rule7.pdf used on input line 85.
+Package pdftex.def Info: images/rule7.pdf used on input line 87.
 (pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
 
-<images/bot.pdf, id=10, 6.8255pt x 6.8255pt>
+<images/bot.pdf, id=46, 6.8255pt x 6.8255pt>
 File: images/bot.pdf Graphic file (type pdf)
  <use images/bot.pdf>
-Package pdftex.def Info: images/bot.pdf used on input line 98.
+Package pdftex.def Info: images/bot.pdf used on input line 100.
 (pdftex.def)             Requested size: 8.19054pt x 8.19054pt.
 
-<images/obstacle.pdf, id=11, 6.69281pt x 6.36807pt>
+<images/obstacle.pdf, id=47, 6.69281pt x 6.36807pt>
 File: images/obstacle.pdf Graphic file (type pdf)
  <use images/obstacle.pdf>
-Package pdftex.def Info: images/obstacle.pdf used on input line 98.
+Package pdftex.def Info: images/obstacle.pdf used on input line 100.
 (pdftex.def)             Requested size: 8.03131pt x 7.64162pt.
 
-<images/box.pdf, id=12, 6.8255pt x 6.8255pt>
+<images/box.pdf, id=48, 6.8255pt x 6.8255pt>
 File: images/box.pdf Graphic file (type pdf)
  <use images/box.pdf>
-Package pdftex.def Info: images/box.pdf used on input line 98.
+Package pdftex.def Info: images/box.pdf used on input line 100.
 (pdftex.def)             Requested size: 8.19054pt x 8.19054pt.
 
-<images/empty.pdf, id=13, 8.03pt x 8.03pt>
+<images/empty.pdf, id=49, 8.03pt x 8.03pt>
 File: images/empty.pdf Graphic file (type pdf)
  <use images/empty.pdf>
-Package pdftex.def Info: images/empty.pdf used on input line 98.
+Package pdftex.def Info: images/empty.pdf used on input line 100.
 (pdftex.def)             Requested size: 9.63593pt x 9.63593pt.
 
-<images/some-turtle.pdf, id=14, 6.424pt x 6.424pt>
+<images/some-turtle.pdf, id=50, 6.424pt x 6.424pt>
 File: images/some-turtle.pdf Graphic file (type pdf)
 
 <use images/some-turtle.pdf>
-Package pdftex.def Info: images/some-turtle.pdf used on input line 98.
+Package pdftex.def Info: images/some-turtle.pdf used on input line 100.
 (pdftex.def)             Requested size: 7.70872pt x 7.70872pt.
- <images/no-bot.pdf, id=15, 8.03pt x 8.03pt>
+ <images/no-bot.pdf, id=51, 8.03pt x 8.03pt>
 File: images/no-bot.pdf Graphic file (type pdf)
 
 <use images/no-bot.pdf>
-Package pdftex.def Info: images/no-bot.pdf used on input line 98.
+Package pdftex.def Info: images/no-bot.pdf used on input line 100.
 (pdftex.def)             Requested size: 9.63593pt x 9.63593pt.
 
-Overfull \hbox (6.16663pt too wide) in paragraph at lines 98--99
+Overfull \hbox (6.16663pt too wide) in paragraph at lines 100--101
 [][] 
  []
 
@@ -372,43 +565,67 @@ Overfull \hbox (6.16663pt too wide) in paragraph at lines 98--99
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiments.tex
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment1.tex)
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment2.tex)
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment3.tex))
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\conclusion.tex)
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.bbl) [1
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment3.tex
+\@float@every@bots_vs_weight=\toks29
 
-{C:/Users/Stefan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <C:/Use
-rs/Stefan/Documents/VU/ASO/project/repository/images/rule1.pdf> <C:/Users/Stefa
-n/Documents/VU/ASO/project/repository/images/rule2a.pdf> <C:/Users/Stefan/Docum
-ents/VU/ASO/project/repository/images/rule2b.pdf> <C:/Users/Stefan/Documents/VU
-/ASO/project/repository/images/rule3.pdf> <C:/Users/Stefan/Documents/VU/ASO/pro
-ject/repository/images/rule4.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/rep
-ository/images/rule5a.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository
-/images/rule5b.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images
-/rule6.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/rule7.p
-df> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bot.pdf> <C:/Us
-ers/Stefan/Documents/VU/ASO/project/repository/images/obstacle.pdf> <C:/Users/S
-tefan/Documents/VU/ASO/project/repository/images/box.pdf> <C:/Users/Stefan/Docu
-ments/VU/ASO/project/repository/images/empty.pdf> <C:/Users/Stefan/Documents/VU
-/ASO/project/repository/images/some-turtle.pdf> <C:/Users/Stefan/Documents/VU/A
-SO/project/repository/images/no-bot.pdf>]
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux) ) 
+<images/bots_vs_weight.png, id=53, 1028.34187pt x 490.83376pt>
+File: images/bots_vs_weight.png Graphic file (type png)
+
+<use images/bots_vs_weight.png>
+Package pdftex.def Info: images/bots_vs_weight.png used on input line 8.
+(pdftex.def)             Requested size: 462.74957pt x 220.87314pt.
+)) [1
+
+{C:/Users/Stefan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/rule1.pdf> <C:/
+Users/Stefan/Documents/VU/ASO/project/repository/images/rule2a.pdf> <C:/Users/S
+tefan/Documents/VU/ASO/project/repository/images/rule2b.pdf> <C:/Users/Stefan/D
+ocuments/VU/ASO/project/repository/images/rule3.pdf> <C:/Users/Stefan/Documents
+/VU/ASO/project/repository/images/rule4.pdf> <C:/Users/Stefan/Documents/VU/ASO/
+project/repository/images/rule5a.pdf> <C:/Users/Stefan/Documents/VU/ASO/project
+/repository/images/rule5b.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/reposi
+tory/images/rule6.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/ima
+ges/rule7.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bot.
+pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/obstacle.pdf> 
+<C:/Users/Stefan/Documents/VU/ASO/project/repository/images/box.pdf> <C:/Users/
+Stefan/Documents/VU/ASO/project/repository/images/empty.pdf> <C:/Users/Stefan/D
+ocuments/VU/ASO/project/repository/images/some-turtle.pdf> <C:/Users/Stefan/Doc
+uments/VU/ASO/project/repository/images/no-bot.pdf>]
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\conclusions.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.bbl)
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 28.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 97.
+[3 <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bots_vs_weight.p
+ng (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
+ (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 97.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: DA02011444CBEE484F078C17A04B8787;418.
+ ) 
 Here is how much of TeX's memory you used:
- 3036 strings out of 494045
- 48490 string characters out of 3148384
- 124271 words of memory out of 3000000
- 6292 multiletter control sequences out of 15000+200000
+ 8613 strings out of 494045
+ 131327 string characters out of 3148384
+ 263581 words of memory out of 3000000
+ 11758 multiletter control sequences out of 15000+200000
  5457 words of font info for 20 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 44i,9n,46p,327b,388s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr9.pfb>
-Output written on report.pdf (2 pages, 93699 bytes).
+ 44i,10n,46p,541b,428s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr9.pfb>
+Output written on report.pdf (3 pages, 156485 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 32 named destinations out of 1000 (max. 500000)
+ 145 words of extra memory for PDF output out of 10000 (max. 10000000)
 
