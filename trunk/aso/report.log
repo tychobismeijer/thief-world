@@ -1,0 +1,414 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.9.20)  12 JAN 2012 16:21
+entering extended mode
+**report.tex
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\llncs.cls
+Document Class: llncs 2010/07/12 v2.17 
+ LaTeX document class for Lecture Notes in Computer Science
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count87
+\mult@box=\box26
+\multicol@leftmargin=\dimen103
+\c@unbalance=\count88
+\c@collectmore=\count89
+\doublecol@number=\count90
+\multicoltolerance=\count91
+\multicolpretolerance=\count92
+\full@width=\dimen104
+\page@free=\dimen105
+\premulticols=\dimen106
+\postmulticols=\dimen107
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box27
+\last@line=\box28
+\mult@rightbox=\box29
+\mult@grightbox=\box30
+\mult@gfirstbox=\box31
+\mult@firstbox=\box32
+\@tempa=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\c@columnbadness=\count93
+\c@finalcolumnbadness=\count94
+\last@try=\dimen108
+\multicolovershoot=\dimen109
+\multicolundershoot=\dimen110
+\mult@nat@firstbox=\box50
+\colbreak@box=\box51
+\multicol@sort@counter=\count95
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\aliascnt.sty"
+Package: aliascnt 2009/09/08 v1.3 Alias counter (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\carlisle\remreset.sty"))
+\c@chapter=\count96
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 362.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 363.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 364.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 365.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 366.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 367.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 368.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 369.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 370.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 371.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
+\tocchpnum=\dimen111
+\tocsecnum=\dimen112
+\tocsectotal=\dimen113
+\tocsubsecnum=\dimen114
+\tocsubsectotal=\dimen115
+\tocsubsubsecnum=\dimen116
+\tocsubsubsectotal=\dimen117
+\tocparanum=\dimen118
+\tocparatotal=\dimen119
+\tocsubparanum=\dimen120
+\@tempcntc=\count97
+\fnindent=\dimen121
+\c@@inst=\count98
+\c@@auth=\count99
+\c@auco=\count100
+\instindent=\dimen122
+\authrun=\box52
+\authorrunning=\toks14
+\tocauthor=\toks15
+\titrun=\box53
+\titlerunning=\toks16
+\toctitle=\toks17
+\c@theorem=\count101
+\c@case=\count102
+\c@conjecture=\count103
+\c@corollary=\count104
+\c@definition=\count105
+\c@example=\count106
+\c@exercise=\count107
+\c@lemma=\count108
+\c@note=\count109
+\c@problem=\count110
+\c@property=\count111
+\c@proposition=\count112
+\c@question=\count113
+\c@solution=\count114
+\c@remark=\count115
+\headlineindent=\dimen123
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\unicode\utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\unicode\ucs.sty
+Package: ucs 2004/10/17 UCS: Unicode input support
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\unicode\data\uni-global.d
+ef
+File: uni-global.def 2004/10/17 UCS: Unicode global data
+)
+\uc@secondtry=\count116
+\uc@combtoks=\toks20
+\uc@combtoksb=\toks21
+\uc@temptokena=\toks22
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count117
+))
+\Gin@req@height=\dimen124
+\Gin@req@width=\dimen125
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\subfig\subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+Package: caption 2011/11/10 v3.2e Customizing captions (AR)
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+Package: caption3 2011/11/01 v1.4a caption3 kernel (AR)
+\captionmargin=\dimen126
+\captionmargin@=\dimen127
+\captionwidth=\dimen128
+\caption@indent=\dimen129
+\caption@parindent=\dimen130
+\caption@hangindent=\dimen131
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\small \vskip \abovecap
+tionskip \sbox \@tempboxa {{\bfseries #1.} #2}\ifdim \wd \@tempboxa >\hsize {\b
+fseries #1.} #2\par \else \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@
+tempboxa \hfil }\fi \vskip \belowcaptionskip .
+\c@ContinuedFloat=\count118
+)
+\c@KVtest=\count119
+\sf@farskip=\skip45
+\sf@captopadj=\dimen132
+\sf@capskip=\skip46
+\sf@nearskip=\skip47
+\c@subfigure=\count120
+\c@subfigure@save=\count121
+\c@lofdepth=\count122
+\c@subtable=\count123
+\c@subtable@save=\count124
+\c@lotdepth=\count125
+\sf@top=\skip48
+\sf@bottom=\skip49
+) (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\unicode\ucsencs.def
+File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count126
+\scratchdimen=\dimen133
+\scratchbox=\box54
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen134
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks25
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 18.
+ (C:\Users\Stefan\Documents\VU\ASO\project\repository\introduction.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\literature.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\model.tex
+<images/rule1.pdf, id=1, 96.7615pt x 24.4915pt>
+File: images/rule1.pdf Graphic file (type pdf)
+ <use images/rule1.pdf>
+Package pdftex.def Info: images/rule1.pdf used on input line 21.
+(pdftex.def)             Requested size: 116.1132pt x 29.38963pt.
+
+Overfull \hbox (11.9751pt too wide) in paragraph at lines 21--21
+ [][] 
+ []
+
+<images/rule2a.pdf, id=2, 80.7015pt x 16.4615pt>
+File: images/rule2a.pdf Graphic file (type pdf)
+ <use images/rule2a.pdf>
+Package pdftex.def Info: images/rule2a.pdf used on input line 29.
+(pdftex.def)             Requested size: 96.84132pt x 19.75368pt.
+
+<images/rule2b.pdf, id=3, 80.7015pt x 16.4615pt>
+File: images/rule2b.pdf Graphic file (type pdf)
+ <use images/rule2b.pdf>
+Package pdftex.def Info: images/rule2b.pdf used on input line 37.
+(pdftex.def)             Requested size: 96.84132pt x 19.75368pt.
+
+<images/rule3.pdf, id=4, 64.6415pt x 16.4615pt>
+File: images/rule3.pdf Graphic file (type pdf)
+ <use images/rule3.pdf>
+Package pdftex.def Info: images/rule3.pdf used on input line 45.
+(pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
+
+<images/rule4.pdf, id=5, 64.6415pt x 24.4915pt>
+File: images/rule4.pdf Graphic file (type pdf)
+ <use images/rule4.pdf>
+Package pdftex.def Info: images/rule4.pdf used on input line 53.
+(pdftex.def)             Requested size: 77.56937pt x 29.38963pt.
+
+<images/rule5a.pdf, id=6, 64.6415pt x 16.4615pt>
+File: images/rule5a.pdf Graphic file (type pdf)
+ <use images/rule5a.pdf>
+Package pdftex.def Info: images/rule5a.pdf used on input line 61.
+(pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
+
+<images/rule5b.pdf, id=7, 64.6415pt x 16.4615pt>
+File: images/rule5b.pdf Graphic file (type pdf)
+ <use images/rule5b.pdf>
+Package pdftex.def Info: images/rule5b.pdf used on input line 69.
+(pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
+
+<images/rule6.pdf, id=8, 64.6415pt x 24.4915pt>
+File: images/rule6.pdf Graphic file (type pdf)
+ <use images/rule6.pdf>
+Package pdftex.def Info: images/rule6.pdf used on input line 77.
+(pdftex.def)             Requested size: 77.56937pt x 29.38963pt.
+
+<images/rule7.pdf, id=9, 64.6415pt x 16.4615pt>
+File: images/rule7.pdf Graphic file (type pdf)
+ <use images/rule7.pdf>
+Package pdftex.def Info: images/rule7.pdf used on input line 85.
+(pdftex.def)             Requested size: 77.56937pt x 19.75368pt.
+
+<images/bot.pdf, id=10, 6.8255pt x 6.8255pt>
+File: images/bot.pdf Graphic file (type pdf)
+ <use images/bot.pdf>
+Package pdftex.def Info: images/bot.pdf used on input line 98.
+(pdftex.def)             Requested size: 8.19054pt x 8.19054pt.
+
+<images/obstacle.pdf, id=11, 6.69281pt x 6.36807pt>
+File: images/obstacle.pdf Graphic file (type pdf)
+ <use images/obstacle.pdf>
+Package pdftex.def Info: images/obstacle.pdf used on input line 98.
+(pdftex.def)             Requested size: 8.03131pt x 7.64162pt.
+
+<images/box.pdf, id=12, 6.8255pt x 6.8255pt>
+File: images/box.pdf Graphic file (type pdf)
+ <use images/box.pdf>
+Package pdftex.def Info: images/box.pdf used on input line 98.
+(pdftex.def)             Requested size: 8.19054pt x 8.19054pt.
+
+<images/empty.pdf, id=13, 8.03pt x 8.03pt>
+File: images/empty.pdf Graphic file (type pdf)
+ <use images/empty.pdf>
+Package pdftex.def Info: images/empty.pdf used on input line 98.
+(pdftex.def)             Requested size: 9.63593pt x 9.63593pt.
+
+<images/some-turtle.pdf, id=14, 6.424pt x 6.424pt>
+File: images/some-turtle.pdf Graphic file (type pdf)
+
+<use images/some-turtle.pdf>
+Package pdftex.def Info: images/some-turtle.pdf used on input line 98.
+(pdftex.def)             Requested size: 7.70872pt x 7.70872pt.
+ <images/no-bot.pdf, id=15, 8.03pt x 8.03pt>
+File: images/no-bot.pdf Graphic file (type pdf)
+
+<use images/no-bot.pdf>
+Package pdftex.def Info: images/no-bot.pdf used on input line 98.
+(pdftex.def)             Requested size: 9.63593pt x 9.63593pt.
+
+Overfull \hbox (6.16663pt too wide) in paragraph at lines 98--99
+[][] 
+ []
+
+) (C:\Users\Stefan\Documents\VU\ASO\project\repository\implementation.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiments.tex
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment1.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment2.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment3.tex))
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\conclusion.tex)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.bbl) [1
+
+{C:/Users/Stefan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <C:/Use
+rs/Stefan/Documents/VU/ASO/project/repository/images/rule1.pdf> <C:/Users/Stefa
+n/Documents/VU/ASO/project/repository/images/rule2a.pdf> <C:/Users/Stefan/Docum
+ents/VU/ASO/project/repository/images/rule2b.pdf> <C:/Users/Stefan/Documents/VU
+/ASO/project/repository/images/rule3.pdf> <C:/Users/Stefan/Documents/VU/ASO/pro
+ject/repository/images/rule4.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/rep
+ository/images/rule5a.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository
+/images/rule5b.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images
+/rule6.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/rule7.p
+df> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bot.pdf> <C:/Us
+ers/Stefan/Documents/VU/ASO/project/repository/images/obstacle.pdf> <C:/Users/S
+tefan/Documents/VU/ASO/project/repository/images/box.pdf> <C:/Users/Stefan/Docu
+ments/VU/ASO/project/repository/images/empty.pdf> <C:/Users/Stefan/Documents/VU
+/ASO/project/repository/images/some-turtle.pdf> <C:/Users/Stefan/Documents/VU/A
+SO/project/repository/images/no-bot.pdf>]
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux) ) 
+Here is how much of TeX's memory you used:
+ 3036 strings out of 494045
+ 48490 string characters out of 3148384
+ 123271 words of memory out of 3000000
+ 6292 multiletter control sequences out of 15000+200000
+ 5457 words of font info for 20 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 44i,9n,46p,327b,388s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr9.pfb>
+Output written on report.pdf (2 pages, 92333 bytes).
+PDF statistics:
+ 60 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+
