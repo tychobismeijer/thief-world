@@ -1,15 +1,23 @@
-\documentclass{article}
+\documentclass[runningheads]{llncs}
 \usepackage[utf8x]{inputenc}
 
 %opening
 \title{Transporting Goods using Cellular Automata}
-\author{Tycho Bismeijer \and Stefan Boronea}
+\titlerunning{Transporting Goods using Cellular Automata}
+\author{Tycho Bismeijer\inst{1} \and Stefan Boronea\inst{1}}
+\authorrunning{T. Bismeijer \and S. Boronea}
+\institute{Faculty of Exact Sciences, Vrije Universiteit Amsterdam}
 \date{}
-
 
 \begin{document}
 
 \maketitle
+
+\begin{abstract}
+Abstract
+\end{abstract}
+
+\section{Introduction}
 
 \section{Literature}
 Our project is based on the cellular automata model presented in \cite{1013457}. The idea of using a cellular automata to control self configurable robots is inspired by Butler's work, in which they use a flat surface and do not consider transportation.
@@ -22,10 +30,10 @@ The environment in which the simulation takes place will be represented by a two
 
 The design of the cellular automata model for transporting objects will take into account the following scenarios. We will begin by transporting blocks of weight 1 over a flat surface. Then we would like to see how a single gap (of width 1) within the surface affects the movements of bots. One further aspect we would like to consider is whether the size of the gap would influence the movement of the bots. Finally, we want to increase the weight of objects and see the effect it has on the overall system. As extensions for the model we would also like to vary the object size and add different environment parameters, such as friction.
 
-\section{Questions}
+\subsection{Questions}
 Research question: How to transport objects over gaps in a cellular automata model of self-configurable robots?
 
-\section{Hypotheses}
+\subsection{Hypotheses}
 Our hypotheses are the following:
 \begin{itemize}
  \item The number of extra robots needed to push over a gap is independent of the gap size
@@ -33,7 +41,19 @@ Our hypotheses are the following:
  \item There is a linear correlation between the weight of the object that is transported and the minimum number of bots.
 \end{itemize}
 
-\bibliographystyle{plain}
+
+\section{Implementation}
+
+\section{Experiments}
+\subsection{Experiment 1}
+
+\subsection{Experiment 2}
+
+\subsection{Experiment 3}
+
+\section{Conclusions}
+
+\bibliographystyle{splncs}
 \bibliography{research-question}
 
 \end{document}
