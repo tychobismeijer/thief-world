@@ -1,1 +1,101 @@
 \section{Model}
+
+2D cellular automa with gravity. Bots, obstacles and boxes. Pushing.
+
+\subsection{The world}
+Falling
+
+Pushing
+
+\subsection{Cellular Automata}
+The bots move according to cellular automa rules.
+
+\begin{figure}
+
+\subfloat[Rule 1]{
+    \label{fig:ca-rules:1}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule1}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 2a]{
+    \label{fig:ca-rules:2a}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule2a}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 2b]{
+    \label{fig:ca-rules:2b}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule2b}
+    \end{minipage}
+}
+
+\subfloat[Rule 3]{
+    \label{fig:ca-rules:3}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule3}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 4]{
+    \label{fig:ca-rules:4}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule4}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 5a]{
+    \label{fig:ca-rules:5a}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule5a}
+    \end{minipage}
+}
+
+\subfloat[Rule 5b]{
+    \label{fig:ca-rules:5b}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule5b}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 6]{
+    \label{fig:ca-rules:6}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule6}
+    \end{minipage}
+}%
+\hfill
+\subfloat[Rule 7]{
+    \label{fig:ca-rules:7}
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \includegraphics[scale=1.2]{images/rule7}
+    \end{minipage}
+}
+
+\subfloat[]{
+    \begin{minipage}[b]{\linewidth}
+    \centering
+    Bot: \includegraphics[scale=1.2]{images/bot}\quad%
+    Obstacle: \includegraphics[scale=1.2]{images/obstacle}\quad%
+    Box: \includegraphics[scale=1.2]{images/box}\quad
+
+    Empty space: \includegraphics[scale=1.2]{images/empty}\quad%
+    Bot, Obstacle or Box: \includegraphics[scale=1.2]{images/some-turtle}\quad%
+    No bot: \includegraphics[scale=1.2]{images/no-bot}\quad%
+    \end{minipage}
+}
+\caption{Cellular automata rules for moving bots.}
+\label{fig:ca-rules}
+\end{figure}
