@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.9.20)  12 JAN 2012 23:21
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.9.20)  13 JAN 2012 06:28
 entering extended mode
 **report.tex
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.tex
@@ -401,6 +401,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang2.sty
+File: lstlang2.sty 2004/09/05 1.3 listings language file
+)
+(C:\Users\Stefan\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang3.sty
+File: lstlang3.sty 2004/09/05 1.3 listings language file
+)
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
@@ -561,71 +567,112 @@ Overfull \hbox (6.16663pt too wide) in paragraph at lines 100--101
 [][] 
  []
 
-) (C:\Users\Stefan\Documents\VU\ASO\project\repository\implementation.tex)
+) (C:\Users\Stefan\Documents\VU\ASO\project\repository\implementation.tex
+\@float@every@world=\toks29
+
+<images/world.png, id=53, 430.60875pt x 430.60875pt>
+File: images/world.png Graphic file (type png)
+ <use images/world.png>
+Package pdftex.def Info: images/world.png used on input line 9.
+(pdftex.def)             Requested size: 193.77214pt x 193.77214pt.
+
+[1
+
+{C:/Users/Stefan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <C:/Use
+rs/Stefan/Documents/VU/ASO/project/repository/images/rule1.pdf> <C:/Users/Stefa
+n/Documents/VU/ASO/project/repository/images/rule2a.pdf> <C:/Users/Stefan/Docum
+ents/VU/ASO/project/repository/images/rule2b.pdf> <C:/Users/Stefan/Documents/VU
+/ASO/project/repository/images/rule3.pdf> <C:/Users/Stefan/Documents/VU/ASO/pro
+ject/repository/images/rule4.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/rep
+ository/images/rule5a.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository
+/images/rule5b.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images
+/rule6.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/rule7.p
+df> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bot.pdf> <C:/Us
+ers/Stefan/Documents/VU/ASO/project/repository/images/obstacle.pdf> <C:/Users/S
+tefan/Documents/VU/ASO/project/repository/images/box.pdf> <C:/Users/Stefan/Docu
+ments/VU/ASO/project/repository/images/empty.pdf> <C:/Users/Stefan/Documents/VU
+/ASO/project/repository/images/some-turtle.pdf> <C:/Users/Stefan/Documents/VU/A
+SO/project/repository/images/no-bot.pdf> <C:/Users/Stefan/Documents/VU/ASO/proj
+ect/repository/images/world.png>]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 18.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 18--18
+[][][][][][][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 18.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\code/main-loop.txt)
+Overfull \hbox (6.0pt too wide) in paragraph at lines 20--20
+[][][][][][][] 
+ []
+
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\code/pushing.txt))
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiments.tex
+Underfull \vbox (badness 4168) has occurred while \output is active []
+
+ [3]
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment1.tex)
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment2.tex)
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment3.tex
-\@float@every@bots_vs_weight=\toks29
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\experiment3.tex [4]
+\@float@every@minimum_no_bots2=\toks30
 
-<images/bots_vs_weight.png, id=53, 1028.34187pt x 490.83376pt>
+<images/minimum_no_bots2.png, id=179, 1028.34187pt x 490.83376pt>
+File: images/minimum_no_bots2.png Graphic file (type png)
+
+<use images/minimum_no_bots2.png>
+Package pdftex.def Info: images/minimum_no_bots2.png used on input line 27.
+(pdftex.def)             Requested size: 411.32947pt x 196.33002pt.
+\@float@every@bots_vs_weight=\toks31
+
+<images/bots_vs_weight.png, id=180, 1028.34187pt x 490.83376pt>
 File: images/bots_vs_weight.png Graphic file (type png)
 
 <use images/bots_vs_weight.png>
-Package pdftex.def Info: images/bots_vs_weight.png used on input line 8.
+Package pdftex.def Info: images/bots_vs_weight.png used on input line 34.
 (pdftex.def)             Requested size: 462.74957pt x 220.87314pt.
-)) [1
-
-{C:/Users/Stefan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2 <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/rule1.pdf> <C:/
-Users/Stefan/Documents/VU/ASO/project/repository/images/rule2a.pdf> <C:/Users/S
-tefan/Documents/VU/ASO/project/repository/images/rule2b.pdf> <C:/Users/Stefan/D
-ocuments/VU/ASO/project/repository/images/rule3.pdf> <C:/Users/Stefan/Documents
-/VU/ASO/project/repository/images/rule4.pdf> <C:/Users/Stefan/Documents/VU/ASO/
-project/repository/images/rule5a.pdf> <C:/Users/Stefan/Documents/VU/ASO/project
-/repository/images/rule5b.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/reposi
-tory/images/rule6.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/ima
-ges/rule7.pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bot.
-pdf> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/obstacle.pdf> 
-<C:/Users/Stefan/Documents/VU/ASO/project/repository/images/box.pdf> <C:/Users/
-Stefan/Documents/VU/ASO/project/repository/images/empty.pdf> <C:/Users/Stefan/D
-ocuments/VU/ASO/project/repository/images/some-turtle.pdf> <C:/Users/Stefan/Doc
-uments/VU/ASO/project/repository/images/no-bot.pdf>]
-(C:\Users\Stefan\Documents\VU\ASO\project\repository\conclusions.tex)
+))
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\conclusions.tex [5 <C:/Use
+rs/Stefan/Documents/VU/ASO/project/repository/images/minimum_no_bots2.png (PNG 
+copy)> <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bots_vs_weig
+ht.png (PNG copy)>])
 (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
 
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 28.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 97.
-[3 <C:/Users/Stefan/Documents/VU/ASO/project/repository/images/bots_vs_weight.p
-ng (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
- (C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 97.
+(C:\Users\Stefan\Documents\VU\ASO\project\repository\report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: DA02011444CBEE484F078C17A04B8787;418.
+(rerunfilecheck)             Checksum: 5C404FF1DB0985200369C5452EE8A1F7;418.
  ) 
 Here is how much of TeX's memory you used:
- 8613 strings out of 494045
- 131327 string characters out of 3148384
- 263581 words of memory out of 3000000
- 11758 multiletter control sequences out of 15000+200000
- 5457 words of font info for 20 fonts, out of 3000000 for 9000
+ 9090 strings out of 494045
+ 137011 string characters out of 3148384
+ 393115 words of memory out of 3000000
+ 12153 multiletter control sequences out of 15000+200000
+ 8150 words of font info for 29 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 44i,10n,46p,541b,428s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr9.pfb>
-Output written on report.pdf (3 pages, 156485 bytes).
+ 44i,10n,46p,1095b,1051s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on report.pdf (6 pages, 234364 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 245 PDF objects out of 1000 (max. 8388607)
+ 87 named destinations out of 1000 (max. 500000)
+ 155 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,25 @@
+to make-single-run
+  ; move bots
+  ask one-of bots [
+    bot-move
+  ]
+  
+  ; apply gravity and push boxes
+  ask bots [
+    fall
+    
+    ; check if there are boxes to be moved
+    push-box
+    
+    ; remove boxes at the storage area
+    store-boxes
+  ]
+  
+  ; apply gravity on boxes
+  ask boxes [
+    fall
+  ]
+  
+  ;move to next time step
+  tick
+end
