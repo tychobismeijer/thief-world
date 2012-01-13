@@ -1,0 +1,10 @@
+  ; Place the box before the gap
+  if ((mpxcor - floor(gap-size / 2) - 2) >= min-pxcor)
+  [
+    ask patches with [(pycor = min-pycor + 2) and
+      (pxcor = (mpxcor - floor(gap-size / 2) - 2))]
+    [ sprout-boxes 1 [ 
+        set weight box-weight
+        set color yellow
+      ] ]
+  ]
