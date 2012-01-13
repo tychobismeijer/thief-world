@@ -8,8 +8,14 @@ for gap_size = 0:max_gap_size
         d = d(d(:,2)==n_bots,:);
         p(n_bots) = sum(d(:,4) == 0) / length(d);
     end
-    plot(1:max_n_bots, 100-p*100);
+    plot(1:max_n_bots, 100-p*100,
+        'linewidth', 2,
+        'color', 'black');
     xlabel('Number of bots');
     ylabel('% Succesfull runs');
-    print(['plot' num2str(gap_size) '.eps'], '-deps');
+    print(['plot' num2str(gap_size) '.pdf'],
+        '-dpdfwrite',
+        '-S150,150',
+        '-tight',
+        '-FLMRoman10:16');
 end
