@@ -8,8 +8,6 @@ import thiefworld.util.Utilities;
 
 public class Hunter extends ActiveAgent {
 	private static int hunterNo = 0;
-	private static double weight = 1.0; //0.5;
-
 	/**
 	 * 
 	 */
@@ -44,6 +42,7 @@ public class Hunter extends ActiveAgent {
 	 */
 	protected void thinkAboutSwitchingJobs(ThiefWorld world) {
 		Logger log = Logger.getLogger(getName());
+		
 		double probability = ActiveAgent.switchProb;
 		//System.out.println("initial switch probability: "+ probability);
 		
@@ -59,6 +58,7 @@ public class Hunter extends ActiveAgent {
 		System.out.println("New value for internal hunting succes: "+ huntingSuccess);
 		System.out.println("New value for internal Gathering succes: "+ gatheringSuccess);
 		System.out.println("personal succes: "+ personalSuccess);
+		
 		//Check whether it is worth it to switch
 		/*if agent performs less than average on hunting and gathering is more successful than hunting
 		 * add the difference in performance to the switch probability
