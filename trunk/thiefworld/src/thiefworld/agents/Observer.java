@@ -51,9 +51,10 @@ public class Observer extends Agent {
 
 		// Sum up all the personal success rates
 		Double totalSuccessRates = 0.0;
-		for (int i = 0; i < selectedAgents.size(); i++)
-			totalSuccessRates += ((ActiveAgent) selectedAgents.get(i))
-					.getPersonalSuccess();
+		for (int i = 0; i < selectedAgents.size(); i++) {
+			ActiveAgent activeAgent = (ActiveAgent) selectedAgents.get(i);
+			totalSuccessRates += activeAgent.successRates.getPersonalSuccess();
+		}
 
 		// Return the average success rate
 		if(selectedAgents.size() != 0)

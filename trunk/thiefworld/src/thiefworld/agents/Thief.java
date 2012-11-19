@@ -92,8 +92,8 @@ public class Thief extends ActiveAgent {
 	private void robNest(Nest nest) {
 		// check how much food the agent can steal
 		double availableFood = nest.getFoodQuantity();
-		double maximumFoodToExtract = this.getMaxAllowedFood()
-				- this.getCarriedFood();
+		double maximumFoodToExtract = inventory.getMaxAllowedFood()
+				- inventory.getCarriedFood();
 
 		double foodToExtract = 0.0;
 
