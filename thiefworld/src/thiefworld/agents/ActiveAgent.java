@@ -533,11 +533,6 @@ public abstract class ActiveAgent extends Agent {
 				this.increaseCarriedFruit(foodToExtract);
 			else if (foodSource.getClass() == MeatSource.class)
 				this.increaseCarriedMeat(foodToExtract);
-
-			// log event
-			Logger log = Logger.getLogger(this.getName());
-			/*log.log(Level.INFO, this.getName() + " picked up " + foodToExtract
-					+ " food from " + foodSource.getName());*/
 		}
 	}
 

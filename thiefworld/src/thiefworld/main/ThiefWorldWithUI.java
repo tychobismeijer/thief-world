@@ -10,22 +10,9 @@ import sim.display.Controller;
 import sim.display.Display2D;
 import sim.display.GUIState;
 import sim.engine.SimState;
-import sim.engine.Steppable;
 import sim.portrayal.Inspector;
 import sim.portrayal.continuous.ContinuousPortrayal2D;
-import sim.portrayal.simple.CircledPortrayal2D;
 import sim.portrayal.simple.ImagePortrayal2D;
-import sim.portrayal.simple.LabelledPortrayal2D;
-import sim.portrayal.simple.MovablePortrayal2D;
-import thiefworld.agents.Child;
-import thiefworld.agents.FruitSource;
-import thiefworld.agents.Gatherer;
-import thiefworld.agents.Hunter;
-import thiefworld.agents.MeatSource;
-import thiefworld.agents.Nest;
-import thiefworld.agents.Pheromone;
-import thiefworld.agents.Protector;
-import thiefworld.agents.Thief;
 
 /**
  * GUI implementation for the thief-world simulation.
@@ -70,14 +57,14 @@ public class ThiefWorldWithUI extends GUIState {
 	private void clearWorld() {
 		ThiefWorld world = (ThiefWorld) state;
 		
-		world.childrenBag.clear();
-		world.fruitSourcesBag.clear();
-		world.gatherersBag.clear();
-		world.huntersBag.clear();
-		world.meatSourcesBag.clear();
-		world.nestsBag.clear();
-		world.protectorsBag.clear();
-		world.thievesBag.clear();
+		world.data.childrenBag.clear();
+		world.data.fruitSourcesBag.clear();
+		world.data.gatherersBag.clear();
+		world.data.huntersBag.clear();
+		world.data.meatSourcesBag.clear();
+		world.data.nestsBag.clear();
+		world.data.protectorsBag.clear();
+		world.data.thievesBag.clear();
 	}
 
 	@Override
@@ -158,190 +145,7 @@ public class ThiefWorldWithUI extends GUIState {
 		// schedules a recurring display method for changing the displayed
 		// components if that is required (i.e. activating/deactivating
 		// components)
-		scheduleRepeatingImmediatelyBefore(new Steppable() {
-
-			/**
-			 *
-			 */
-			private static final long serialVersionUID = 6226556354883996558L;
-
-			@Override
-			public void step(SimState arg0) {
-				ThiefWorld world = (ThiefWorld) arg0;
-
-				// set display settings for hunters
-				if (world.isShowHunters()) {
-					mapPortrayal
-							.setPortrayalForClass(
-									Hunter.class,
-									new MovablePortrayal2D(
-											new CircledPortrayal2D(
-													new LabelledPortrayal2D(
-															new ImagePortrayal2D(
-																	new ImageIcon(
-																			"./images/marine.png"),
-																	5.0), 5.0,
-															null, Color.white,
-															true), 0, world
-															.getAgentRange(),
-													Color.green, true)));
-				} else {
-					// hide hunters
-					mapPortrayal.setPortrayalForClass(Hunter.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for gatherers
-				if (world.isShowGatherers()) {
-					mapPortrayal
-							.setPortrayalForClass(
-									Gatherer.class,
-									new MovablePortrayal2D(
-											new CircledPortrayal2D(
-													new LabelledPortrayal2D(
-															new ImagePortrayal2D(
-																	new ImageIcon(
-																			"./images/gatherer.png"),
-																	5.0), 5.0,
-															null, Color.white,
-															true), 0, world
-															.getAgentRange(),
-													Color.green, true)));
-				} else {
-					// hide gatherers
-					mapPortrayal.setPortrayalForClass(Gatherer.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for nests
-				if (world.isShowNests()) {
-					mapPortrayal
-							.setPortrayalForClass(
-									Nest.class,
-									new MovablePortrayal2D(
-											new CircledPortrayal2D(
-													new LabelledPortrayal2D(
-															new ImagePortrayal2D(
-																	new ImageIcon(
-																			"./images/nest.png"),
-																	10.0), 5.0,
-															null, Color.white,
-															true), 0, world
-															.getAgentRange(),
-													Color.green, true)));
-				} else {
-					// hide nests
-					mapPortrayal.setPortrayalForClass(Nest.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for thieves
-				if (world.isShowThieves()) {
-					mapPortrayal
-							.setPortrayalForClass(
-									Thief.class,
-									new MovablePortrayal2D(
-											new CircledPortrayal2D(
-													new LabelledPortrayal2D(
-															new ImagePortrayal2D(
-																	new ImageIcon(
-																			"./images/ghost.png"),
-																	5.0), 5.0,
-															null, Color.white,
-															true), 0, world
-															.getAgentRange(),
-													Color.green, true)));
-				} else {
-					// hide thieves
-					mapPortrayal.setPortrayalForClass(Thief.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for children
-				if (world.isShowChildren()) {
-					mapPortrayal
-							.setPortrayalForClass(
-									Child.class,
-									new MovablePortrayal2D(
-											new CircledPortrayal2D(
-													new LabelledPortrayal2D(
-															new ImagePortrayal2D(
-																	new ImageIcon(
-																			"./images/medic.png"),
-																	5.0), 5.0,
-															null, Color.white,
-															true), 0, world
-															.getAgentRange(),
-													Color.green, true)));
-				} else {
-					// hide children
-					mapPortrayal.setPortrayalForClass(Child.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for fruit sources
-				if (world.isShowFruitSources()) {
-					mapPortrayal.setPortrayalForClass(FruitSource.class,
-							new MovablePortrayal2D(new CircledPortrayal2D(
-									new LabelledPortrayal2D(
-											new ImagePortrayal2D(new ImageIcon(
-													"./images/crystal.png"),
-													5.0), 5.0, null,
-											Color.white, true), 0, 5.0,
-									Color.green, true)));
-				} else {
-					// hide fruit sources
-					mapPortrayal.setPortrayalForClass(FruitSource.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for meat sources
-				if (world.isShowMeatSources()) {
-					mapPortrayal.setPortrayalForClass(MeatSource.class,
-							new MovablePortrayal2D(new CircledPortrayal2D(
-									new LabelledPortrayal2D(
-											new ImagePortrayal2D(new ImageIcon(
-													"./images/vespene.png"),
-													10.0), 5.0, null,
-											Color.white, true), 0, 5.0,
-									Color.green, true)));
-				} else {
-					// hide meat sources
-					mapPortrayal.setPortrayalForClass(MeatSource.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for protectors
-				if (world.isShowProtectors()) {
-					mapPortrayal.setPortrayalForClass(Protector.class,
-							new MovablePortrayal2D(new CircledPortrayal2D(
-									new LabelledPortrayal2D(
-											new ImagePortrayal2D(new ImageIcon(
-													"./images/tank.png"), 5.0),
-											5.0, null, Color.white, true), 0,
-									world.getAgentRange(), Color.green, true)));
-				} else {
-					// hide protectors
-					mapPortrayal.setPortrayalForClass(Protector.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				// set display settings for pheromones
-				if (world.isShowPheromones()) {
-					mapPortrayal.setPortrayalForClass(Pheromone.class,
-							new LabelledPortrayal2D(new ImagePortrayal2D(
-									new ImageIcon("./images/reddot.png")), 0.1,
-									null, Color.white, true));
-				} else {
-					mapPortrayal.setPortrayalForClass(Pheromone.class,
-							mapPortrayal.getPortrayalForNull());
-				}
-
-				display.reset();
-
-				display.repaint();
-			}
-		});
+		scheduleRepeatingImmediatelyBefore(new DisplayUpdater(this));
 
 		display.reset();
 		display.setBackdrop(background);
