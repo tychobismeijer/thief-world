@@ -20,11 +20,23 @@ import thiefworld.agents.Pheromone;
 import thiefworld.agents.Protector;
 import thiefworld.agents.Thief;
 
+/**
+ * Updates the GUI display, configuring and adding the required visual elements
+ * at each step.
+ * 
+ * @author Stefan Adrian Boronea
+ * 
+ */
 final class DisplayUpdater implements Steppable {
 	/**
 	 * 
 	 */
 	private ThiefWorldWithUI gui;
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 6226556354883996558L;
 
 	/**
 	 * @param thiefWorldWithUI
@@ -33,20 +45,53 @@ final class DisplayUpdater implements Steppable {
 		gui = thiefWorldWithUI;
 	}
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 6226556354883996558L;
+	private void displayChildren(ThiefWorld world) {
+		if (world.getDisplayData().showChildren) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Child.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new ImagePortrayal2D(
+									new ImageIcon("./images/medic.png"), 5.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
+		} else {
+			// hide children
+			gui.mapPortrayal.setPortrayalForClass(Child.class,
+					gui.mapPortrayal.getPortrayalForNull());
+		}
+	}
 
-	@Override
-	public void step(SimState arg0) {
-		ThiefWorld world = (ThiefWorld) arg0;
+	private void displayFruitSources(ThiefWorld world) {
+		if (world.getDisplayData().showFruitSources) {
+			gui.mapPortrayal.setPortrayalForClass(FruitSource.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(
+									new ImagePortrayal2D(new ImageIcon(
+											"./images/crystal.png"), 5.0), 5.0,
+									null, Color.white, true), 0, 5.0,
+							Color.green, true)));
+		} else {
+			// hide fruit sources
+			gui.mapPortrayal.setPortrayalForClass(FruitSource.class,
+					gui.mapPortrayal.getPortrayalForNull());
+		}
+	}
 
-		displayGUIEntities(world);
-		
-		gui.display.reset();
-
-		gui.display.repaint();
+	private void displayGatherers(ThiefWorld world) {
+		if (world.getDisplayData().showGatherers) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Gatherer.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(
+									new ImagePortrayal2D(new ImageIcon(
+											"./images/gatherer.png"), 5.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
+		} else {
+			// hide gatherers
+			gui.mapPortrayal.setPortrayalForClass(Gatherer.class,
+					gui.mapPortrayal.getPortrayalForNull());
+		}
 	}
 
 	private void displayGUIEntities(ThiefWorld world) {
@@ -61,7 +106,6 @@ final class DisplayUpdater implements Steppable {
 
 		// set display settings for thieves
 		displayThieves(world);
-		
 
 		// set display settings for children
 		displayChildren(world);
@@ -79,43 +123,30 @@ final class DisplayUpdater implements Steppable {
 		displayPheromones(world);
 	}
 
-	private void displayPheromones(ThiefWorld world) {
-		if (world.isShowPheromones()) {
-			gui.mapPortrayal.setPortrayalForClass(Pheromone.class,
-					new LabelledPortrayal2D(new ImagePortrayal2D(
-							new ImageIcon("./images/reddot.png")), 0.1,
-							null, Color.white, true));
-		} else {
-			gui.mapPortrayal.setPortrayalForClass(Pheromone.class,
-					gui.mapPortrayal.getPortrayalForNull());
-		}
-	}
-
-	private void displayProtectors(ThiefWorld world) {
-		if (world.isShowProtectors()) {
-			gui.mapPortrayal.setPortrayalForClass(Protector.class,
+	private void displayHunters(ThiefWorld world) {
+		if (world.getDisplayData().showHunters) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Hunter.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
-							new LabelledPortrayal2D(
-									new ImagePortrayal2D(new ImageIcon(
-											"./images/tank.png"), 5.0),
-									5.0, null, Color.white, true), 0,
-							world.getAgentRange(), Color.green, true)));
+							new LabelledPortrayal2D(new ImagePortrayal2D(
+									new ImageIcon("./images/marine.png"), 5.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
-			// hide protectors
-			gui.mapPortrayal.setPortrayalForClass(Protector.class,
+			// hide hunters
+			gui.mapPortrayal.setPortrayalForClass(Hunter.class,
 					gui.mapPortrayal.getPortrayalForNull());
 		}
 	}
 
 	private void displayMeatSources(ThiefWorld world) {
-		if (world.isShowMeatSources()) {
+		if (world.getDisplayData().showMeatSources) {
 			gui.mapPortrayal.setPortrayalForClass(MeatSource.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(
 									new ImagePortrayal2D(new ImageIcon(
-											"./images/vespene.png"),
-											10.0), 5.0, null,
-									Color.white, true), 0, 5.0,
+											"./images/vespene.png"), 10.0),
+									5.0, null, Color.white, true), 0, 5.0,
 							Color.green, true)));
 		} else {
 			// hide meat sources
@@ -124,85 +155,15 @@ final class DisplayUpdater implements Steppable {
 		}
 	}
 
-	private void displayFruitSources(ThiefWorld world) {
-		if (world.isShowFruitSources()) {
-			gui.mapPortrayal.setPortrayalForClass(FruitSource.class,
-					new MovablePortrayal2D(new CircledPortrayal2D(
-							new LabelledPortrayal2D(
-									new ImagePortrayal2D(new ImageIcon(
-											"./images/crystal.png"),
-											5.0), 5.0, null,
-									Color.white, true), 0, 5.0,
-							Color.green, true)));
-		} else {
-			// hide fruit sources
-			gui.mapPortrayal.setPortrayalForClass(FruitSource.class,
-					gui.mapPortrayal.getPortrayalForNull());
-		}
-	}
-
-	private void displayChildren(ThiefWorld world) {
-		if (world.isShowChildren()) {
-			gui.mapPortrayal
-					.setPortrayalForClass(
-							Child.class,
-							new MovablePortrayal2D(
-									new CircledPortrayal2D(
-											new LabelledPortrayal2D(
-													new ImagePortrayal2D(
-															new ImageIcon(
-																	"./images/medic.png"),
-															5.0), 5.0,
-													null, Color.white,
-													true), 0, world
-													.getAgentRange(),
-											Color.green, true)));
-		} else {
-			// hide children
-			gui.mapPortrayal.setPortrayalForClass(Child.class,
-					gui.mapPortrayal.getPortrayalForNull());
-		}
-	}
-
-	private void displayThieves(ThiefWorld world) {
-		if (world.isShowThieves()) {
-			gui.mapPortrayal
-					.setPortrayalForClass(
-							Thief.class,
-							new MovablePortrayal2D(
-									new CircledPortrayal2D(
-											new LabelledPortrayal2D(
-													new ImagePortrayal2D(
-															new ImageIcon(
-																	"./images/ghost.png"),
-															5.0), 5.0,
-													null, Color.white,
-													true), 0, world
-													.getAgentRange(),
-											Color.green, true)));
-		} else {
-			// hide thieves
-			gui.mapPortrayal.setPortrayalForClass(Thief.class,
-					gui.mapPortrayal.getPortrayalForNull());
-		}
-	}
-
 	private void displayNests(ThiefWorld world) {
-		if (world.isShowNests()) {
-			gui.mapPortrayal
-					.setPortrayalForClass(
-							Nest.class,
-							new MovablePortrayal2D(
-									new CircledPortrayal2D(
-											new LabelledPortrayal2D(
-													new ImagePortrayal2D(
-															new ImageIcon(
-																	"./images/nest.png"),
-															10.0), 5.0,
-													null, Color.white,
-													true), 0, world
-													.getAgentRange(),
-											Color.green, true)));
+		if (world.getDisplayData().showNests) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Nest.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new ImagePortrayal2D(
+									new ImageIcon("./images/nest.png"), 10.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
 			// hide nests
 			gui.mapPortrayal.setPortrayalForClass(Nest.class,
@@ -210,49 +171,58 @@ final class DisplayUpdater implements Steppable {
 		}
 	}
 
-	private void displayGatherers(ThiefWorld world) {
-		if (world.isShowGatherers()) {
-			gui.mapPortrayal
-					.setPortrayalForClass(
-							Gatherer.class,
-							new MovablePortrayal2D(
-									new CircledPortrayal2D(
-											new LabelledPortrayal2D(
-													new ImagePortrayal2D(
-															new ImageIcon(
-																	"./images/gatherer.png"),
-															5.0), 5.0,
-													null, Color.white,
-													true), 0, world
-													.getAgentRange(),
-											Color.green, true)));
+	private void displayPheromones(ThiefWorld world) {
+		if (world.getDisplayData().showPheromones) {
+			gui.mapPortrayal.setPortrayalForClass(Pheromone.class,
+					new LabelledPortrayal2D(new ImagePortrayal2D(new ImageIcon(
+							"./images/reddot.png")), 0.1, null, Color.white,
+							true));
 		} else {
-			// hide gatherers
-			gui.mapPortrayal.setPortrayalForClass(Gatherer.class,
+			gui.mapPortrayal.setPortrayalForClass(Pheromone.class,
 					gui.mapPortrayal.getPortrayalForNull());
 		}
 	}
 
-	private void displayHunters(ThiefWorld world) {
-		if (world.isShowHunters()) {
-			gui.mapPortrayal
-					.setPortrayalForClass(
-							Hunter.class,
-							new MovablePortrayal2D(
-									new CircledPortrayal2D(
-											new LabelledPortrayal2D(
-													new ImagePortrayal2D(
-															new ImageIcon(
-																	"./images/marine.png"),
-															5.0), 5.0,
-													null, Color.white,
-													true), 0, world
-													.getAgentRange(),
-											Color.green, true)));
+	private void displayProtectors(ThiefWorld world) {
+		if (world.getDisplayData().showProtectors) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Protector.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new ImagePortrayal2D(
+									new ImageIcon("./images/tank.png"), 5.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
 		} else {
-			// hide hunters
-			gui.mapPortrayal.setPortrayalForClass(Hunter.class,
+			// hide protectors
+			gui.mapPortrayal.setPortrayalForClass(Protector.class,
 					gui.mapPortrayal.getPortrayalForNull());
 		}
+	}
+
+	private void displayThieves(ThiefWorld world) {
+		if (world.getDisplayData().showThieves) {
+			gui.mapPortrayal.setPortrayalForClass(
+					Thief.class,
+					new MovablePortrayal2D(new CircledPortrayal2D(
+							new LabelledPortrayal2D(new ImagePortrayal2D(
+									new ImageIcon("./images/ghost.png"), 5.0),
+									5.0, null, Color.white, true), 0, world
+									.getAgentRange(), Color.green, true)));
+		} else {
+			// hide thieves
+			gui.mapPortrayal.setPortrayalForClass(Thief.class,
+					gui.mapPortrayal.getPortrayalForNull());
+		}
+	}
+
+	@Override
+	public void step(SimState arg0) {
+		ThiefWorld world = (ThiefWorld) arg0;
+
+		displayGUIEntities(world);
+
+		gui.display.reset();
+
+		gui.display.repaint();
 	}
 }

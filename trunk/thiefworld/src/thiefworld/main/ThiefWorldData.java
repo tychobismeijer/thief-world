@@ -2,6 +2,12 @@ package thiefworld.main;
 
 import sim.util.Bag;
 
+/**
+ * Contains the instantiations of the various agents in the system.
+ * 
+ * @author Stefan Adrian Boronea
+ * 
+ */
 public class ThiefWorldData {
 	/**
 	 * The number of children with which the simulation starts.
@@ -72,27 +78,39 @@ public class ThiefWorldData {
 	 */
 	public Bag thievesBag;
 
-	public ThiefWorldData(int children, Bag childrenBag, int fruitSources,
-			Bag fruitSourcesBag, int gatherers, Bag gatherersBag, int hunters,
-			Bag huntersBag, int meatSources, Bag meatSourcesBag, int nests,
-			Bag nestsBag, int protectors, Bag protectorsBag, int teams,
-			int thieves, Bag thievesBag) {
+	/**
+	 * Creates a new environment context containing the specified entities.
+	 * @param children the number of children in the system.
+	 * @param fruitSources the number of fruit sources in the system.
+	 * @param gatherers the number of fruit gatherers in the system.
+	 * @param hunters the number of hunters in the system.
+	 * @param meatSources the number of meat sources in the system.
+	 * @param nests the number of nests in the system.
+	 * @param protectors the number of protectors in the system.
+	 * @param teams the number of teams in the system.
+	 * @param thieves the number of thieves in the system.
+	 */
+	public ThiefWorldData(int children, int fruitSources,
+			int gatherers, int hunters,
+			int meatSources, int nests,
+			int protectors, int teams,
+			int thieves) {
 		this.children = children;
-		this.childrenBag = childrenBag;
+		this.childrenBag = new Bag();
 		this.fruitSources = fruitSources;
-		this.fruitSourcesBag = fruitSourcesBag;
+		this.fruitSourcesBag = new Bag();
 		this.gatherers = gatherers;
-		this.gatherersBag = gatherersBag;
+		this.gatherersBag = new Bag();
 		this.hunters = hunters;
-		this.huntersBag = huntersBag;
+		this.huntersBag = new Bag();
 		this.meatSources = meatSources;
-		this.meatSourcesBag = meatSourcesBag;
+		this.meatSourcesBag = new Bag();
 		this.nests = nests;
-		this.nestsBag = nestsBag;
+		this.nestsBag = new Bag();
 		this.protectors = protectors;
-		this.protectorsBag = protectorsBag;
+		this.protectorsBag = new Bag();
 		this.teams = teams;
 		this.thieves = thieves;
-		this.thievesBag = thievesBag;
+		this.thievesBag = new Bag();
 	}
 }

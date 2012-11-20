@@ -30,6 +30,7 @@ public class ThiefWorldWithUI extends GUIState {
 	public static String getName() {
 		return "thief-world";
 	}
+
 	/**
 	 * Starter method for the GUI simulation.
 	 * 
@@ -40,23 +41,45 @@ public class ThiefWorldWithUI extends GUIState {
 		Console c = new Console(gui);
 		c.setVisible(true);
 	}
+
+	/**
+	 * The display instantiation.
+	 */
 	public Display2D display;
 
+	/**
+	 * GUI frame.
+	 */
 	public JFrame displayFrame;
 
+	/**
+	 * The map grid within the simulation.
+	 */
 	public ContinuousPortrayal2D mapPortrayal = new ContinuousPortrayal2D();
 
+	/**
+	 * Creates a new ThiefWorld GUI.
+	 */
 	public ThiefWorldWithUI() {
 		super(new ThiefWorld(System.currentTimeMillis()));
 	}
 
+	/**
+	 * Creates a new ThiefWorld GUI based on a simulation state.
+	 * 
+	 * @param state
+	 *            the simulation state.
+	 */
 	public ThiefWorldWithUI(SimState state) {
 		super(state);
 	}
 
+	/**
+	 * Clears entities from the world.
+	 */
 	private void clearWorld() {
 		ThiefWorld world = (ThiefWorld) state;
-		
+
 		world.data.childrenBag.clear();
 		world.data.fruitSourcesBag.clear();
 		world.data.gatherersBag.clear();
@@ -67,21 +90,34 @@ public class ThiefWorldWithUI extends GUIState {
 		world.data.thievesBag.clear();
 	}
 
+	/**
+	 * Ends the simulation.
+	 */
 	@Override
 	public void finish() {
 		clearWorld();
 	}
 
+	/**
+	 * Gets the simulation parameters inspector.
+	 * 
+	 * @return the simulation parameters inspector.
+	 */
 	public Inspector getInspector() {
 		Inspector i = super.getInspector();
 		i.setVolatile(true);
 		return i;
 	}
 
+	/**
+	 * Gets the simulation state.
+	 * 
+	 * @return the simulation state.
+	 */
 	public Object getSimulationInspectedObject() {
 		return state;
 	}
-	
+
 	/**
 	 * Initializes the GUI window.
 	 */

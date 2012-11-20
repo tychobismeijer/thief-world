@@ -3,6 +3,7 @@ package thiefworld.agents;
 import sim.engine.SimState;
 import sim.util.Bag;
 import sim.util.Double2D;
+import thiefworld.agents.misc.SimulationParameters;
 import thiefworld.main.ThiefWorld;
 
 /**
@@ -24,6 +25,12 @@ public class Observer extends Agent {
 	 */
 	private ActiveAgent correspondingAgent;
 
+	/**
+	 * Creates a new observer for an agent.
+	 * 
+	 * @param agent
+	 *            the agent that observes the environment.
+	 */
 	public Observer(ActiveAgent agent) {
 		correspondingAgent = agent;
 	}
@@ -41,7 +48,7 @@ public class Observer extends Agent {
 			Class<?> taskType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag agentsNearby = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		// Find all agents with desired task
 		Bag selectedAgents = new Bag();
@@ -57,7 +64,7 @@ public class Observer extends Agent {
 		}
 
 		// Return the average success rate
-		if(selectedAgents.size() != 0)
+		if (selectedAgents.size() != 0)
 			return totalSuccessRates / selectedAgents.size();
 		else
 			return -1;
@@ -80,7 +87,7 @@ public class Observer extends Agent {
 
 		// follow the pheromone trail to a food source
 		Bag agentsInRange = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		FoodSource bestFoodSource = null;
 
@@ -120,7 +127,7 @@ public class Observer extends Agent {
 
 		// follow the pheromone trail to a food source
 		Bag agentsInRange = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		double closestFoodSourceDistance = Double.MAX_VALUE;
 		FoodSource closestFoodSource = null;
@@ -158,7 +165,7 @@ public class Observer extends Agent {
 	public Bag getPheromonesWithinRange(ThiefWorld world) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		Bag selectedPheromones = new Bag();
 		for (int i = 0; i < pheromonesCloseby.size(); i++) {
@@ -184,7 +191,7 @@ public class Observer extends Agent {
 			PheromoneType pheromonesType) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag pheromonesCloseby = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		Bag selectedPheromones = new Bag();
 		for (int i = 0; i < pheromonesCloseby.size(); i++) {
@@ -250,7 +257,7 @@ public class Observer extends Agent {
 	public Nest searchForNestWithinRange(ThiefWorld world, boolean ownNest) {
 		Double2D myPosition = world.map.getObjectLocation(correspondingAgent);
 		Bag closebyAgents = world.map.getObjectsWithinDistance(myPosition,
-				ActiveAgent.getAgentRange());
+				SimulationParameters.getAgentRange());
 
 		double closebyNestDistance = Double.MAX_VALUE;
 		Nest closebyNest = null;
@@ -276,6 +283,9 @@ public class Observer extends Agent {
 		return closebyNest;
 	}
 
+	/**
+	 * The observer is silent.
+	 */
 	@Override
 	public void step(SimState arg0) {
 		// TODO Auto-generated method stub
