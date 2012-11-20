@@ -3,17 +3,14 @@ package thiefworld.main;
 import sim.engine.SimState;
 import sim.engine.Stoppable;
 import sim.field.continuous.Continuous2D;
-import sim.util.Bag;
 import thiefworld.agents.Child;
 import thiefworld.agents.FruitSource;
 import thiefworld.agents.Gatherer;
 import thiefworld.agents.Hunter;
 import thiefworld.agents.MeatSource;
 import thiefworld.agents.Nest;
-import thiefworld.agents.Pheromone;
 import thiefworld.agents.Protector;
 import thiefworld.agents.Thief;
-import thiefworld.agents.misc.SimulationParameters;
 import thiefworld.util.Utilities;
 
 /**
@@ -55,7 +52,8 @@ public class ThiefWorld extends SimState {
 	/**
 	 * The agents available in the environment.
 	 */
-	protected ThiefWorldData data = new ThiefWorldData(0, 10, 50, 50, 10, 1, 0, 1, 0);
+	protected ThiefWorldData data = new ThiefWorldData(0, 10, 50, 50, 10, 1, 0,
+			1, 0);
 
 	/**
 	 * A value indicating the simulation speed.
@@ -361,59 +359,12 @@ public class ThiefWorld extends SimState {
 	}
 
 	/**
-	 * Retrieves the visibility range within which the agent can see.
+	 * Retrieves the entities in the environment.
 	 * 
-	 * @return the visibility range within which the agent can see.
+	 * @return the entities in the environment.
 	 */
-	public double getAgentRange() {
-		return SimulationParameters.getAgentRange();
-	}
-
-	/**
-	 * Retrieves the number of children with which the simulation starts.
-	 * 
-	 * @return the number of children with which the simulation starts.
-	 */
-	public int getChildren() {
-		return data.children;
-	}
-
-	/**
-	 * Retrieves the maximum amount of food that can be carried by an agent at
-	 * any time.
-	 * 
-	 * @return the maximum amount of food that can be carried by an agent at any
-	 *         time.
-	 */
-	public double getDefaultMaxCarriedFood() {
-		return SimulationParameters.getDefaultMaxCarriedFood();
-	}
-
-	/**
-	 * Retrieves the default value for a pheromone's strength.
-	 * 
-	 * @return the default value for a pheromone's strength.
-	 */
-	public double getDefaultPheromoneStrength() {
-		return Pheromone.getDefaultPheromoneStrength();
-	}
-
-	/**
-	 * Retrieves skill decay rate of agents.
-	 * 
-	 * @return the skill decay rate of agents.
-	 */
-	public double getDefaultSkillDecayStep() {
-		return SimulationParameters.getSkillDecayRate();
-	}
-
-	/**
-	 * Retrieves the skill increase rate of agents.
-	 * 
-	 * @return the skill increase rate of agents.
-	 */
-	public double getDefaultSkillIncreaseStep() {
-		return SimulationParameters.getSkillIncreaseRate();
+	public ThiefWorldData getData() {
+		return data;
 	}
 
 	/**
@@ -423,83 +374,6 @@ public class ThiefWorld extends SimState {
 	 */
 	public ThiefWorldDisplayData getDisplayData() {
 		return displayData;
-	}
-
-	/**
-	 * Retrieves the number of fruit sources with which the simulation starts.
-	 * 
-	 * @return the number of fruit sources with which the simulation starts.
-	 */
-	public int getFruitSources() {
-		return data.fruitSources;
-	}
-
-	/**
-	 * Retrieves the number of gatherers with which the simulation starts.
-	 * 
-	 * @return the number of gatherers with which the simulation starts.
-	 */
-	public int getGatherers() {
-		return data.gatherers;
-	}
-
-	/**
-	 * Retrieves the number of hunters with which the simulation starts.
-	 * 
-	 * @return the number of hunters with which the simulation starts.
-	 */
-	public int getHunters() {
-		return data.hunters;
-	}
-
-	/**
-	 * Retrieves the number of meat sources with which the simulation starts.
-	 * 
-	 * @return the number of meat sources with which the simulation starts.
-	 */
-	public int getMeatSources() {
-		return data.meatSources;
-	}
-
-	/**
-	 * Retrieves the nests present in the system.
-	 * 
-	 * @return the nests present in the system
-	 */
-	public int getNests() {
-		return data.nests;
-	}
-
-	/**
-	 * Retrieves the number of gatherers in the environment.
-	 * 
-	 * @return the number of gatherers in the environment.
-	 */
-	public int getNrOfGatherers() {
-		Bag gatherers = map.getAllObjects();
-		int count = 0;
-		for (int idx = 0; idx < gatherers.size(); idx++) {
-			if (gatherers.get(idx).getClass() == Gatherer.class)
-				count++;
-		}
-
-		return count;
-	}
-
-	/**
-	 * Retrieves the number of hunters in the environment.
-	 * 
-	 * @return the number of hunters in the environment.
-	 */
-	public int getNrOfHunters() {
-		Bag gatherers = map.getAllObjects();
-		int count = 0;
-		for (int idx = 0; idx < gatherers.size(); idx++) {
-			if (gatherers.get(idx).getClass() == Hunter.class)
-				count++;
-		}
-
-		return count;
 	}
 
 	/**
@@ -536,15 +410,6 @@ public class ThiefWorld extends SimState {
 		}
 
 		return overallAvailableMeat;
-	}
-
-	/**
-	 * Retrieves the number of protectors with which the simulation starts.
-	 * 
-	 * @return the number of protectors with which the simulation starts.
-	 */
-	public int getProtectors() {
-		return data.protectors;
 	}
 
 	/**
@@ -600,6 +465,26 @@ public class ThiefWorld extends SimState {
 		int maxHeight = (int) map.getHeight();
 
 		addEntities(maxWidth, maxHeight);
+	}
+
+	/**
+	 * Sets the entities in the environment.
+	 * 
+	 * @param data
+	 *            the entities in the environment.
+	 */
+	public void setData(ThiefWorldData data) {
+		this.data = data;
+	}
+
+	/**
+	 * Sets the parameters for the simulation display.
+	 * 
+	 * @param displayData
+	 *            the parameters for the simulation display.
+	 */
+	public void setDisplayData(ThiefWorldDisplayData displayData) {
+		this.displayData = displayData;
 	}
 
 	/**

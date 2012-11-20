@@ -19,6 +19,7 @@ import thiefworld.agents.Nest;
 import thiefworld.agents.Pheromone;
 import thiefworld.agents.Protector;
 import thiefworld.agents.Thief;
+import thiefworld.agents.misc.SimulationParameters;
 
 /**
  * Updates the GUI display, configuring and adding the required visual elements
@@ -47,13 +48,13 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayChildren(ThiefWorld world) {
 		if (world.getDisplayData().showChildren) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Child.class,
+			gui.mapPortrayal.setPortrayalForClass(Child.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(new ImagePortrayal2D(
 									new ImageIcon("./images/medic.png"), 5.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide children
 			gui.mapPortrayal.setPortrayalForClass(Child.class,
@@ -79,14 +80,14 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayGatherers(ThiefWorld world) {
 		if (world.getDisplayData().showGatherers) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Gatherer.class,
+			gui.mapPortrayal.setPortrayalForClass(Gatherer.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(
 									new ImagePortrayal2D(new ImageIcon(
 											"./images/gatherer.png"), 5.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide gatherers
 			gui.mapPortrayal.setPortrayalForClass(Gatherer.class,
@@ -125,13 +126,13 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayHunters(ThiefWorld world) {
 		if (world.getDisplayData().showHunters) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Hunter.class,
+			gui.mapPortrayal.setPortrayalForClass(Hunter.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(new ImagePortrayal2D(
 									new ImageIcon("./images/marine.png"), 5.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide hunters
 			gui.mapPortrayal.setPortrayalForClass(Hunter.class,
@@ -157,13 +158,13 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayNests(ThiefWorld world) {
 		if (world.getDisplayData().showNests) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Nest.class,
+			gui.mapPortrayal.setPortrayalForClass(Nest.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(new ImagePortrayal2D(
 									new ImageIcon("./images/nest.png"), 10.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide nests
 			gui.mapPortrayal.setPortrayalForClass(Nest.class,
@@ -185,13 +186,13 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayProtectors(ThiefWorld world) {
 		if (world.getDisplayData().showProtectors) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Protector.class,
+			gui.mapPortrayal.setPortrayalForClass(Protector.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(new ImagePortrayal2D(
 									new ImageIcon("./images/tank.png"), 5.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide protectors
 			gui.mapPortrayal.setPortrayalForClass(Protector.class,
@@ -201,13 +202,13 @@ final class DisplayUpdater implements Steppable {
 
 	private void displayThieves(ThiefWorld world) {
 		if (world.getDisplayData().showThieves) {
-			gui.mapPortrayal.setPortrayalForClass(
-					Thief.class,
+			gui.mapPortrayal.setPortrayalForClass(Thief.class,
 					new MovablePortrayal2D(new CircledPortrayal2D(
 							new LabelledPortrayal2D(new ImagePortrayal2D(
 									new ImageIcon("./images/ghost.png"), 5.0),
-									5.0, null, Color.white, true), 0, world
-									.getAgentRange(), Color.green, true)));
+									5.0, null, Color.white, true), 0,
+							SimulationParameters.getAgentRange(), Color.green,
+							true)));
 		} else {
 			// hide thieves
 			gui.mapPortrayal.setPortrayalForClass(Thief.class,
