@@ -41,6 +41,8 @@ public class Observer extends Agent {
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param taskType
+	 *            the type of agents that need to be considered.
 	 * @return a value of the average success rate of the specified task within
 	 *         range
 	 */
@@ -252,6 +254,8 @@ public class Observer extends Agent {
 	 * 
 	 * @param world
 	 *            the {@link thiefworld.main.ThiefWorld ThiefWorld} reference.
+	 * @param ownNest
+	 *            check for own nest or any nest?
 	 * @return the closest nest within range or null if there is none.
 	 */
 	public Nest searchForNestWithinRange(ThiefWorld world, boolean ownNest) {

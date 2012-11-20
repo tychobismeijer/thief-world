@@ -1,5 +1,6 @@
 package thiefworld.agents.misc;
 
+
 /**
  * Contains the various food or items that the agent carries.
  * 
