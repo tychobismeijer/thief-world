@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import sim.util.Bag;
 import sim.util.Double2D;
+import thiefworld.agents.misc.SimulationParameters;
 import thiefworld.main.ThiefWorld;
 import thiefworld.util.Utilities;
 
@@ -59,7 +60,7 @@ public class Thief extends ActiveAgent {
 						.getObjectLocation(closebyEnemyNest);
 				Double2D myPosition = world.map.getObjectLocation(this);
 
-				if (nestPosition.distance(myPosition) <= ActiveAgent
+				if (nestPosition.distance(myPosition) <= SimulationParameters
 						.getActionRange()) {
 					// nest in action range; rob the nest
 					robNest(closebyEnemyNest);
@@ -126,7 +127,7 @@ public class Thief extends ActiveAgent {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	protected void thinkAboutSwitchingJobsSimple(ThiefWorld world) {
 		// TODO Auto-generated method stub

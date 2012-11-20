@@ -69,6 +69,9 @@ public abstract class Agent implements Steppable {
 		this.teamNo = teamNo;
 	}
 
+	/**
+	 * Returns the team number and agent name.
+	 */
 	@Override
 	public String toString() {
 		return "[" + teamNo + "] " + name;

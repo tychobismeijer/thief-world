@@ -12,9 +12,14 @@ import thiefworld.util.Utilities;
  * 
  */
 public class Pheromone extends Agent {
-
+	/**
+	 * The strength of the pheromone when it is first placed.
+	 */
 	private static double defaultPheromoneStrength = 1.0;
 
+	/**
+	 * The number of cycles in which the pheromone completely decays.
+	 */
 	private static double pheromoneDecayRate = 50;
 
 	/**
@@ -22,20 +27,42 @@ public class Pheromone extends Agent {
 	 */
 	private static final long serialVersionUID = -1180313912816310627L;
 
+	/**
+	 * Retrieves the pheromone strength when it is first placed.
+	 * 
+	 * @return the pheromone strength when it is first placed.
+	 */
 	public static double getDefaultPheromoneStrength() {
 		return Pheromone.defaultPheromoneStrength;
 	}
 
+	/**
+	 * Retrieves the number of cycles in which the pheromone completely decays.
+	 * 
+	 * @return the number of cycles in which the pheromone completely decays.
+	 */
 	public static double getPheromoneDecayRate() {
 		return pheromoneDecayRate;
 	}
 
+	/**
+	 * Sets the pheromone strength when it is first placed.
+	 * 
+	 * @param defaultPheromoneStrength
+	 *            the pheromone strength when it is first placed.
+	 */
 	public static void setDefaultPheromoneStrength(
 			double defaultPheromoneStrength) {
 		if (defaultPheromoneStrength >= 0)
 			Pheromone.defaultPheromoneStrength = defaultPheromoneStrength;
 	}
 
+	/**
+	 * Sets the number of cycles in which the pheromone completely decays.
+	 * 
+	 * @param pheromoneDecayRate
+	 *            the amount of cycles in which the pheromone completely decays.
+	 */
 	public static void setPheromoneDecayRate(double pheromoneDecayRate) {
 		Pheromone.pheromoneDecayRate = pheromoneDecayRate;
 	}
@@ -95,8 +122,15 @@ public class Pheromone extends Agent {
 	 * direction is specified.
 	 * 
 	 * @param strength
+	 *            the strength of the pheromone.
 	 * @param type
+	 *            the type of the pheromone (corresponding to the agent that
+	 *            dropped it).
 	 * @param returningFromFoodSource
+	 *            is the pheromone dropped by an agent returning from a food
+	 *            source?
+	 * @param returningFromNest
+	 *            is the pheromone dropped by an agent in search of food?
 	 */
 	public Pheromone(double strength, PheromoneType type,
 			boolean returningFromFoodSource, boolean returningFromNest) {
@@ -159,6 +193,13 @@ public class Pheromone extends Agent {
 		this.strength += increment;
 	}
 
+	/**
+	 * Checks if the pheromone has been dropped by an agent that was in search
+	 * of food.
+	 * 
+	 * @return true if the pheromone was dropped by an agent in search of food,
+	 *         false otherwise.
+	 */
 	public boolean isComingFromNest() {
 		return comingFromNest;
 	}
@@ -174,6 +215,14 @@ public class Pheromone extends Agent {
 		return returningFromFoodSource;
 	}
 
+	/**
+	 * Sets whether or not the pheromone was dropped by an agent in search of
+	 * food.
+	 * 
+	 * @param comingFromNest
+	 *            true if the pheromone was dropped by an agent in search of
+	 *            food, false otherwise.
+	 */
 	public void setComingFromNest(boolean comingFromNest) {
 		this.comingFromNest = comingFromNest;
 	}
@@ -210,6 +259,9 @@ public class Pheromone extends Agent {
 		this.type = type;
 	}
 
+	/**
+	 * The pheromone slowly decays with each cycle.
+	 */
 	@Override
 	public void step(SimState arg0) {
 		if (this.getStrength() <= Utilities.theta) {
@@ -231,6 +283,9 @@ public class Pheromone extends Agent {
 		}
 	}
 
+	/**
+	 * Returns the pheromone's current strength.
+	 */
 	@Override
 	public String toString() {
 		return "pheromone strength: " + strength;

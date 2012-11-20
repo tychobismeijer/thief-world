@@ -41,7 +41,7 @@ public class Protector extends ActiveAgent {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	protected void thinkAboutSwitchingJobsSimple(ThiefWorld world) {
 		// TODO Auto-generated method stub
