@@ -1,0 +1,1 @@
+A multi-agent system implementing a hunter-gatherer society containing various skilled agents with learning abilities.
